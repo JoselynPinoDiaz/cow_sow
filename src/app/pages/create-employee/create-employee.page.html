@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Formulario Empleados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed >
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombres</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Primer Apellido</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Segundo Apellido</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Ingresar Email</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Ingresar Nuevamente Email</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input type="password" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Ingresar Comuna</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Ingresar Region</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <!-- Listado Paises -->
+    <ion-item>
+      <ion-label>País</ion-label>
+      <ion-select placeholder="Seleccione">
+        <ion-select-option >Agentina</ion-select-option>
+        <ion-select-option >Bolivia</ion-select-option>
+        <ion-select-option >Brasil</ion-select-option>
+        <ion-select-option >Chile</ion-select-option>
+        <ion-select-option >Colombia</ion-select-option>
+        <ion-select-option >Venezuela</ion-select-option>
+        <ion-select-option >Uruguay</ion-select-option>
+        <ion-select-option >Paraguay</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo de Empleado</ion-label>
+      <ion-select placeholder="Seleccione">
+        <ion-select-option >Administrador</ion-select-option>
+        <ion-select-option >Veterinario</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </form>
+  <!-- Boton Crear Propiedad -->
+  <ion-button class="ion-margin" color="success" size="small" routerLink="/employee">Registrar Empleado</ion-button>
+</ion-grid>
+</ion-content>
+

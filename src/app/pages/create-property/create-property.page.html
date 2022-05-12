@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear Propiedad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="formproperty"> 
+  <ion-grid fixed>
+  <ion-col >
+  <form action="">
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre de la Propiedad</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <!-- Tipo de Producción -->
+    <ion-item>
+      <ion-label>Tipo Producción</ion-label>
+      <ion-select placeholder="Seleccione">
+        <ion-select-option >Leche</ion-select-option>
+        <ion-select-option >Carnes</ion-select-option>
+        <ion-select-option >Ambas</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- Listado Paises -->
+    <ion-item>
+      <ion-label>País</ion-label>
+      <ion-select placeholder="Seleccione">
+        <ion-select-option >Agentina</ion-select-option>
+        <ion-select-option >Bolivia</ion-select-option>
+        <ion-select-option >Brasil</ion-select-option>
+        <ion-select-option >Chile</ion-select-option>
+        <ion-select-option >Colombia</ion-select-option>
+        <ion-select-option >Venezuela</ion-select-option>
+        <ion-select-option >Uruguay</ion-select-option>
+        <ion-select-option >Paraguay</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item lines="full" >
+      <ion-label position="floating">Ingresar Comuna</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item> 
+    <ion-item lines="full">
+      <ion-label position="floating">Ingresar Región</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Cantidad de Hectareas</ion-label>
+      <ion-input type="numeric" required></ion-input>
+    </ion-item> 
+    <!-- Boton Crear Propiedad -->
+    <ion-button id="botoncrear" color="success" size="small" routerLink="/property">Crear</ion-button>
+  </form>
+</ion-col>
+</ion-grid>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "cow_sow",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

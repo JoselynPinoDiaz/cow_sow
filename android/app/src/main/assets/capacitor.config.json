@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "cow_sow",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

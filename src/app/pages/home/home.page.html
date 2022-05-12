@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Bienvenido
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="inicio">
+  <ion-grid fixed>
+  <div class="img">
+    <img
+      src="https://st2.depositphotos.com/2435561/5260/i/600/depositphotos_52600881-stock-photo-small-red-stable-and-view.jpg" alt="bienvenido">
+  </div>
+  <div class="title">
+    <h1>Cow&Sow</h1>
+  </div>
+</ion-grid>
+</ion-content>
+
+<ion-content class="Form">
+  <ion-grid fixed>
+    <ion-row class="ion-no-padding">
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/login']" expand="block" color="danger">Inicio Sesion</ion-button>
+        <ion-button [routerLink]="['/register']" expand="block" color="primary">Crear Cuenta</ion-button>
+        <ion-button [routerLink]="['/event']" expand="block" color="primary">Eventos</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
