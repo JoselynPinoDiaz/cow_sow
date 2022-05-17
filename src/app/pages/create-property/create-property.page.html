@@ -7,27 +7,38 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content id="formproperty"> 
+<ion-content > 
   <ion-grid fixed>
-  <ion-col >
-  <form action="">
+  <form [formGroup]="formularioPropiedad" (keyup.enter)="guardar()" >
+    <ion-row>
+      <ion-col>
     <ion-item lines="full">
-      <ion-label position="floating">Nombre de la Propiedad</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-label position="floating">Nombre Propiedad</ion-label>
+      <ion-input formControlName="nombre" type="text" required></ion-input>
     </ion-item>
+  </ion-col>
+</ion-row>
     <!-- Tipo de Producción -->
+    <ion-row>
+      <ion-col>
     <ion-item>
       <ion-label>Tipo Producción</ion-label>
-      <ion-select placeholder="Seleccione">
+
+      <ion-select placeholder="Seleccione" formControlName="tipoProduccion" required>
         <ion-select-option >Leche</ion-select-option>
         <ion-select-option >Carnes</ion-select-option>
         <ion-select-option >Ambas</ion-select-option>
-      </ion-select>
-    </ion-item>
+        
+      </ion-select >
+    </ion-item >
+  </ion-col>
+</ion-row >
     <!-- Listado Paises -->
+    <ion-row>
+      <ion-col>
     <ion-item>
       <ion-label>País</ion-label>
-      <ion-select placeholder="Seleccione">
+      <ion-select  placeholder="Seleccione" formControlName="pais" required>
         <ion-select-option >Agentina</ion-select-option>
         <ion-select-option >Bolivia</ion-select-option>
         <ion-select-option >Brasil</ion-select-option>
@@ -36,24 +47,43 @@
         <ion-select-option >Venezuela</ion-select-option>
         <ion-select-option >Uruguay</ion-select-option>
         <ion-select-option >Paraguay</ion-select-option>
+        
       </ion-select>
     </ion-item>
+  </ion-col>
+</ion-row>
     
+<ion-row>
+  <ion-col>
     <ion-item lines="full" >
       <ion-label position="floating">Ingresar Comuna</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input formControlName="comuna" type="text" required></ion-input>
     </ion-item> 
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col>
     <ion-item lines="full">
       <ion-label position="floating">Ingresar Región</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input formControlName="region" type="text" required></ion-input>
     </ion-item>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col>
     <ion-item lines="full">
       <ion-label position="floating">Cantidad de Hectareas</ion-label>
-      <ion-input type="numeric" required></ion-input>
+      <ion-input formControlName="hectarias" type="numeric" required></ion-input>
     </ion-item> 
+  </ion-col>
+</ion-row>
     <!-- Boton Crear Propiedad -->
-    <ion-button id="botoncrear" color="success" size="small" routerLink="/property">Crear</ion-button>
+    <ion-row>
+      <ion-col>
+    <ion-button id="botoncrear" type="submit" color="success" size="small" (click)="guardar()">Crear</ion-button>
+  </ion-col>
+</ion-row>
   </form>
-</ion-col>
+
 </ion-grid>
 </ion-content>

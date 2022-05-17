@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { CreateSowingPageRoutingModule } from './create-sowing-routing.module';
 
 import { CreateSowingPage } from './create-sowing.page';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     CreateSowingPageRoutingModule
   ],
   declarations: [CreateSowingPage]

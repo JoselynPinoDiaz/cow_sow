@@ -9,42 +9,74 @@
 
 <ion-content>
   <ion-grid fixed>
-    <form>
-      <ion-item lines="full">
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-label position="floating">Numero Serie</ion-label>
-        <ion-input type="Numero" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Tipo Ganado</ion-label>
-        <ion-select position="floating" placeholder="Seleccione">
-          <ion-select-option>Administrador</ion-select-option>
-          <ion-select-option>Veterinario</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label>Tipo Producción</ion-label>
-        <ion-select placeholder="Seleccione">
-          <ion-select-option>Administrador</ion-select-option>
-          <ion-select-option>Veterinario</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label>Sexo Animal</ion-label>
-        <ion-select placeholder="Seleccione">
-          <ion-select-option>Administrador</ion-select-option>
-          <ion-select-option>Veterinario</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-label position="floating">Raza Animal</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
+    <form [formGroup]="formularioGanado" (keyup.enter)="guardar()">
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="nombre" type="text" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Numero Serie</ion-label>
+            <ion-input formControlName="numeroSerie" type="Numero" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label>Tipo Ganado</ion-label>
+            <ion-select formControlName="tipoGanado" position="floating" placeholder="Seleccione">
+              <ion-select-option>Vaca</ion-select-option>
+              <ion-select-option>Toro</ion-select-option>
+              <ion-select-option>Cerdo</ion-select-option>
+              <ion-select-option>Cabra</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label>Tipo Producción</ion-label>
+            <ion-select formControlName="tipoProduccion" placeholder="Seleccione">
+              <ion-select-option>Carne</ion-select-option>
+              <ion-select-option>Leche</ion-select-option>
+              <ion-select-option>Ambas</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label>Sexo Animal</ion-label>
+            <ion-select formControlName="sexoAnimal" placeholder="Seleccione">
+              <ion-select-option>Macho</ion-select-option>
+              <ion-select-option>Hembra</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item lines="full">
+            <ion-label position="floating">Raza Animal</ion-label>
+            <ion-input formControlName="razaAnimal" type="text" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
     </form>
     <!-- Boton Crear Propiedad -->
-    <ion-button class="ion-margin" color="success" size="small" routerLink="/won">Agregar Ganado</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-button class="ion-margin" type="submit" color="success" size="small" (click)="guardar()">Agregar Ganado
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

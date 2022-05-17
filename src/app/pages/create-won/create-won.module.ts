@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { CreateWonPageRoutingModule } from './create-won-routing.module';
 
 import { CreateWonPage } from './create-won.page';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule
     CreateWonPageRoutingModule
   ],
   declarations: [CreateWonPage]
