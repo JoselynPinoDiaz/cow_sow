@@ -7,3 +7,6 @@ ENLACE CON CONEXION A BD: https://www.oracle.com/cl/database/technologies/appdev
 # CONEXION ABD https://www.oracle.com/cl/database/technologies/appdev/xe/quickstart.html
 # CONEXION DE API: https://www.oscarblancarteblog.com/2018/01/11/construir-api-rest-nodejs-primera-parte/
 >>>>>>> JOSELYN
+
+
+Creacion de Validaciones
