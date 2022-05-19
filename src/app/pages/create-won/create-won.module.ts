@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     IonicModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     CreateWonPageRoutingModule
   ],
   declarations: [CreateWonPage]
