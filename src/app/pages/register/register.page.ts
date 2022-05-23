@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //importando librerias
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +12,9 @@ export class RegisterPage implements OnInit {
 
   formularioRegistro: FormGroup;
 
-  constructor(public fb: FormBuilder, public alertController: AlertController) { 
+  constructor(public fb: FormBuilder, 
+            public alertController: AlertController,
+            public navCtrl: NavController) { 
 
     this.formularioRegistro = this.fb.group({
 
@@ -36,9 +38,8 @@ export class RegisterPage implements OnInit {
   async guardar(){
     var f = this.formularioRegistro.value;
 
-
     if(this.formularioRegistro.invalid){
-      
+        
         const alert = await this.alertController.create({
           cssClass: 'my-custom-class',
           header: 'Error',
@@ -48,12 +49,11 @@ export class RegisterPage implements OnInit {
         });
     
         await alert.present();
-    
         return ;
 
   }
 
-  var usuario = {
+  var usuario  = {
 
     nombre: f.nombre,
     pApellido: f.pApellido,
@@ -68,6 +68,8 @@ export class RegisterPage implements OnInit {
   }
 
   localStorage.setItem('Usuario', JSON.stringify(usuario));
+  localStorage.setItem('ingresado','true');
+      this.navCtrl.navigateRoot('login');
   
   }
   

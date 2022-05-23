@@ -3,12 +3,14 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 /** Importamos Librerias a utilizar */
 import { AuthGuard } from './guards/auth.guard';
+import { LogueadoGuard } from './logueado.guard';
+import { NotLogueadoGuard } from './not-logueado.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    
   },
   {
     path: '',
@@ -18,14 +20,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule),
-    canActivate: [AuthGuard],
-    data: {
-      role: 'ADMIN'
-    }
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'forgot-password',
@@ -34,6 +33,7 @@ const routes: Routes = [
   {
     path: 'owner',
     loadChildren: () => import('./pages/owner/owner.module').then( m => m.OwnerPageModule)
+  
   },
   {
     path: 'create-property',

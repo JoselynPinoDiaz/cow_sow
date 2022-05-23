@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 //Importando Librerias
 
@@ -15,7 +15,9 @@ export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
 
-  constructor( public fb: FormBuilder, public alertController: AlertController) { 
+  constructor( public fb: FormBuilder, 
+              public alertController: AlertController, 
+              public navCtrl: NavController) { 
 
     this.formularioLogin = this.fb.group({
 
@@ -32,11 +34,12 @@ export class LoginPage implements OnInit {
   async ingresar(){
     var f = this.formularioLogin.value;
 
-    var usuario = JSON.parse(localStorage.getItem('usuario'));
+    var usuario = JSON.parse(localStorage.getItem('Usuario'));
 
     if(usuario.email == f.email && usuario.password == f.password){
-
       console.log('Ingresado');
+      localStorage.setItem('ingresado','true');
+      this.navCtrl.navigateRoot('owner');
     }else{
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
