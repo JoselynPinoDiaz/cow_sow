@@ -26,6 +26,7 @@ export class RegisterPage implements OnInit {
       'confirmarEmail': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required),
       'confirmarPassword': new FormControl("", Validators.required),
+      'pais': new FormControl("", Validators.required),
       'comuna': new FormControl("", Validators.required),
       'region': new FormControl("", Validators.required)
 
@@ -63,6 +64,7 @@ export class RegisterPage implements OnInit {
     confirmarEmail: f.confirmarEmail,
     password: f.password,
     confirmarPassword: f.confirmarPassword,
+    pais: f.pais,
     comuna: f.comuna,
     region: f.region
 

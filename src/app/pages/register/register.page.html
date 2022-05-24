@@ -15,8 +15,8 @@
           <ion-item lines="full">
             <ion-label position="floating">Nombre</ion-label>
             <ion-input formControlName="nombre" type="text" required></ion-input>
-            
-            
+
+
           </ion-item>
         </ion-col>
       </ion-row>
@@ -69,10 +69,22 @@
         </ion-col>
       </ion-row>
       <ion-row>
+      <ion-col>
+        
+          <!-- Listado Paises -->
+          <ion-item lines="full">
+            <ion-label>País</ion-label>
+            <ion-select formControlName="pais" placeholder="Seleccione">
+              <ion-select-option>Agentina</ion-select-option>
+            </ion-select>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+      <ion-row>
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Ingresar Comuna</ion-label>
-            <ion-input formControlName="comuna"  required></ion-input>
+            <ion-input formControlName="comuna" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -80,7 +92,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Ingresar Region</ion-label>
-            <ion-input formControlName="region"  required></ion-input>
+            <ion-input formControlName="region" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -88,7 +100,7 @@
         <ion-col>
           <ion-button type="submit" color="danger" expand="block" (click)="guardar()">Registrarse</ion-button>
         </ion-col>
-      </ion-row>  
+      </ion-row>
     </form>
   </ion-grid>
 </ion-content>
