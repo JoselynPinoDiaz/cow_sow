@@ -1,6 +1,6 @@
 const oracledb = require('oracledb');
 // hr schema password
-var password = 'DESA' 
+var password = '123abc' 
 // checkConnection asycn function
 async function checkConnection() {
   try {
@@ -9,9 +9,9 @@ async function checkConnection() {
         password: password,
         connectString: "localhost:1521/xepdb1"
     });
-  //  let result = await connection.execute("SELECT * FROM PAIS"); // TEST PARA VER LAS TABLAS DE LA BASE DE DATOS
-  //console.log(result.rows); // ver por pantalla la tabla pais
-    console.log('connected to database');
+   let result = await connection.execute("SELECT NOMBRE_PAIS FROM PAIS"); // TEST PARA VER LAS TABLAS DE LA BASE DE DATOS
+  console.log(result.rows); // ver por pantalla la tabla pais
+    //console.log('connected to database');
   } catch (err) {
     console.error(err.message);
   } finally {
