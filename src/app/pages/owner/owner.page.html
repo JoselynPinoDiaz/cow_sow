@@ -1,42 +1,83 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">  
-      <ion-menu-button color="dark"></ion-menu-button>   
+    <ion-buttons slot="start">
     </ion-buttons>
     <ion-title>Propietario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <ion-grid fixed>
-<ion-col 	size="12" >
-  <ion-card-content class="farm">
-  <ion-img src="../../../assets/icon/icons/granja.png" routerLink="/property"></ion-img>
-  <ion-text>Propiedad</ion-text>
-</ion-card-content>
-<ion-card-content class="employee">
-  <ion-img  src="../../../assets/icon/icons/perfil-del-usuario.png" routerLink="/employee"></ion-img>
-  <ion-text>Empleado</ion-text>
-</ion-card-content>
-<ion-card-content class="won">
-  <ion-img  src="../../../assets/icon/icons/ganado.png" routerLink="/won"></ion-img>
-  <ion-text>Ganado</ion-text>
-</ion-card-content>
-  <ion-card-content class="sowing">
-    <ion-img  src="../../../assets/icon/icons/siembra.png" routerLink="/sowing"></ion-img>
-    <ion-text>Siembra</ion-text>
-  </ion-card-content>
-  <ion-card-content class="contact">
-    <ion-img  src="../../../assets/icon/icons/contactos.png" routerLink="/contact"></ion-img>
-    <ion-text>Contacto</ion-text>
-  </ion-card-content>
-  <ion-card-content class="profile">
-    <ion-img  src="../../../assets/icon/icons/perfil.png" routerLink="/profile"></ion-img>
-    <ion-text>Perfil</ion-text>
-  </ion-card-content>
-</ion-col>
-</ion-grid>
+  
+        <ion-card-content class="farm">
+          <ion-tab-button >
+          <ion-img src="../../../assets/icon/icons/granja.png" [routerLink]="['/property']"></ion-img>
+          <ion-text>Propiedad</ion-text>
+        </ion-tab-button>
+        </ion-card-content>
+   
+
+        <ion-card-content class="employee">
+          <ion-tab-button >
+          <ion-img src="../../../assets/icon/icons/perfil-del-usuario.png" routerLink="/employee"></ion-img>
+          <ion-text>Empleado</ion-text>
+        </ion-tab-button>
+        </ion-card-content>
+    
+
+        <ion-card-content class="won">
+          <ion-tab-button >
+          <ion-img src="../../../assets/icon/icons/ganado.png" routerLink="/won"></ion-img>
+          <ion-text>Ganado</ion-text>
+        </ion-tab-button>
+        </ion-card-content>
+      
+
+        <ion-card-content class="sowing">
+          <ion-tab-button >
+          <ion-img src="../../../assets/icon/icons/siembra.png" routerLink="/sowing"></ion-img>
+          <ion-text>Siembra</ion-text>
+        </ion-tab-button>
+        </ion-card-content>
+     
+
+        <ion-card-content class="contact">
+          <ion-tab-button >
+          <ion-img src="../../../assets/icon/icons/contactos.png" routerLink="/contact"></ion-img>
+          <ion-label>Contacto</ion-label>
+        </ion-tab-button>
+        </ion-card-content>
+
+      
+        <ion-card-content class="profile" >
+          <ion-tab-button >
+          <ion-img src="../../../assets/icon/icons/perfil.png" routerLink="/profile"></ion-img>
+          <ion-label>Perfil</ion-label>
+        </ion-tab-button>
+        </ion-card-content>    
+      </ion-grid>
+ 
+
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="schedule">
+          <ion-icon name="grid-outline"></ion-icon>
+          <ion-label>Menu</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="speakers">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          <ion-label>Ayuda</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="map">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Cerrar sesion</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+
 </ion-content>
 
 
+  
