@@ -10,14 +10,12 @@
 <ion-content>
   <ion-grid fixed>
     <form [formGroup]="formularioGanado" (keyup.enter)="guardar()">
-      <ion-row>
-        <ion-col>
+
           <ion-item lines="full">
             <ion-label position="floating">Nombre</ion-label>
             <ion-input formControlName="nombre" type="text" required></ion-input>
           </ion-item>
-        </ion-col>
-      </ion-row>
+ 
       <ion-row>
         <ion-col>
           <ion-item lines="full">
@@ -78,5 +76,30 @@
         </ion-button>
       </ion-col>
     </ion-row>
+
+
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="schedule" routerLink="/owner">
+          <ion-icon name="grid-outline"></ion-icon>
+          <ion-label>Menu</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="schedule" routerLink="/event">
+          <ion-icon name="calendar"></ion-icon>
+          <ion-label>Schedule</ion-label>
+          <ion-badge>6</ion-badge>
+        </ion-tab-button>
+
+        <ion-tab-button tab="map">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Cerrar sesion</ion-label>
+        </ion-tab-button>
+
+      </ion-tab-bar>        
+    </ion-tabs>
   </ion-grid>
 </ion-content>
+
+
+

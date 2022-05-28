@@ -44,5 +44,30 @@
   <ion-button class="ion-margin" type="submit" color="success" size="small" (click)="guardar()">Agregar Ganado</ion-button>
 </ion-col>
 </ion-row>
+
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule" routerLink="/owner">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>Menu</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="schedule" routerLink="/event">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Schedule</ion-label>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="map">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <ion-label>Cerrar sesion</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>        
+</ion-tabs>
 </ion-grid>
 </ion-content>
+
+
+

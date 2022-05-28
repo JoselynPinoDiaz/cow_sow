@@ -6,7 +6,11 @@ const app = express();
 
 const port = 3000;
 
+<<<<<<< HEAD
 var password = '123abc';
+=======
+var password = 'DESA';
+>>>>>>> 6434ac5580cf590b443f0432171ff3cfb12516bc
 
 async function selectAllEmployees(req, res) {
 
