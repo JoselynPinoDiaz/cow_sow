@@ -1,6 +1,25 @@
 const oracledb = require('oracledb');
 // hr schema password
 var password = '123abc' 
+//conexion a bd 
+var express = require("express");
+var app = express();
+var bodyparser = require('body-parser');
+
+
+app.use(bodyparser.json());
+
+app.use(bodyparser.urlencoded({
+  extended : true
+}));
+
+var connAttrs = {
+  user: "DESA",
+  password: password,
+  connectString: "localhost:1521/xepdb1"
+}
+
+
 // checkConnection asycn function
 async function checkConnection() {
   try {
