@@ -6,9 +6,9 @@ const app = express();
 
 const port = 3000;
 
-var password = 'DESA';
+//var password = 'DESA';
 
-//var password = '123abc';
+var password = '123abc';
 
 async function selectAllCOUNTRY(req, res) {
 
