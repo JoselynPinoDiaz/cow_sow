@@ -25,12 +25,7 @@
     "@capacitor/haptics": "1.1.4",
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/status-bar": "1.0.8",
-<<<<<<< HEAD
     "@ionic/angular": "^6.1.6",
-=======
-    "@ionic/angular": "^6.0.0",
-    "body-parse": "^0.1.0",
->>>>>>> 6434ac5580cf590b443f0432171ff3cfb12516bc
     "body-parser": "^1.20.0",
     "capacitor": "^0.0.3",
     "cors": "^2.8.5",
