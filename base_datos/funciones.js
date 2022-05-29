@@ -9,10 +9,7 @@ const port = 3000;
 
 var password = '123abc';
 
-var password = 'DESA';
-
-
-async function selectAllEmployees(req, res) {
+async function selectAllCOUNTRY(req, res) {
 
 try {
 
@@ -28,7 +25,7 @@ connectString: "localhost:1521/xepdb1"
 
 console.log('connected to database');
 
-// run query to get all employees
+// run query to get all COUNTRY
 
 result = await connection.execute(`SELECT NOMBRE_PAIS FROM PAIS`);
 
@@ -80,8 +77,10 @@ return res.send(result.rows);
 
 app.get('/pais', function (req, res) {
 
-selectAllEmployees(req, res);
+selectAllCOUNTRY(req, res);
 
 })
 
 app.listen(port, () => console.log("nodeOracleRestApi app listening on port %s!", port))
+
+
