@@ -19,7 +19,7 @@ var connAttrs = {
 }
   
 app.get('/', (req,res)=>{
- //   let result = await connection.execute("SELECT NOMBRE_PAIS FROM PAIS"); // TEST PARA VER LAS TABLAS DE LA BASE DE DATOS
+ //  let result = await connection.execute("SELECT NOMBRE_PAIS FROM PAIS"); // TEST PARA VER LAS TABLAS DE LA BASE DE DATOS
    // console.log(result.rows); 
     res.send([{message: 'funciona'}]);
 
