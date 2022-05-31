@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavParams } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { LoginRolesService } from 'src/app/login-roles.service';
 
 
 
@@ -12,27 +13,30 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./owner.page.scss'],
 })
 export class OwnerPage implements OnInit {
-  navCtrl: any;
+
+  username = '';
+  pages = [];
 
 
-  constructor( private menu: MenuController) { }
+  constructor( public  navCtrl: NavController, public LoginRolesService : LoginRolesService) { 
+  }
+
+  ionViewWillEnter(){
+    if(this.LoginRolesService.isAdmin()){
+        this.pages = [
+              
+
+        ];
+      
+    }else {
+
+    }
+  }
 
   ngOnInit() {
   }
 
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
 
-  openEnd() {
-    this.menu.open('end');
-  }
-
-  openCustom() {
-    this.menu.enable(true, 'custom');
-    this.menu.open('custom');
-  }
 
   
 
