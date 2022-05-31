@@ -14,10 +14,9 @@ import { LoginRolesService } from 'src/app/login-roles.service';
 })
 export class LoginPage implements OnInit {
 
-    user ={
-      name: 'admin',
-      pw: 'admin'
-    }
+
+
+   user ={ name: 'admin', pw: 'admin'}
 
 
   formularioLogin: FormGroup;
@@ -35,12 +34,11 @@ export class LoginPage implements OnInit {
     })
 
   }
-
-
   ngOnInit() {
   }
 
   async loginUser(){
+
 this.LogServ.login(this.user.name, this.user.pw ).then(success => {
   if(success){
       this.navCtrl.navigateRoot('owner');

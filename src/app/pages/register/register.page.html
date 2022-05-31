@@ -99,6 +99,19 @@
       </ion-row>
       <ion-row>
         <ion-col>
+            <!-- Usuario Admin -->
+            <ion-item lines="full">
+              <ion-label >Usuario</ion-label>
+              
+              <ion-select formControlName="admin" placeholder="Seleccione">
+                <ion-select-option  >Administrador</ion-select-option>
+              </ion-select>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
           <ion-button type="submit" color="danger" expand="block" (click)="guardar()">Registrarse</ion-button>
         </ion-col>
       </ion-row>

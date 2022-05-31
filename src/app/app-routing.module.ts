@@ -81,7 +81,15 @@ const routes: Routes = [
   {
     path: 'event',
     loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
+  },  {
+    path: 'veterinary',
+    loadChildren: () => import('./pages/veterinary/veterinary.module').then( m => m.VeterinaryPageModule)
   },
+  {
+    path: 'duty-managerr',
+    loadChildren: () => import('./pages/duty-managerr/duty-managerr.module').then( m => m.DutyManagerrPageModule)
+  },
+
 ];
 
 @NgModule({

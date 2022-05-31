@@ -27,23 +27,25 @@ export class OwnerPage implements OnInit {
   ionViewWillEnter(){
     if(this.LoginRolesService.isAdmin()){
         this.pages = [
-          this.nav.navigateRoot('login')
-
+         
+          
+          
         ];
-        this.openPage('AdminPage');
+        this.openPage('/admin');
       
     }else {
       this.pages = [
-        {title: 'User Dassboard', page : 'UserPage', icon: 'home'}, 
-        {title: 'User Second Page', page : 'AdminSecondPage', icon: 'planet'}
+        
+        
       ];
-      this.openPage('UserPage');
+
     }
     this.username = this.LoginRolesService.currentOwner.name;
   }
 
   openPage(page){
-    this.navCtrl.navigateRoot('home');
+    
+    
   }
 
   logout(){

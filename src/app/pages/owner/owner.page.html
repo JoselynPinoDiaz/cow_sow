@@ -2,24 +2,25 @@
   <ion-toolbar>
     <ion-buttons slot="start">
     </ion-buttons>
-    <ion-title>Propietario</ion-title>
+    <ion-title>Propietario {{username}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid fixed>
   
+  <ion-grid fixed>
+
         <ion-card-content class="farm">
-          <ion-tab-button >
-          <ion-img src="../../../assets/icon/icons/granja.png" [routerLink]="['/property']"></ion-img>
-          <ion-text>Propiedad</ion-text>
+          <ion-tab-button  >
+          <ion-img   src="../../../assets/icon/icons/granja.png" [routerLink]="['/property']" ></ion-img>
+          Propiedad
         </ion-tab-button>
         </ion-card-content>
    
 
         <ion-card-content class="employee">
           <ion-tab-button >
-          <ion-img src="../../../assets/icon/icons/perfil-del-usuario.png" routerLink="/employee"></ion-img>
+          <ion-img   src="../../../assets/icon/icons/perfil-del-usuario.png" ></ion-img>
           <ion-text>Empleado</ion-text>
         </ion-tab-button>
         </ion-card-content>
@@ -27,7 +28,7 @@
 
         <ion-card-content class="won">
           <ion-tab-button >
-          <ion-img src="../../../assets/icon/icons/ganado.png" routerLink="/won"></ion-img>
+          <ion-img  src="../../../assets/icon/icons/ganado.png" ></ion-img>
           <ion-text>Ganado</ion-text>
         </ion-tab-button>
         </ion-card-content>
@@ -35,7 +36,7 @@
 
         <ion-card-content class="sowing">
           <ion-tab-button >
-          <ion-img src="../../../assets/icon/icons/siembra.png" routerLink="/sowing"></ion-img>
+          <ion-img  src="../../../assets/icon/icons/siembra.png" ></ion-img>
           <ion-text>Siembra</ion-text>
         </ion-tab-button>
         </ion-card-content>
@@ -43,18 +44,19 @@
 
         <ion-card-content class="contact">
           <ion-tab-button >
-          <ion-img src="../../../assets/icon/icons/contactos.png" routerLink="/contact"></ion-img>
+          <ion-img   src="../../../assets/icon/icons/contactos.png" ></ion-img>
           <ion-label>Contacto</ion-label>
         </ion-tab-button>
         </ion-card-content>
 
       
-        <ion-card-content class="profile" >
+        <ion-card-content class="profile"  >
           <ion-tab-button >
-          <ion-img src="../../../assets/icon/icons/perfil.png" routerLink="/profile"></ion-img>
+          <ion-img   src="../../../assets/icon/icons/perfil.png" ></ion-img>
           <ion-label>Perfil</ion-label>
         </ion-tab-button>
         </ion-card-content>
+
 
         <ion-tabs>
           <ion-tab-bar slot="bottom">
@@ -76,6 +78,7 @@
         
           </ion-tab-bar>        
         </ion-tabs>
+      
       </ion-grid>
 </ion-content>
 

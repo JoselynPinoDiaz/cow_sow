@@ -13,7 +13,9 @@ export interface owner{
 })
 export class LoginRolesService {
   currentOwner: owner;
-  constructor() { }
+  constructor() {
+    
+   }
 
 login(name: string, pw: string): Promise<boolean>{
   return new Promise((resolve, reject) =>{

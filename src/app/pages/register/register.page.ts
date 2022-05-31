@@ -28,7 +28,8 @@ export class RegisterPage implements OnInit {
       'confirmarPassword': new FormControl("", Validators.required),
       'pais': new FormControl("", Validators.required),
       'comuna': new FormControl("", Validators.required),
-      'region': new FormControl("", Validators.required)
+      'region': new FormControl("", Validators.required),
+      'administrador': new FormControl("", Validators.required)
 
     })
 
@@ -66,7 +67,8 @@ export class RegisterPage implements OnInit {
     confirmarPassword: f.confirmarPassword,
     pais: f.pais,
     comuna: f.comuna,
-    region: f.region
+    region: f.region,
+    admin: f.administrador
 
   }
 
