@@ -26,7 +26,7 @@ app.get('/', (req,res)=>{
 
 
     /////Consulter users////// done
-app.get('/cow_sow', function (req, res) {
+app.get('/PAIS', function (req, res) {
   "use strict";
 
   oracledb.getConnection(connAttrs, function (err, connection) {
