@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { LoginRolesService } from 'src/app/login-roles.service';
 
 //Importando Librerias
 
@@ -13,10 +14,18 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
+    user ={
+      name: 'admin',
+      pw: 'admin'
+    }
+
+
   formularioLogin: FormGroup;
 
   constructor( public fb: FormBuilder, 
               public alertController: AlertController, 
+              public LogServ: LoginRolesService,
+              public alert: AlertController,
               public navCtrl: NavController) { 
 
     this.formularioLogin = this.fb.group({
@@ -31,31 +40,28 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async ingresar(){
-    var f = this.formularioLogin.value;
-
-    var usuario = JSON.parse(localStorage.getItem('Usuario'));
-
-    if(usuario.email == f.email && usuario.password == f.password){
-      console.log('Ingresado');
-      localStorage.setItem('ingresado','true');
+  async loginUser(){
+this.LogServ.login(this.user.name, this.user.pw ).then(success => {
+  if(success){
       this.navCtrl.navigateRoot('owner');
-    }else{
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Datos Incorrectos',
-        subHeader: '',
-        message: 'El email o contraseña Incorrecta',
-        buttons: ['Aceptar']
-      });
-  
-      await alert.present();
-  
-      return ;
-    }
   }
-  
+
+}).catch(async err =>{
+const alert = await this.alertController.create({
+  cssClass: 'my-custom-class',
+  header: 'Error',
+  subHeader: '',
+  message: 'Debe ingresar todo los datos',
+  buttons: ['Aceptar']
+});
+
+await alert.present();
+return ;
+});
+  }
 
 }
+
+
 
 
