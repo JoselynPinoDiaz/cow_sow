@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { ContactPage } from '../contact.page';
 
 @Component({
   selector: 'app-create-contact',
@@ -10,6 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class CreateContactPage implements OnInit {
 
   formularioContacto: FormGroup;
+  cont = ContactPage;
 
   constructor(public fb: FormBuilder, public alertController: AlertController) {
 
@@ -60,7 +62,11 @@ export class CreateContactPage implements OnInit {
   }
 
   localStorage.setItem('Contacto', JSON.stringify(contacto));
-  
+  localStorage.setItem('ingresado','true');
+  }
+
+  onClick(){
+    console.log('has hecho click')
   }
 
 }
