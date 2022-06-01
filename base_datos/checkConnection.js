@@ -1,7 +1,7 @@
 const oracledb = require('oracledb');
 // hr schema password
-var password = '123abc' 
-//conexion a bd 
+var password = '123abc'
+//conexion a bd
 var express = require("express");
 var app = express();
 var bodyparser = require('body-parser');
@@ -37,7 +37,7 @@ async function checkConnection() {
     if (connection) {
       try {
         // Always close connections
-        await connection.close(); 
+        await connection.close();
         console.log('close connection success');
       } catch (err) {
         console.error(err.message);
@@ -46,4 +46,4 @@ async function checkConnection() {
   }
 }
 
-checkConnection(); 
+checkConnection();
