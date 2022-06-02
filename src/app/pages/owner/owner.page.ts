@@ -24,24 +24,6 @@ export class OwnerPage implements OnInit {
   constructor( private menu: MenuController, public  navCtrl: NavController, public LoginRolesService : LoginRolesService) { 
   }
 
-<<<<<<< HEAD
-
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
-
-  openEnd() {
-    this.menu.open('end');
-  }
-
-  openCustom() {
-    this.menu.enable(true, 'custom');
-    this.menu.open('custom');
-  }
-=======
-  
->>>>>>> 993efcc0daceb72ab1b8f34bba97725de4603b2f
 
 
   ionViewWillEnter(){
