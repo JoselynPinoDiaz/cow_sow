@@ -8,6 +8,25 @@
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule" routerLink="/owner">
+        <ion-icon name="grid-outline"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="schedule" routerLink="/event">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label>Eventos</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesion</ion-label>
+      </ion-tab-button>
+  
+    </ion-tab-bar>        
+  </ion-tabs>
   <ion-card-content class="createproperty">
     <ion-tab-button >
       <ion-img  src="../../../assets/icon/icons/EMPLEADO.png" routerLink="/create-employee"></ion-img>
@@ -15,26 +34,7 @@
     </ion-tab-button>
     </ion-card-content>
 
-    <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="schedule" routerLink="/owner">
-          <ion-icon name="grid-outline"></ion-icon>
-          <ion-label>Menu</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="schedule" routerLink="/event">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>Schedule</ion-label>
-          <ion-badge>6</ion-badge>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="map">
-          <ion-icon name="log-out-outline"></ion-icon>
-          <ion-label>Cerrar sesion</ion-label>
-        </ion-tab-button>
-    
-      </ion-tab-bar>        
-    </ion-tabs>
+   
   </ion-content>
 
 

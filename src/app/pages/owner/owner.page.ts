@@ -24,6 +24,7 @@ export class OwnerPage implements OnInit {
   constructor( private menu: MenuController, public  navCtrl: NavController, public LoginRolesService : LoginRolesService) { 
   }
 
+<<<<<<< HEAD
 
   openFirst() {
     this.menu.enable(true, 'first');
@@ -38,6 +39,9 @@ export class OwnerPage implements OnInit {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
+=======
+  
+>>>>>>> 993efcc0daceb72ab1b8f34bba97725de4603b2f
 
 
   ionViewWillEnter(){
@@ -79,6 +83,11 @@ export class OwnerPage implements OnInit {
 
 function Nav(Nav: any) {
   throw new Error('Function not implemented.');
+
+  logout(){
+    this.logout();
+    this.navCtrl.navigateRoot('/login'); // WRONG
+  }
 
 }
 

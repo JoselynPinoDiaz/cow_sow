@@ -4,6 +4,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AlertController, NavController } from '@ionic/angular';
 
 
+
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+
+import { AlertController, NavController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-create-contact',
@@ -11,7 +15,10 @@ export class CreateContactPage implements OnInit {
 
   formularioContacto: FormGroup;
 
-  constructor(public fb: FormBuilder, public alertController: AlertController) {
+
+  constructor(public fb: FormBuilder, 
+              public alertController: AlertController,
+              public navCtrl: NavController , public httpCliente : HttpClient) {
 
     this.formularioContacto = this.fb.group({
 
@@ -28,9 +35,9 @@ export class CreateContactPage implements OnInit {
   ngOnInit() {
   }
 
-  async guardar(){
-    var f = this.formularioContacto.value;
-
+   async agregar(){
+    var c = this.formularioContacto.value;
+    
 
     if(this.formularioContacto.invalid){
       
@@ -42,25 +49,26 @@ export class CreateContactPage implements OnInit {
           buttons: ['Aceptar']
         });
     
-        await alert.present();
+         (await alert).present();
     
         return ;
 
   }
 
   var contacto = {
+    
 
-    nombre: f.nombre,
-    pApellido: f.pApellido,
-    sApellido: f.sApellido,
-    email: f.email,
-    telefono: f.telefono
+    nombre: c.nombre,
+    pApellido: c.pApellido,
+    sApellido: c.sApellido,
+    email: c.email,
+    telefono: c.telefono
 
 
   }
 
   localStorage.setItem('Contacto', JSON.stringify(contacto));
-  
+  localStorage.setItem('Contacto Registrado','true');
   }
 
 }
