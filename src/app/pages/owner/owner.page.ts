@@ -84,10 +84,6 @@ export class OwnerPage implements OnInit {
 function Nav(Nav: any) {
   throw new Error('Function not implemented.');
 
-  logout(){
-    this.logout();
-    this.navCtrl.navigateRoot('/login'); // WRONG
-  }
-
+ 
 }
 
