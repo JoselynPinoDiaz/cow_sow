@@ -36,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'create-property',
-    loadChildren: () => import('./pages/property/create-property/create-property.module').then( m => m.CreatePropertyPageModule)
+    loadChildren: () => import('./pages/create-property/create-property.module').then( m => m.CreatePropertyPageModule)
   },
   {
     path: 'property',
@@ -44,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'create-employee',
-    loadChildren: () => import('./pages/employee/create-employee/create-employee.module').then( m => m.CreateEmployeePageModule)
+    loadChildren: () => import('./pages/create-employee/create-employee.module').then( m => m.CreateEmployeePageModule)
   },
   {
     path: 'employee',
@@ -52,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: 'create-won',
-    loadChildren: () => import('./pages/won/create-won/create-won.module').then( m => m.CreateWonPageModule)
+    loadChildren: () => import('./pages/create-won/create-won.module').then( m => m.CreateWonPageModule)
   },
   {
     path: 'won',
@@ -64,11 +64,11 @@ const routes: Routes = [
   },
   {
     path: 'create-sowing',
-    loadChildren: () => import('./pages/sowing/create-sowing/create-sowing.module').then( m => m.CreateSowingPageModule)
+    loadChildren: () => import('./pages/create-sowing/create-sowing.module').then( m => m.CreateSowingPageModule)
   },
   {
     path: 'create-contact',
-    loadChildren: () => import('./pages/contact/create-contact/create-contact.module').then( m => m.CreateContactPageModule)
+    loadChildren: () => import('./pages/create-contact/create-contact.module').then( m => m.CreateContactPageModule)
   },
   {
     path: 'contact',
@@ -82,6 +82,12 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
   },
+ 
+
+ 
+
+ 
+
 ];
 
 @NgModule({

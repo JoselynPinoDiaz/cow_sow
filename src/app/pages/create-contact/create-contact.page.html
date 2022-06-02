@@ -8,9 +8,27 @@
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
+    <ion-tab-bar tab="grid">
+      <ion-tab-button tab="grid" routerLink="/owner">
+        <ion-icon name="grid-outline"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="schedule" routerLink="/event">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label>Eventos</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesion</ion-label>
+      </ion-tab-button> 
+    </ion-tab-bar>        
+  </ion-tabs>
   <ion-grid fixed>
 
-    <form [formGroup]="formularioContacto" (keyup.enter)="guardar()">
+    <form [formGroup]="formularioContacto" (keyup.enter)="agregar()">
       <ion-row>
         <ion-col>
           <ion-item lines="full">
@@ -51,28 +69,10 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <!-- Boton Crear Propiedad -->
+    <ion-button  class="ion-margin" type="submit" color="success" size="small" (click)="agregar()">Agregar Contacto</ion-button>
     </form>
-    <!-- Boton Crear Propiedad -->
-    <ion-button class="ion-margin" type="submit" color="success" size="small" (click)="Onclick()">Agregar Contacto</ion-button>
-
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule" routerLink="/owner">
-        <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="schedule" routerLink="/event">
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="map">
-        <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
-      </ion-tab-button> 
-    </ion-tab-bar>        
-  </ion-tabs>
-  </ion-grid>
+    </ion-grid>
+ 
 </ion-content>
+
