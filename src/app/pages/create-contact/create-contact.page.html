@@ -28,12 +28,12 @@
   </ion-tabs>
   <ion-grid fixed>
 
-    <form [formGroup]="formularioContacto" (keyup.enter)="agregar()">
+    <form [formGroup]="formularioContacto" (keyup.enter)="agregarContacto()">
       <ion-row>
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Nombre</ion-label>
-            <ion-input formControlName="nombre" type="text" required></ion-input>
+            <ion-input formControlName="nombre" type="text" required [(ngModel)]="nombre"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -41,7 +41,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Primer Apellido</ion-label>
-            <ion-input formControlName="pApellido" type="text" required></ion-input>
+            <ion-input formControlName="pApellido" type="text" required [(ngModel)]="pApellido"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -49,7 +49,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Segundo Apellido</ion-label>
-            <ion-input formControlName="sApellido" type="text" required></ion-input>
+            <ion-input formControlName="sApellido" type="text" required [(ngModel)]="sApellido"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -57,7 +57,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Ingresar Email</ion-label>
-            <ion-input formControlName="email" type="text" required></ion-input>
+            <ion-input formControlName="email" type="text" required [(ngModel)]="email"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -65,12 +65,12 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Teléfono</ion-label>
-            <ion-input formControlName="telefono" type="text" required></ion-input>
+            <ion-input formControlName="telefono" type="text" required [(ngModel)]="telefono"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <!-- Boton Crear Propiedad -->
-    <ion-button  class="ion-margin" type="submit" color="success" size="small" (click)="agregar()">Agregar Contacto</ion-button>
+    <ion-button  class="ion-margin" type="submit" color="success" size="small" (click)="agregarContacto()">Agregar Contacto</ion-button>
     </form>
     </ion-grid>
  

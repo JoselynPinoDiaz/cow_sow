@@ -24,10 +24,7 @@ export class OwnerPage implements OnInit {
 
   
 
-  logout(){
-    this.logout();
-    this.navCtrl.navigateRoot('/login'); // WRONG
-  }
+ 
 
 }
 

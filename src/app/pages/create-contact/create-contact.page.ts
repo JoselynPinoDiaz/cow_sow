@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { AlertController, NavController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { ListaService } from 'src/app/lista.service';
 
 
 
@@ -14,11 +15,19 @@ import { HttpClient } from '@angular/common/http';
 export class CreateContactPage implements OnInit {
 
   formularioContacto: FormGroup;
+  nombre: string;
+  pApellido: string;
+  sApellido: string;
+  email: string;
+  telefono: number;
+  
 
 
   constructor(public fb: FormBuilder, 
               public alertController: AlertController,
-              public navCtrl: NavController , public httpCliente : HttpClient) {
+              public navCtrl: NavController , 
+              public httpCliente : HttpClient,
+              public listaService: ListaService) {
 
     this.formularioContacto = this.fb.group({
 
@@ -35,12 +44,12 @@ export class CreateContactPage implements OnInit {
   ngOnInit() {
   }
 
-   async agregar(){
+   async agregarContacto(){
     var c = this.formularioContacto.value;
     
 
     if(this.formularioContacto.invalid){
-      
+
         const alert = await this.alertController.create({
           cssClass: 'my-custom-class',
           header: 'Error',
@@ -52,23 +61,21 @@ export class CreateContactPage implements OnInit {
          (await alert).present();
     
         return ;
-
   }
 
   var contacto = {
-    
-
-    nombre: c.nombre,
-    pApellido: c.pApellido,
-    sApellido: c.sApellido,
-    email: c.email,
-    telefono: c.telefono
-
-
+  
+    nombre: this.nombre,
+    pApellido:this.pApellido,
+    sApellido: this.sApellido,
+    email: this.email,
+    telefono: this.telefono
   }
 
   localStorage.setItem('Contacto', JSON.stringify(contacto));
   localStorage.setItem('Contacto Registrado','true');
   }
 
+
 }
+
