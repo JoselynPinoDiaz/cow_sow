@@ -1,4 +1,4 @@
-<ion-header>
+<!---<ion-header>
   <ion-toolbar>
     <ion-title>
       Bienvenido
@@ -33,3 +33,28 @@
 
   </ion-grid>
 </ion-content>
+prueba de get
+<ion-content>
+  <ion-item>
+    <ion-label>Nombre:</ion-label>
+    <ion-input [formControl]="nombre"></ion-input>
+  </ion-item>
+  <p class="ion-padding">{{ nombre.value }}</p>
+  <p class="ion-text-center">
+    <ion-button (click)="cambiarNombre()">Cambiar nombre</ion-button>
+  </p>
+</ion-content>
+--->
+
+<ion-header>
+
+    <ion-title>
+      Test API IONIC
+    </ion-title>
+
+</ion-header>
+
+  <div *ngFor="let paises of paises">
+    <p>{{paises.key}} <br>and Value: <b>{{paises.value['NOMBRE_PAIS']}} </b> </p>
+  </div>
+>
