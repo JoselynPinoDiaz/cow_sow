@@ -106,6 +106,7 @@ app.get('/regiones', function (req, res) {
 
           }
           // Release the connection
+
           connection.release(
               function (err) {
                   if (err) {
