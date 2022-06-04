@@ -1,6 +1,7 @@
 //import { Component } from '@angular/core';
 //import { FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service'; //es el servicio get
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service'; //es el servicio ge
   styleUrls: ['home.page.scss']
 })
 
-
+/*
 export class HomePage implements OnInit{
 
   paises: any; //Creamos la variable donde guardaremos los datos que nos retorna el servicio
@@ -35,15 +36,18 @@ export class HomePage implements OnInit{
 }
 
 ///primra vista
-export class HomePage {
+*/export class HomePage {
 
   nombre = new FormControl('');
-  constructor() {
+  constructor(public servicioPaises: AuthService) {
+   // this.servicioPaises.cargarPaises(); /// solo cuando quiero que se muestre en la carga de la pagina
 
   }
 
 
- cambiarNombre(){
-  this.nombre.setValue('Ornitorrinco');
+ async cambiarNombre(){
+  const nombrePaises = await this.servicioPaises.cargarPaises();
+  this.nombre.setValue(nombrePaises[0].DESCRIPCION);
+
 }
-} */
+}
