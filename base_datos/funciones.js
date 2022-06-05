@@ -28,7 +28,7 @@ console.log('connected to database');
 
 // run query to get all COUNTRY
 
-result = await connection.execute(`SELECT NOMBRE_PAIS FROM PAIS`);
+result = await connection.execute(`SELECT * FROM PAIS`);
 
 } catch (err) {
 
@@ -66,7 +66,7 @@ return res.send('query send no rows');
 
 //send all employees
 
-return res.send(result.rows);
+return res.send(result);
 
 }
 
