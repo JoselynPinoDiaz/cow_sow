@@ -9,7 +9,6 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-    
   },
   {
     path: '',
@@ -32,7 +31,7 @@ const routes: Routes = [
   {
     path: 'owner',
     loadChildren: () => import('./pages/owner/owner.module').then( m => m.OwnerPageModule)
-  
+
   },
   {
     path: 'create-property',
