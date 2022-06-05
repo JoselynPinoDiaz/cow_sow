@@ -47,7 +47,7 @@ export class HomePage implements OnInit{
 
  async cambiarNombre(){
   const nombrePaises = await this.servicioPaises.cargarPaises();
-  this.nombre.setValue(nombrePaises[0].DESCRIPCION);
+  this.nombre.setValue(nombrePaises[0].NOMBRE_PAIS);
 
 }
 }

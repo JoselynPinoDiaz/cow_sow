@@ -779,8 +779,8 @@ app.get('/TP_PROD_ANIMAL', function (req, res) {
 
 //////////-------------METODOS POST--------------///////////////////
 /////////-------------METODOS DELETE-------------//////////////////
-///consulta get tabla TIPO_PRODUCCION_ANIMAL
-app.DELETE('/DEL_ANIMAL', function (req, res) {
+///consulta get tabla TIPO_PRODUCCION_ANIMAL   ver esta vaina
+app.delete('/DEL_ANIMAL', function (req, res) {
   "use strict";
 
   oracledb.getConnection(connAttrs, function (err, connection) {
