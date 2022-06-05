@@ -779,6 +779,15 @@ app.get('/TP_PROD_ANIMAL', function (req, res) {
 
 //////////-------------METODOS POST--------------///////////////////
 /////////-------------METODOS DELETE-------------//////////////////
+/**
+ * DELETE FROM animal
+    WHERE  NUMERO_SERIE =11105;
+
+
+INSERT INTO ANIMAL (NUMERO_SERIE, NOMBRE_ANIMAL, PESO,ID_VAC_SERIE, ID_TIPO_ANIMAL,CRIAS,ID_TIPO_PROD_ANIMAL,ID_ENFERMEDAD,ID_REPORTE,ID_PROPIEDAD) VALUES (11105,'lulu',52,1,1,1,1,1,1,1);
+
+select * from animal
+ * */
 ///consulta get tabla TIPO_PRODUCCION_ANIMAL   ver esta vaina
 app.delete('/DEL_ANIMAL', function (req, res) {
   "use strict";
