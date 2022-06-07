@@ -7,6 +7,26 @@
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule" routerLink="/owner">
+        <ion-icon name="grid-outline"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="schedule" routerLink="/event">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map" >
+        <ion-icon name="log-out-outline" (click)="logout()"></ion-icon>
+        <ion-label>Cerrar sesion</ion-label>
+      </ion-tab-button>
+  
+    </ion-tab-bar>        
+  </ion-tabs>
   
   <ion-grid fixed>
 
@@ -20,7 +40,7 @@
 
         <ion-card-content class="employee">
           <ion-tab-button >
-          <ion-img   src="../../../assets/icon/icons/perfil-del-usuario.png" ></ion-img>
+          <ion-img   src="../../../assets/icon/icons/perfil-del-usuario.png"  [routerLink]="['/employee']"></ion-img>
           <ion-text>Empleado</ion-text>
         </ion-tab-button>
         </ion-card-content>
@@ -28,7 +48,7 @@
 
         <ion-card-content class="won">
           <ion-tab-button >
-          <ion-img  src="../../../assets/icon/icons/ganado.png" ></ion-img>
+          <ion-img  src="../../../assets/icon/icons/ganado.png" [routerLink]="['/won']"></ion-img>
           <ion-text>Ganado</ion-text>
         </ion-tab-button>
         </ion-card-content>
@@ -36,7 +56,7 @@
 
         <ion-card-content class="sowing">
           <ion-tab-button >
-          <ion-img  src="../../../assets/icon/icons/siembra.png" ></ion-img>
+          <ion-img  src="../../../assets/icon/icons/siembra.png" [routerLink]="['/sowing']"></ion-img>
           <ion-text>Siembra</ion-text>
         </ion-tab-button>
         </ion-card-content>
@@ -44,7 +64,7 @@
 
         <ion-card-content class="contact">
           <ion-tab-button >
-          <ion-img   src="../../../assets/icon/icons/contactos.png" ></ion-img>
+          <ion-img   src="../../../assets/icon/icons/contactos.png" [routerLink]="['/contact']"></ion-img>
           <ion-label>Contacto</ion-label>
         </ion-tab-button>
         </ion-card-content>
@@ -52,32 +72,13 @@
       
         <ion-card-content class="profile"  >
           <ion-tab-button >
-          <ion-img   src="../../../assets/icon/icons/perfil.png" ></ion-img>
+          <ion-img   src="../../../assets/icon/icons/perfil.png" [routerLink]="['/profile']"></ion-img>
           <ion-label>Perfil</ion-label>
         </ion-tab-button>
         </ion-card-content>
 
 
-        <ion-tabs>
-          <ion-tab-bar slot="bottom">
-            <ion-tab-button tab="schedule" routerLink="/owner">
-              <ion-icon name="grid-outline"></ion-icon>
-              <ion-label>Menu</ion-label>
-            </ion-tab-button>
-        
-            <ion-tab-button tab="schedule" routerLink="/event">
-              <ion-icon name="calendar"></ion-icon>
-              <ion-label>Schedule</ion-label>
-              <ion-badge>6</ion-badge>
-            </ion-tab-button>
-        
-            <ion-tab-button tab="map" >
-              <ion-icon name="log-out-outline" (click)="logout()"></ion-icon>
-              <ion-label>Cerrar sesion</ion-label>
-            </ion-tab-button>
-        
-          </ion-tab-bar>        
-        </ion-tabs>
+       
       
       </ion-grid>
 </ion-content>
