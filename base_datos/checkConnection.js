@@ -1,6 +1,6 @@
 const oracledb = require('oracledb');
 // hr schema password
-var password = '123abc'
+var password = 'DESA'
 //conexion a bd
 var express = require("express");
 var app = express();
