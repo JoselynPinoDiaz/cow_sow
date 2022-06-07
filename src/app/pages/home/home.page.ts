@@ -3,7 +3,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service'; //es el servicio get
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',

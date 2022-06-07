@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service'; //es el servicio get
+import { HttpClient } from '@angular/common/http';
+
 
 /** Importamos Librerias a utilizar */
 import { AuthGuard } from './guards/auth.guard';
