@@ -9,26 +9,25 @@ import { ContactoService } from 'src/app/services/contacto.service';
 })
 export class ContactPage implements OnInit {
 
-  private contactos = [];
+
 
 
   constructor(public servicioContacto: ContactoService) { 
 
-    async cambiarNombre(){
-      const nombrePaises = await this.servicioContacto.cargarPaises();
-      this.contactos.setValue(nombrePaises[0].NOMBRE_PAIS);
+   
     
     }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
   
 
   
     
 
-  }
+  
 
-  ngOnInit() {
-    console.log(this.contactos)
-  }
+ 
 
   
 
