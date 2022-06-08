@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ContactoService } from 'src/app/services/contacto.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactPage implements OnInit {
 
-  constructor() { }
+  private contactos = [];
+
+
+  constructor(public servicioContacto: ContactoService) { 
+
+    async cambiarNombre(){
+      const nombrePaises = await this.servicioContacto.cargarPaises();
+      this.contactos.setValue(nombrePaises[0].NOMBRE_PAIS);
+    
+    }
+  
+
+  
+    
+
+  }
 
   ngOnInit() {
+    console.log(this.contactos)
   }
+
+  
 
 }
