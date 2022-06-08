@@ -7,7 +7,7 @@ var bodyparser = require('body-parser'); //para el json
 var oracledb = require('oracledb');
 
 //variable de pass bd - manu: DESA
-var password = '123abc' ;
+var password = 'DESA' ;
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
