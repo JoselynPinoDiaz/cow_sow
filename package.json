@@ -27,6 +27,7 @@
     "@capacitor/status-bar": "1.0.8",
     "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^6.1.6",
+    "body-parse": "^0.1.0",
     "body-parser": "^1.20.0",
     "capacitor": "^0.0.3",
     "cors": "^2.8.5",

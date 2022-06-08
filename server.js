@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var bodyparser = require('body-parser');
 var oracledb = require('oracledb');
+
 var password = 'DESA' ;
 
 app.use(bodyparser.json());
@@ -10,14 +11,14 @@ app.use(bodyparser.urlencoded({
 
 }));
 
-
+//datos de conexion
 var connAttrs = {
     user: "DESA",
     password: password,
-    //connectString: "localhost:1521/xepdb1"
-    connectString: "(DESCRIPTION =(LOAD_BALANCE = ON)(FAILOVER = ON)(ADDRESS =(PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XEpdb1)(FAILOVER_MODE=(TYPE=SELECT)(METHOD = BASIC))))"
+    connectString: "localhost:1521/xepdb1"
+    //connectString: "(DESCRIPTION =(LOAD_BALANCE = ON)(FAILOVER = ON)(ADDRESS =(PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XEpdb1)(FAILOVER_MODE=(TYPE=SELECT)(METHOD = BASIC))))"
 }
-  
+  ///METODO PARA PROBAR CONEXION DE LA CONEXION CON LA BD
 app.get('/', (req,res)=>{
  //  let result = await connection.execute("SELECT NOMBRE_PAIS FROM PAIS"); // TEST PARA VER LAS TABLAS DE LA BASE DE DATOS
    // console.log(result.rows); 
@@ -26,7 +27,7 @@ app.get('/', (req,res)=>{
 
 
     /////Consulter users////// done
-app.get('/PAIS', function (req, res) {
+app.get('/paises', function (req, res) {
   "use strict";
 
   oracledb.getConnection(connAttrs, function (err, connection) {
