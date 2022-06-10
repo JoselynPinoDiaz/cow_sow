@@ -13,7 +13,7 @@ export class AuthService {
   }
 
 public async cargarPaises(){
-   const paises = await this.http.get('http://localhost:8201/paises').toPromise();
+   const paises = await this.http.get('http://localhost:8201/PAISES').toPromise();
    return paises;
 
 }

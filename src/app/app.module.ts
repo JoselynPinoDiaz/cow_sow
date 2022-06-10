@@ -19,12 +19,6 @@ import { AuthService } from './services/auth.service';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-
- // countryData : any[];
- // country : any;
-//countrySelected: any;
-
-
 }
 
 
