@@ -778,6 +778,57 @@ app.get('/TP_PROD_ANIMAL', function (req, res) {
 });
 
 //////////-------------METODOS POST--------------///////////////////
+//// uso de procedimiento almacenado, creacion de pais--- test
+app.get('/add_pais', function (req, res) {
+  "use strict";
+
+  oracledb.getConnection(connAttrs, function (err, connection) {
+      if (err) {
+          // Error connecting to DB
+          res.set('Content-Type', 'application/json');
+          res.status(500).send(JSON.stringify({
+              status: 500,
+              message: "Error en la conexión con DB",
+              detailed_message: err.message
+          }));
+          return;
+      }
+      connection.execute("EXECUTE SP_ADD_PAIS(2, 'ARGENTINA','XXXX')", {}, {
+          outFormat: oracledb.OBJECT // Return the result as Object
+      }, function (err, result) {
+          if (err) {
+              res.set('Content-Type', 'application/json');
+              res.status(500).send(JSON.stringify({
+                  status: 500,
+                  message: "Error getting the dba_tablespaces",
+                  detailed_message: err.message
+              }));
+          } else {
+              res.header('Access-Control-Allow-Origin','*');
+              res.header('Access-Control-Allow-Headers','Content-Type');
+              res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+              res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+              res.send(JSON.stringify(result.rows));
+
+          }
+          // Release the connection
+
+          connection.release(
+              function (err) {
+                  if (err) {
+                      console.error(err.message);
+                  } else {
+                      console.log("GET /sendTablespace : Connection released");
+                  }
+              });
+      });
+  });
+});
+
+
+
+
+
 /////////-------------METODOS DELETE-------------//////////////////
 ///consulta get tabla TIPO_PRODUCCION_ANIMAL
 app.get('/DL_ANIMAL', function (req, res) {
@@ -794,7 +845,7 @@ app.get('/DL_ANIMAL', function (req, res) {
           }));
           return;
       }
-      connection.execute("DELETE FROM animal WHERE  NUMERO_SERIE =11105", {}, {
+      connection.execute("EXECUTE ELIM_PAIS(2);", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
