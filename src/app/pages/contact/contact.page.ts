@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input} from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ContactoService } from 'src/app/services/contacto.service';
+import { IonRouterOutlet, ModalController, NavController, NavParams } from '@ionic/angular';
+import { ContactService } from './contact.service';
+
+
 
 @Component({
   selector: 'app-contact',
@@ -8,27 +11,36 @@ import { ContactoService } from 'src/app/services/contacto.service';
   styleUrls: ['./contact.page.scss'],
 })
 export class ContactPage implements OnInit {
+  public nombre: string;
+  public email: string;
+  public telefono: string;
+  public descripcionCO: string;
 
 
 
 
-  constructor(public servicioContacto: ContactoService) { 
-
+  constructor(public Scontacto: ContactService, 
+              public modalCtrl: ModalController, 
+              public navCtrl: NavController,
+              private routerOutlet: IonRouterOutlet,
+             ) { 
    
-    
     }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-  
-
-  
+  ngOnInit (){
     
-
+  }
+  async listaContacto(){
+    const contactos = await this.Scontacto.contacto();
+    this.nombre = contactos[0].NOMBRE;
+    this.email = contactos[0].EMAIL;
+    this.telefono = contactos[0].TELEFONO;
+    this.descripcionCO = contactos[0].DESCRIPCION;
   
+  }
 
  
+   
 
-  
 
 }
+

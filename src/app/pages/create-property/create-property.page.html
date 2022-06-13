@@ -8,7 +8,28 @@
 </ion-header>
 
 <ion-content > 
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule" routerLink="/owner">
+        <ion-icon name="grid-outline"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="schedule" routerLink="/event">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+
+      <ion-tab-button tab="map">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesion</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>        
+  </ion-tabs>
   <ion-grid fixed>
+    <ion-card>
   <form [formGroup]="formularioPropiedad" (keyup.enter)="guardar()" >
     <ion-row>
       <ion-col>
@@ -77,35 +98,14 @@
     </ion-item> 
   </ion-col>
 </ion-row>
-    <!-- Boton Crear Propiedad -->
-    <ion-row>
-      <ion-col>
-    <ion-button id="botoncrear" type="submit" color="success" size="small" (click)="guardar()">Crear</ion-button>
-  </ion-col>
-</ion-row>
   </form>
-
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule" routerLink="/owner">
-        <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
-      </ion-tab-button>
-
-      <ion-tab-button tab="schedule" routerLink="/event">
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
-
-      <ion-tab-button tab="map">
-        <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
-      </ion-tab-button>
-
-    </ion-tab-bar>        
-  </ion-tabs>
-
+</ion-card>
+<!-- Boton Crear Propiedad -->
+<ion-row>
+  <ion-col>
+<ion-button id="botoncrear" type="submit" color="success" size="small" (click)="guardar()">Crear</ion-button>
+</ion-col>
+</ion-row>
 </ion-grid>
 </ion-content>
 

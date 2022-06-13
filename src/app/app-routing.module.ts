@@ -3,8 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 /** Importamos Librerias a utilizar */
 import { AuthGuard } from './guards/auth.guard';
-import { LogueadoGuard } from './logueado.guard';
-import { NotLogueadoGuard } from './not-logueado.guard';
+
 
 const routes: Routes = [
   {
@@ -82,6 +81,8 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
   },
+  
+
 ];
 
 @NgModule({

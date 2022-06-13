@@ -39,6 +39,7 @@ export class HomePage implements OnInit{
 */export class HomePage {
 
   nombre = new FormControl('');
+  descripcion = new FormControl('');
   constructor(public servicioPaises: AuthService) {
    // this.servicioPaises.cargarPaises(); /// solo cuando quiero que se muestre en la carga de la pagina
 
@@ -47,7 +48,10 @@ export class HomePage implements OnInit{
 
  async cambiarNombre(){
   const nombrePaises = await this.servicioPaises.cargarPaises();
+
   this.nombre.setValue(nombrePaises[0].NOMBRE_PAIS);
+  this.descripcion.setValue(nombrePaises[0].DESCRIPCION);
+   
 
 }
 }

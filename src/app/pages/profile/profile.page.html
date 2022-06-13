@@ -7,31 +7,159 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
-  <ion-grid fixed>
+  
 
+  <ion-card>
+    <ion-item>
+      <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-rut_persona">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Rut: </ion-label>
+          <ion-label class="label-descripcion"> {{rut}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+    <ion-row class="contenedor-correo">
+      <ion-col size="12">
+        <ion-label  class="label-seccion"> Nombre: </ion-label>
+        <ion-label class="label-descripcion"> {{nombre}} </ion-label>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+  </ion-item>
+  <ion-item>
+  <ion-grid fixed class="contenedor-perfil ion-no-padding">
+  <ion-row class="contenedor-correo">
+    <ion-col size="12">
+      <ion-label  class="label-seccion">Email: </ion-label>
+      <ion-label class="label-descripcion"> {{email}} </ion-label>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+  </ion-item>
+  <ion-item>
+  <ion-grid fixed class="contenedor-perfil ion-no-padding">
+  <ion-row class="contenedor-correo">
+    <ion-col size="12">
+      <ion-label  class="label-seccion"> Telefono: </ion-label>
+      <ion-label class="label-descripcion"> {{telefono}} </ion-label>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion"> Fecha Nacimiento: </ion-label>
+          <ion-label class="label-descripcion"> {{fecha_nacimiento}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+    <ion-row class="contenedor-correo">
+      <ion-col size="12">
+        <ion-label position="absolute" class="label-seccion"> Direccion: </ion-label>
+        <ion-label class="label-descripcion"> {{direccion}} </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Tipo Direccion: </ion-label>
+          <ion-label class="label-descripcion"> {{tipo_direccion}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Comuna: </ion-label>
+          <ion-label class="label-descripcion"> {{comuna}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Region: </ion-label>
+          <ion-label class="label-descripcion"> {{region}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Pais: </ion-label>
+          <ion-label class="label-descripcion"> {{pais}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion"> Descripción Tipo Usuario: </ion-label>
+          <ion-label class="label-descripcion"> {{descripcionTP}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion"> Descripción Contacto: </ion-label>
+          <ion-label class="label-descripcion"> {{descripcionCO}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-card>
+  <ion-button (click)="perfil()">Cambiar nombre</ion-button>
 
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule" routerLink="/owner">
-        <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
-      </ion-tab-button>
+
   
-      <ion-tab-button tab="schedule" routerLink="/event">
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="map">
-        <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
-      </ion-tab-button>
-  
-    </ion-tab-bar>        
-  </ion-tabs>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule" routerLink="/owner">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>Menu</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="schedule" routerLink="/event">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Eventos</ion-label>
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="map">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <ion-label>Cerrar sesion</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
 </ion-content>
+
+
+
 
 

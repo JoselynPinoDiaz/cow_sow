@@ -9,6 +9,7 @@
 
 <ion-content>
   <ion-grid fixed>
+    <ion-card>
     <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
       <ion-row>
         <ion-col>
@@ -97,11 +98,10 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="danger" expand="block" (click)="guardar()">Registrarse</ion-button>
-        </ion-col>
-      </ion-row>
     </form>
+  </ion-card>
+  <ion-button type="submit" 
+  shape="round" color="danger" expand="medium" (click)="guardar()">Registrarse</ion-button>
   </ion-grid>
+  
 </ion-content>

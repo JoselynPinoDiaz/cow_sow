@@ -8,34 +8,88 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule" routerLink="/owner">
+        <ion-icon name="grid-outline"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="schedule" routerLink="/event">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button tab="map">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesion</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <ion-card-content>
+    <ion-card>
+    <ion-item>
+      <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Numero Serie: </ion-label>
+          <ion-label class="label-descripcion"> {{numero_serie}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+    <ion-row class="contenedor-correo">
+      <ion-col size="12">
+        <ion-label  class="label-seccion">Nombre: </ion-label>
+        <ion-label class="label-descripcion"> {{nombre}} </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Tipo Ganado: </ion-label>
+          <ion-label class="label-descripcion"> {{tipo_ganado}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Tipo Producción: </ion-label>
+          <ion-label class="label-descripcion"> {{tipo_produccion}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Sexo: </ion-label>
+          <ion-label class="label-descripcion"> {{sexo}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-card>
+
+  <ion-button (click)="ganado()">Cambiar nombre</ion-button>
+  </ion-card-content>
+
+
   <ion-card-content class="createwon">
     <ion-tab-button>
-      <ion-img  src="../../../assets/icon/icons/animal.png" routerLink="/create-won"></ion-img>
-      <ion-text  >Crear Ganado</ion-text>
+      <ion-img src="../../../assets/icon/icons/animal.png" routerLink="/create-won"></ion-img>
+      <ion-text>Crear Ganado</ion-text>
     </ion-tab-button>
-    </ion-card-content>
+  </ion-card-content>
 
-    <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="schedule" routerLink="/owner">
-          <ion-icon name="grid-outline"></ion-icon>
-          <ion-label>Menu</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="schedule" routerLink="/event">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>Schedule</ion-label>
-          <ion-badge>6</ion-badge>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="map">
-          <ion-icon name="log-out-outline"></ion-icon>
-          <ion-label>Cerrar sesion</ion-label>
-        </ion-tab-button>
-    
-      </ion-tab-bar>        
-    </ion-tabs>
-  
-  </ion-content>
-
- 
+</ion-content>

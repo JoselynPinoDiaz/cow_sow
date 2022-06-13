@@ -8,34 +8,76 @@
 </ion-header>
 
 <ion-content>
-  <ion-card-content class="createsowing">
-    <ion-tab-button>
-      <ion-img src="../../../assets/icon/icons/crearsiembra.png" routerLink="/create-sowing"></ion-img>
-      <ion-text>Crear Siembra</ion-text>
-    </ion-tab-button>
-  </ion-card-content>
-
-
-
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="schedule" routerLink="/owner">
         <ion-icon name="grid-outline"></ion-icon>
         <ion-label>Menu</ion-label>
       </ion-tab-button>
-  
       <ion-tab-button tab="schedule" routerLink="/event">
         <ion-icon name="calendar"></ion-icon>
         <ion-label>Schedule</ion-label>
         <ion-badge>6</ion-badge>
       </ion-tab-button>
-  
       <ion-tab-button tab="map">
         <ion-icon name="log-out-outline"></ion-icon>
         <ion-label>Cerrar sesion</ion-label>
       </ion-tab-button>
-  
     </ion-tab-bar>        
   </ion-tabs>
+
+  <ion-card-content>
+    <ion-card>
+    <ion-item>
+      <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Tipo Siembra: </ion-label>
+          <ion-label class="label-descripcion"> {{tipo_siembra}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+    <ion-row class="contenedor-correo">
+      <ion-col size="12">
+        <ion-label  class="label-seccion">Nombre: </ion-label>
+        <ion-label class="label-descripcion"> {{nombre_siembra}} </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Cantidad Siembra: </ion-label>
+          <ion-label class="label-descripcion"> {{cantidad_siembra}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item>
+    <ion-grid fixed class="contenedor-perfil ion-no-padding">
+      <ion-row class="contenedor-correo">
+        <ion-col size="12">
+          <ion-label  class="label-seccion">Descripción: </ion-label>
+          <ion-label class="label-descripcion"> {{descripcion}} </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item> 
+</ion-card>
+  <ion-button (click)="siembra()">Cambiar nombre</ion-button>
+  </ion-card-content>
+
+  <ion-card-content class="createsowing">
+    <ion-tab-button>
+      <ion-img src="../../../assets/icon/icons/crearsiembra.png" routerLink="/create-sowing"></ion-img>
+      <ion-text>Crear Siembra</ion-text>
+    </ion-tab-button>
+    
+  </ion-card-content>
 
 </ion-content>
