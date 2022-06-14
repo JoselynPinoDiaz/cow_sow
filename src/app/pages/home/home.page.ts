@@ -43,11 +43,20 @@ export class HomePage implements OnInit{
    // this.servicioPaises.cargarPaises(); /// solo cuando quiero que se muestre en la carga de la pagina
 
   }
-
-
+//metodo get para traer los paises
  async mostrarPaiseS(){
   const nombrePaises = await this.servicioPaises.cargarPaises();
-  this.nombre.setValue(nombrePaises[0].NOMBRE_PAIS);
-
+  this.nombre.setValue(nombrePaises[1].NOMBRE_PAIS); // muestra por pantalla el nombre del pais
 }
+//metodo elimar pais
+async eliminarPaiseS(){ /// deberia entrar un parametro de id
+  const nombrePaises = await this.servicioPaises.eliminarPaises();  // deberia usar el parametro de entrada para que funcione el metdo
+  this.nombre.setValue(nombrePaises[1].NOMBRE_PAIS); // no deberia aparecer argentina
+}
+//metodo agregar pais
+async agregarPaiseS(){
+  const nombrePaises = await this.servicioPaises.agregarPaises();
+  this.nombre.setValue(nombrePaises[0].NOMBRE_PAIS);
+}
+
 }
