@@ -13,7 +13,7 @@ import { EventPageModule } from './pages/event/event.module';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, EventPageModule],  // se agrega HttpClientModule
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },AuthService],
