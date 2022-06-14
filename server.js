@@ -5,6 +5,7 @@ var bodyparser = require('body-parser'); //para el json
 var oracledb = require('oracledb');
 var  asyncScheduler  = require("rxjs");
 var cors = require('cors');
+var  autoCommit  = require("oracledb");
 app.use(cors());
 
 //variable de pass bd - manu: DESA
@@ -23,16 +24,11 @@ var connAttrs = {
 
 ///METODO PARA PROBAR CONEXION DE LA CONEXION CON LA BD
 app.get('/',function (req, res) {
-    //   let result = await connection.execute("SELECT NOMBRE_PAIS FROM PAIS"); // TEST PARA VER LAS TABLAS DE LA BASE DE DATOS
-    // console.log(result.rows);
+
     res.send([{ message: 'funciona' }]);
   });
-//***********---------METODOS GET-----------********** */
-  //METODO GET PARA EXTRAER DATOS DE LA BD
-/////Consula get para tabla pais
 app.get('/paises', function (req, res) {
   "use strict";
-
   oracledb.getConnection(connAttrs, function (err, connection) {
       if (err) {
           // Error connecting to DB
@@ -44,24 +40,28 @@ app.get('/paises', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT * FROM PAIS", {}, {
-          outFormat: oracledb.OBJECT // Return the result as Object
-      }, function (err, result) {
-          if (err) {
-              res.set('Content-Type', 'application/json');
-              res.status(500).send(JSON.stringify({
-                  status: 500,
-                  message: "Error getting the dba_tablespaces",
-                  detailed_message: err.message
-              }));
-          } else {
-              res.header('Access-Control-Allow-Origin','*');
-              res.header('Access-Control-Allow-Headers','Content-Type');
-              res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
-              res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
-              res.send(JSON.stringify(result.rows));
+      connection.execute( 'select * from pais',{}, {
+        outFormat: oracledb.OBJECT, // Return the result as Object
+        autoCommit :true
+        }, function (err, result) {
+        if (err) {
+        console.log('Error in execution of select statement'+err.message);
+        res.writeHead(500, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({
+        status: 500,
+        message: "Error getting the departments",
+        detailed_message: err.message
+        })
+        );
+        } else {
+        console.log('db response is ready '+result.rows);
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(result.rows));
+        }
+        doRelease(connection);
+        }
+        );
 
-          }
           // Release the connection
           connection.release(
               function (err) {
@@ -72,9 +72,54 @@ app.get('/paises', function (req, res) {
                   }
               });
       });
-  });
-});
 
+});
+//-----
+app.get('/delete1/:id', function (req, res,next) {
+    "use strict";
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("delete from pais where id_pais=:id", [req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+///--
 ///consulta get tabla region
 app.get('/regiones', function (req, res) {
   "use strict";
@@ -779,6 +824,50 @@ app.get('/TP_PROD_ANIMAL', function (req, res) {
 });
 
 //////////-------------METODOS POST--------------///////////////////
+app.delete('/delete/:id', function (req, res,next) {
+  console.log(req.params.id);
+  var id_test = req.params.id;
+  oracledb.getConnection(connAttrs, function (err, connection) {
+    if (err) {
+        // Error connecting to DB
+        res.set('Content-Type', 'application/json');
+        res.status(500).send(JSON.stringify({
+            status: 500,
+            message: "Error connecting to DB",
+            detailed_message: err.message
+        }));
+        return;}
+    connection.execute("delete from pais  where id_pais= "+id_test, {}, {
+        outFormat: oracledb.OBJECT // Return the result as Object
+    }, function (err, res) {
+        if (err) {
+            res.header('Access-Control-Allow-Origin','*');
+            res.header('Access-Control-Allow-Headers','Content-Type');
+            res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+            res.contentType('application/json').status(200);
+            res.send(JSON.stringify(err.message)) ;
+        } else {
+            res.header('Access-Control-Allow-Origin','*');
+            res.header('Access-Control-Allow-Headers','Content-Type');
+            res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+            res.contentType('application/json').status(200);
+            res.send(JSON.stringify("1"))   ;
+        }
+        // Release the connection
+        connection.release(
+            function (err) {
+                if (err) {
+                    console.error(err.message);
+                } else {
+                    console.log("POST /sendTablespace : Connection released");
+                }
+            });
+    });
+});
+});
+
+
+
 //// uso de procedimiento almacenado, creacion de pais--- test
 app.get('/add_pais', function (req, res) {
   "use strict";
@@ -824,6 +913,11 @@ app.get('/add_pais', function (req, res) {
               });
       });
   });
+
+
+
+
+
 });///MENSAJE POR TERMINAL PARA PROBAR SI FUNCIONA EL SERVIDOR
   app.listen(8201, 'localhost', function(){
       console.log("EL SERVIDOR ESTA ESCUCHANDO DESDE EL PUERTO: 8201");
