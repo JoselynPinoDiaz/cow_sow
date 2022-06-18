@@ -183,7 +183,7 @@ app.get('/ANIMALES', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT A.NUMERO_SERIE, A.NOMBRE_ANIMAL, TA.NOMBRE_TIPO_ANIMAL, TPA.TIPO_PROD_ANIMAL,A.SEXO FROM ANIMAL A JOIN TIPO_PRODUCCION_ANIMAL TPA ON A.ID_TIPO_PROD_ANIMAL = TPA.ID_TIPO_PROD_ANIMAL JOIN TIPO_ANIMAL TA ON TA.ID_TIPO_ANIMAL = A.ID_TIPO_ANIMAL", {}, {
+      connection.execute("SELECT * FROM ANIMALES", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -449,7 +449,99 @@ app.get('/TPUSUARIOS', function (req, res) {
         });
     });
   });
+  /////////////////////////
+  app.get('/PERSONAS', function (req, res) {
+  "use strict";
+
+  oracledb.getConnection(connAttrs, function (err, connection) {
+      if (err) {
+          // Error connecting to DB
+          res.set('Content-Type', 'application/json');
+          res.status(500).send(JSON.stringify({
+              status: 500,
+              message: "Error en la conexión con DB",
+              detailed_message: err.message
+          }));
+          return;
+      }
+      connection.execute("SELECT P.RUT||'-'||P.DV_RUT AS RUT,P.PNOMBRE||' '||P.SNOMBRE||' '||P.PAPELLIDO||' '||P.SAPELLIDO AS NOMBRE,C.EMAIL,C.TELEFONO,P.FECHA_NACIMIENTO,TP.TIPO_USUARIO,DO.DIRECCION||' '||DO.NUMERO AS DIRECCION,DO.TIPO_DIRECCION,CO.NOMBRE_COMUNA,RE.NOMBRE_REGION,PA.NOMBRE_PAIS,TP.DESCRIPCION,C.DESCRIPCION FROM PERSONA P JOIN TIPO_USUARIO TP ON P.ID_TIPO_USUARIO = TP.ID_TIPO_USUARIO JOIN CONTACTO C ON C.ID_CONTACTO = TP.ID_CONTACTO JOIN DOMICILIO DO ON DO.ID_DOMICILIO = P.ID_DOMICILIO JOIN COMUNA CO ON CO.ID_COMUNA = DO.ID_COMUNA JOIN REGION RE ON RE.ID_REGION = CO.ID_REGION JOIN PAIS PA ON PA.ID_PAIS = RE.ID_PAIS", {}, {
+          outFormat: oracledb.OBJECT // Return the result as Object
+      }, function (err, result) {
+          if (err) {
+              res.set('Content-Type', 'application/json');
+              res.status(500).send(JSON.stringify({
+                  status: 500,
+                  message: "Error getting the dba_tablespaces",
+                  detailed_message: err.message
+              }));
+          } else {
+              res.header('Access-Control-Allow-Origin','*');
+              res.header('Access-Control-Allow-Headers','Content-Type');
+              res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+              res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+              res.send(JSON.stringify(result.rows));
+
+          }
+          // Release the connection
+
+          connection.release(
+              function (err) {
+                  if (err) {
+                      console.error(err.message);
+                  } else {
+                      console.log("GET /sendTablespace : Connection released");
+                  }
+              });
+      });
+  });
+});
+
+///consulta get tabla TP_USUARIOS
+app.get('/TPUSUARIOS', function (req, res) {
+    "use strict";
   
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("SELECT P.RUT||'-'||P.DV_RUT AS RUT_EMPLEADO,P.PNOMBRE||' '||P.SNOMBRE||' '||P.PAPELLIDO||' '||P.SAPELLIDO AS NOMBRE,C.EMAIL,C.TELEFONO,P.FECHA_NACIMIENTO,TP.TIPO_USUARIO,DO.DIRECCION||' '||DO.NUMERO AS DIRECCION,DO.TIPO_DIRECCION,CO.NOMBRE_COMUNA,RE.NOMBRE_REGION,PA.NOMBRE_PAIS,TP.DESCRIPCION,C.DESCRIPCION FROM PERSONA P JOIN TIPO_USUARIO TP ON P.ID_TIPO_USUARIO = TP.ID_TIPO_USUARIO JOIN CONTACTO C ON C.ID_CONTACTO = TP.ID_CONTACTO JOIN DOMICILIO DO ON DO.ID_DOMICILIO = P.ID_DOMICILIO JOIN COMUNA CO ON CO.ID_COMUNA = DO.ID_COMUNA JOIN REGION RE ON RE.ID_REGION = CO.ID_REGION JOIN PAIS PA ON PA.ID_PAIS = RE.ID_PAIS", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+  
+            }
+            // Release the connection
+  
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
 
 ///consulta get tabla PROPIEDAD
 app.get('/PROPIEDADES', function (req, res) {

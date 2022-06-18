@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "NODE",
+    "password": "abc123",
+    "database": "",
+    "host": "localhost:1521/xe",
+    "dialect": "oracle"
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "xepdb1",
+    "host": "localhost:1521",
+    "dialect": "oracle"
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "xepdb1",
+    "host": "localhost:1521",
+    "dialect": "oracle"
+  }
+}

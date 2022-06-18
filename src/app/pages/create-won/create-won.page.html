@@ -12,18 +12,18 @@
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="schedule" routerLink="/owner">
         <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
+        <ion-label>Menú</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="schedule" routerLink="/event">
         <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
+        <ion-label>Calendario</ion-label>
         <ion-badge>6</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button tab="map">
         <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
+        <ion-label>Cerrar sesión</ion-label>
       </ion-tab-button>
 
     </ion-tab-bar>        
@@ -34,7 +34,7 @@
       <ion-row>
         <ion-col>
           <ion-item lines="full">
-            <ion-label position="floating">Numero Serie</ion-label>
+            <ion-label position="floating">Número Serie: </ion-label>
             <ion-input formControlName="numeroSerie" type="Numero" required></ion-input>
           </ion-item>
         </ion-col>
@@ -42,7 +42,7 @@
       <ion-row>
         <ion-col>
           <ion-item lines="full">
-            <ion-label position="floating">Nombre</ion-label>
+            <ion-label position="floating">Nombre: </ion-label>
             <ion-input formControlName="nombre" type="text" required></ion-input>
           </ion-item>
         </ion-col>
@@ -50,7 +50,7 @@
       <ion-row>
         <ion-col>
           <ion-item lines="full">
-            <ion-label>Tipo Ganado</ion-label>
+            <ion-label>Tipo Ganado: </ion-label>
             <ion-select formControlName="tipoGanado" position="floating" placeholder="Seleccione">
               <ion-select-option>Vaca</ion-select-option>
               <ion-select-option>Toro</ion-select-option>
@@ -63,7 +63,7 @@
       <ion-row>
         <ion-col>
           <ion-item lines="full">
-            <ion-label>Tipo Producción</ion-label>
+            <ion-label>Tipo Producción: </ion-label>
             <ion-select formControlName="tipoProduccion" placeholder="Seleccione">
               <ion-select-option>Carne</ion-select-option>
               <ion-select-option>Leche</ion-select-option>
@@ -75,7 +75,7 @@
       <ion-row>
         <ion-col>
           <ion-item lines="full">
-            <ion-label>Sexo Animal</ion-label>
+            <ion-label>Sexo Animal: </ion-label>
             <ion-select formControlName="sexoAnimal" placeholder="Seleccione">
               <ion-select-option>Macho</ion-select-option>
               <ion-select-option>Hembra</ion-select-option>

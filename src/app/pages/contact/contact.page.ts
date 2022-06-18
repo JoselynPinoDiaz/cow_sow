@@ -1,7 +1,7 @@
 import { Component, OnInit,Input} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { IonRouterOutlet, ModalController, NavController, NavParams } from '@ionic/angular';
-import { ContactService } from './contact.service';
+import { AuthService } from 'src/app/services/auth.service'; 
 
 
 
@@ -19,7 +19,7 @@ export class ContactPage implements OnInit {
 
 
 
-  constructor(public Scontacto: ContactService, 
+  constructor(public Scontacto: AuthService, 
               public modalCtrl: ModalController, 
               public navCtrl: NavController,
               private routerOutlet: IonRouterOutlet,
@@ -30,7 +30,7 @@ export class ContactPage implements OnInit {
     
   }
   async listaContacto(){
-    const contactos = await this.Scontacto.contacto();
+    const contactos = await this.Scontacto.cargarContacto();
     this.nombre = contactos[0].NOMBRE;
     this.email = contactos[0].EMAIL;
     this.telefono = contactos[0].TELEFONO;

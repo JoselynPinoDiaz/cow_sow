@@ -19,8 +19,7 @@ export class CreateWonPage implements OnInit {
       'numeroSerie': new FormControl("", Validators.required),
       'tipoGanado': new FormControl("", Validators.required),
       'tipoProduccion': new FormControl("", Validators.required),
-      'sexoAnimal': new FormControl("", Validators.required),
-      'razaAnimal': new FormControl("", Validators.required)
+      'sexoAnimal': new FormControl("", Validators.required)
 
     })
 
@@ -56,8 +55,8 @@ export class CreateWonPage implements OnInit {
     numeroSerie: f.numeroSerie,
     tipoGanado: f.tipoGanado,
     tipoProduccion: f.tipoProduccion,
-    sexoAnimal: f.sexoAnimal,
-    razaAnimal: f.razaAnimal
+    sexoAnimal: f.sexoAnimal
+    
   }
 
   localStorage.setItem('Ganado', JSON.stringify(ganado));

@@ -12,18 +12,18 @@
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="schedule" routerLink="/owner">
         <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
+        <ion-label>Menú</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="schedule" routerLink="/event">
         <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
+        <ion-label>Calendario</ion-label>
         <ion-badge>6</ion-badge>
       </ion-tab-button>
   
       <ion-tab-button tab="map">
         <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
+        <ion-label>Cerrar sesión</ion-label>
       </ion-tab-button>
     </ion-tab-bar>        
   </ion-tabs>
@@ -32,54 +32,54 @@
     <ion-card>
   <form [formGroup]="formularioEmpleado" (keyup.enter)="guardar()" >
     <ion-item lines="full">
-      <ion-label position="floating">Nombre</ion-label>
+      <ion-label position="floating">Nombre: </ion-label>
       <ion-input formControlName="nombre" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Primer Apellido</ion-label>
+      <ion-label position="floating">Primer Apellido: </ion-label>
       <ion-input formControlName="pApellido" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Segundo Apellido</ion-label>
+      <ion-label position="floating">Segundo Apellido: </ion-label>
       <ion-input formControlName="sApellido" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Ingresar Email</ion-label>
+      <ion-label position="floating">Ingresar Email: </ion-label>
       <ion-input formControlName="email" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Ingresar Nuevamente Email</ion-label>
+      <ion-label position="floating">Ingresar Nuevamente Email: </ion-label>
       <ion-input formControlName="confirmarEmail" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
+      <ion-label position="floating">Contraseña: </ion-label>
       <ion-input formControlName="password" type="password" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-label position="floating">Confirmar Contraseña: </ion-label>
       <ion-input formControlName="confirmarPassword" type="password" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Fecha Nacimiento</ion-label>
+      <ion-label position="floating">Fecha Nacimiento: </ion-label>
       <ion-input formControlName="fecha_nacimiento" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Ingresar Comuna</ion-label>
+      <ion-label position="floating">Ingresar Comuna: </ion-label>
       <ion-input formControlName="comuna" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Ingresar Region</ion-label>
+      <ion-label position="floating">Ingresar Región: </ion-label>
       <ion-input formControlName="region" type="text" required></ion-input>
     </ion-item>
     <!-- Listado Paises -->
     <ion-item>
-      <ion-label>País</ion-label>
+      <ion-label>País: </ion-label>
       <ion-select formControlName="pais" placeholder="Seleccione">
         <ion-select-option >Agentina</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Tipo de Empleado</ion-label>
+      <ion-label>Tipo de Empleado:</ion-label>
       <ion-select formControlName="tipoEmpleado" placeholder="Seleccione">
         <ion-select-option >Administrador</ion-select-option>
         <ion-select-option >Veterinario</ion-select-option>

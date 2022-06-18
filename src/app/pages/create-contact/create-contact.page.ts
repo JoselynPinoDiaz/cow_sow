@@ -21,6 +21,8 @@ export class CreateContactPage implements OnInit {
       'email': new FormControl("", Validators.required),
       'telefono': new FormControl("", Validators.required)
 
+      
+
     })
 
    }
