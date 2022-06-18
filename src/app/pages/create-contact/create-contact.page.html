@@ -27,8 +27,16 @@
       </ion-tab-button>
     </ion-tab-bar>        
   </ion-tabs>
+
+
+
+
+
+
+
+
   
-  <ion-grid fixed>
+ <ion-grid fixed>
     <ion-card>
     <form [formGroup]="formularioContacto" (keyup.enter)="guardar()">
       <ion-row>
@@ -74,9 +82,7 @@
     </form>
   </ion-card>
     <!-- Boton Crear Propiedad -->
-    <ion-button class="ion-margin" type="submit" color="success" size="small" (click)="guardar()">Agregar Contacto</ion-button>
-
-
-  </ion-grid>
+  <ion-button class="ion-margin" type="submit" color="success" size="small" (click)="guardar()">Agregar Contacto</ion-button>
+</ion-grid>
 </ion-content>
 

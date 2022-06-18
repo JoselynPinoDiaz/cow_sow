@@ -3,13 +3,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import {  HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 
 })
 //nombre del servicio angular
 export class AuthService {
-  constructor(private http: HttpClient) {
+
+  nombre: string;
+  email: string;
+  telefono: number;
+  descripcion: string;
+
+ constructor(private http: HttpClient) {
   }
 
 public async cargarPaises(){

@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { ContactoCrudService } from 'src/app/services/contacto-crud.service';
+
+
 
 @Component({
   selector: 'app-create-contact',
@@ -9,30 +13,44 @@ import { AlertController } from '@ionic/angular';
 })
 export class CreateContactPage implements OnInit {
 
+  
+
   formularioContacto: FormGroup;
 
-  constructor(public fb: FormBuilder, public alertController: AlertController) {
+  constructor(public fb: FormBuilder, 
+              public alertController: AlertController,
+              private router: Router,
+              private zone: NgZone,
+              public Scontacto: ContactoCrudService
+              
+              ) {
 
-    this.formularioContacto = this.fb.group({
 
-      'nombre': new FormControl("", Validators.required),
-      'pApellido': new FormControl("", Validators.required),
+                this.formularioContacto = this.fb.group({
+                  nombre: [''],
+                  email: [''],
+                  telefono: [''],
+                  descripcion: ['']
+                })
+
+     this.formularioContacto = this.fb.group({
+
+     'nombre': new FormControl("", Validators.required),
+     'pApellido': new FormControl("", Validators.required),
       'sApellido': new FormControl("", Validators.required),
-      'email': new FormControl("", Validators.required),
-      'telefono': new FormControl("", Validators.required)
-
-    })
-
+     'email': new FormControl("", Validators.required),
+      'telefono': new FormControl("", Validators.required)})
    }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
+
 
   async guardar(){
-    var f = this.formularioContacto.value;
+   var f = this.formularioContacto.value;
 
 
-    if(this.formularioContacto.invalid){
+   if(this.formularioContacto.invalid){
       
         const alert = await this.alertController.create({
           cssClass: 'my-custom-class',
