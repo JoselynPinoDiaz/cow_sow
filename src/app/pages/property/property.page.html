@@ -7,120 +7,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="ion-padding">
 
 
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule" routerLink="/owner">
-        <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="schedule" routerLink="/event">
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="map">
-        <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
-      </ion-tab-button>
-  
-    </ion-tab-bar>        
-  </ion-tabs>
-
-  <ion-card-content>
-    <ion-item>
-      <ion-grid fixed class="contenedor-perfil ion-no-padding">
-      <ion-row class="contenedor-correo">
-        <ion-col size="12">
-          <ion-label  class="label-seccion">Nombre Propiedad: </ion-label>
-          <ion-label class="label-descripcion"> {{nombre_propiedad}} </ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-list>
+    <ion-item *ngFor="let pr of propiedad" [routerLink]="['/property', pr.ID_PROPIEDAD]">
+      <ion-avatar slot="start">
+        <ion-img src="../../../assets/icon/icons/granja.png"></ion-img>
+      </ion-avatar>
+      <ion-label>{{pr.NOMBRE_PROPIEDAD}}</ion-label>
     </ion-item>
-  <ion-item>
-    <ion-grid fixed class="contenedor-perfil ion-no-padding">
-    <ion-row class="contenedor-correo">
-      <ion-col size="12">
-        <ion-label  class="label-seccion"> Tipo Produccion: </ion-label>
-        <ion-label class="label-descripcion"> {{tipo_produccion}} </ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid fixed class="contenedor-perfil ion-no-padding">
-      <ion-row class="contenedor-correo">
-        <ion-col size="12">
-          <ion-label  class="label-seccion">Pais: </ion-label>
-          <ion-label class="label-descripcion"> {{pais}} </ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid fixed class="contenedor-perfil ion-no-padding">
-      <ion-row class="contenedor-correo">
-        <ion-col size="12">
-          <ion-label  class="label-seccion">Comuna: </ion-label>
-          <ion-label class="label-descripcion"> {{comuna}} </ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid fixed class="contenedor-perfil ion-no-padding">
-      <ion-row class="contenedor-correo">
-        <ion-col size="12">
-          <ion-label  class="label-seccion">Region: </ion-label>
-          <ion-label class="label-descripcion"> {{region}} </ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-  <ion-item>
-  <ion-grid fixed class="contenedor-perfil ion-no-padding">
-  <ion-row class="contenedor-correo">
-    <ion-col size="12">
-      <ion-label  class="label-seccion">Dirección: </ion-label>
-      <ion-label class="label-descripcion"> {{direccion}} </ion-label>
-    </ion-col>
-  </ion-row>
-  </ion-grid>
-  </ion-item>
-  <ion-item>
-  <ion-grid fixed class="contenedor-perfil ion-no-padding">
-  <ion-row class="contenedor-correo">
-    <ion-col size="12">
-      <ion-label  class="label-seccion">Domicilio: </ion-label>
-      <ion-label class="label-descripcion"> {{domicilio}} </ion-label>
-    </ion-col>
-  </ion-row>
-  </ion-grid>
-  </ion-item>
-  <ion-item>
-    <ion-grid fixed class="contenedor-perfil ion-no-padding">
-      <ion-row class="contenedor-correo">
-        <ion-col size="12">
-          <ion-label  class="label-seccion">Hectárea: </ion-label>
-          <ion-label class="label-descripcion"> {{hectarea}}</ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>  
-  <ion-button (click)="propiedad()">Cambiar nombre</ion-button>
-  </ion-card-content>
+  </ion-list>
 
-  <ion-card-content class="createproperty">
-    <ion-tab-button >
-      <ion-img  src="../../../assets/icon/icons/CrearCasas.png" routerLink="/create-property"></ion-img>
-      <ion-text  >Crear Propiedad</ion-text>
-    </ion-tab-button>
-    </ion-card-content>
+  <ion-fab vertical="bottom" horizontal="end" class="createproperty">
+    <ion-fab-button (click)="agregarPropiedad()">
+      <ion-img src="../../../assets/icon/icons/CrearCasas.png"></ion-img>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-text>Crear Propiedad</ion-text>
+  </ion-fab>
 
 </ion-content>
 

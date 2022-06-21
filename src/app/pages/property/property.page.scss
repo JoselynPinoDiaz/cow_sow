@@ -1,10 +1,8 @@
 .createproperty{
-    width: 30%;
-    height: 30%;
-    margin-left: 60%;
-    margin-top: -15%;
+    position: absolute;
     text-align: center;
     font-size: x-small;
+
 }
 
 .label-seccion{
@@ -17,6 +15,7 @@
 .label-descripcion{
     font-size: smaller;
     text-align: center;
+    margin-right: 1px;
       
 }
 

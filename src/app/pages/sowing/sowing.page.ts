@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
 import { SowingService } from './sowing.service';
 
 @Component({
@@ -8,23 +10,26 @@ import { SowingService } from './sowing.service';
 })
 export class SowingPage implements OnInit {
 
-  public tipo_siembra: string;
-  public tipo_produccion: string;
-  public nombre_siembra: string;
-  public cantidad_siembra: string;
-  public descripcion: string;
+  public siembra = []
 
-  constructor(public Ssowing: SowingService) { }
+  constructor(public Ssowing: SowingService,
+              public modalCtrl: ModalController, 
+              public navCtrl: NavController,
+              private routerOutlet: IonRouterOutlet,
+              private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ionViewWillEnter(){
+    this.Ssowing.cargarSiembra()
+    .subscribe( data =>{
+      this.siembra = data
+    })
   }
 
-  async siembra(){
-    const siembras = await this.Ssowing.siembra();
-    this.tipo_siembra = siembras[0].TIPO_SIEMBRA;
-    this.nombre_siembra = siembras[0].NOMBRE_SIEMBRA;
-    this.cantidad_siembra = siembras[0].CANTIDAD_SIEMBRA;
-    this.descripcion = siembras[0].DESCRIPCION;
+  agregarSiembra(){
+    this.router.navigate(['/agregar-siembra'])
+  }
 
-}
+
 }

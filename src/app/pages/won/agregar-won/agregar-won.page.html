@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Ganado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text"  placeholder="Ingresar Id" #NUMERO_SERIE required></ion-input>
+          <ion-input type="text"  placeholder="Ingresar Nombre" #NOMBRE_ANIMAL required></ion-input>
+          <ion-input type="email" placeholder="Ingresar Peso" #PESO required></ion-input>
+          <ion-button color="primary" (click)="agregarNuevoContacto(NUMERO_SERIE, NOMBRE_ANIMAL, PESO)">
+            Guardar Ganado
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
+

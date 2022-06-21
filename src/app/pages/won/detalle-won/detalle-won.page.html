@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+    <ion-back-button defaultHref="/contact"></ion-back-button>
+  </ion-buttons>
+    <ion-title>{{infoGanado?.NOMBRE_ANIMAL}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)=" eliminarGanado()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h1 class="ion-text-center">{{infoGanado?.NUMERO_SERIE}}</h1>
+          <h1 class="ion-text-center">{{infoGanado?.NOMBRE_ANIMAL}}</h1>
+          <h1 class="ion-text-center">{{infoGanado?.PESO}}</h1>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+</ion-content>
+

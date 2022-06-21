@@ -5,6 +5,15 @@ var express = require("express");
 var app = express();
 var bodyparser = require('body-parser'); //para el json
 var oracledb = require('oracledb');
+const cors = require('cors');
+
+app.use(cors({
+    origin: ['http://localhost:8100'],
+    "methods": "GET,PUT,POST",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204,
+    credentials: true
+}));
 
 //variable de pass bd - manu: DESA
 //var password = '123abc' ;
@@ -183,7 +192,7 @@ app.get('/ANIMALES', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT A.NUMERO_SERIE, A.NOMBRE_ANIMAL, TA.NOMBRE_TIPO_ANIMAL, TPA.TIPO_PROD_ANIMAL,A.SEXO FROM ANIMAL A JOIN TIPO_PRODUCCION_ANIMAL TPA ON A.ID_TIPO_PROD_ANIMAL = TPA.ID_TIPO_PROD_ANIMAL JOIN TIPO_ANIMAL TA ON TA.ID_TIPO_ANIMAL = A.ID_TIPO_ANIMAL", {}, {
+      connection.execute("SELECT * FROM ANIMAL", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -230,7 +239,7 @@ app.get('/CONTACTOS', function (req, res) {
           }));
           return;
       }
-      connection.execute("select * from CONTACTO", {}, {
+      connection.execute("SELECT ID_CONTACTO, NOMBRE, EMAIL, EMAIL,TELEFONO, DESCRIPCION FROM CONTACTO WHERE ID_CONTACTO = ID_CONTACTO", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -242,6 +251,7 @@ app.get('/CONTACTOS', function (req, res) {
               }));
           } else {
               res.header('Access-Control-Allow-Origin','*');
+              res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
               res.header('Access-Control-Allow-Headers','Content-Type');
               res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
               res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
@@ -371,7 +381,7 @@ app.get('/PERSONAS', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT P.RUT||'-'||P.DV_RUT AS RUT,P.PNOMBRE||' '||P.SNOMBRE||' '||P.PAPELLIDO||' '||P.SAPELLIDO AS NOMBRE,C.EMAIL,C.TELEFONO,P.FECHA_NACIMIENTO,TP.TIPO_USUARIO,DO.DIRECCION||' '||DO.NUMERO AS DIRECCION,DO.TIPO_DIRECCION,CO.NOMBRE_COMUNA,RE.NOMBRE_REGION,PA.NOMBRE_PAIS,TP.DESCRIPCION,C.DESCRIPCION FROM PERSONA P JOIN TIPO_USUARIO TP ON P.ID_TIPO_USUARIO = TP.ID_TIPO_USUARIO JOIN CONTACTO C ON C.ID_CONTACTO = TP.ID_CONTACTO JOIN DOMICILIO DO ON DO.ID_DOMICILIO = P.ID_DOMICILIO JOIN COMUNA CO ON CO.ID_COMUNA = DO.ID_COMUNA JOIN REGION RE ON RE.ID_REGION = CO.ID_REGION JOIN PAIS PA ON PA.ID_PAIS = RE.ID_PAIS", {}, {
+      connection.execute("SELECT P.RUT||'-'||P.DV_RUT AS RUT,P.PNOMBRE||' '||P.SNOMBRE||' '||P.PAPELLIDO||' '||P.SAPELLIDO AS NOMBRE,P.FECHA_NACIMIENTO,TP.EMAIL,TP.TIPO_USUARIO,DO.DIRECCION||''||DO.NUMERO AS DIRECCION,DO.TIPO_DIRECCION,CO.NOMBRE_COMUNA,RE.NOMBRE_REGION,PA.NOMBRE_PAIS,TP.DESCRIPCION FROM PERSONA P JOIN TIPO_USUARIO TP ON P.ID_TIPO_USUARIO = TP.ID_TIPO_USUARIO JOIN DOMICILIO DO ON DO.ID_DOMICILIO = P.ID_DOMICILIO JOIN COMUNA CO ON CO.ID_COMUNA = DO.ID_COMUNA JOIN REGION RE ON RE.ID_REGION = CO.ID_REGION JOIN PAIS PA ON PA.ID_PAIS = RE.ID_PAIS", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -418,7 +428,7 @@ app.get('/TPUSUARIOS', function (req, res) {
             }));
             return;
         }
-        connection.execute("SELECT P.RUT||'-'||P.DV_RUT AS RUT_EMPLEADO,P.PNOMBRE||' '||P.SNOMBRE||' '||P.PAPELLIDO||' '||P.SAPELLIDO AS NOMBRE,C.EMAIL,C.TELEFONO,P.FECHA_NACIMIENTO,TP.TIPO_USUARIO,DO.DIRECCION||' '||DO.NUMERO AS DIRECCION,DO.TIPO_DIRECCION,CO.NOMBRE_COMUNA,RE.NOMBRE_REGION,PA.NOMBRE_PAIS,TP.DESCRIPCION,C.DESCRIPCION FROM PERSONA P JOIN TIPO_USUARIO TP ON P.ID_TIPO_USUARIO = TP.ID_TIPO_USUARIO JOIN CONTACTO C ON C.ID_CONTACTO = TP.ID_CONTACTO JOIN DOMICILIO DO ON DO.ID_DOMICILIO = P.ID_DOMICILIO JOIN COMUNA CO ON CO.ID_COMUNA = DO.ID_COMUNA JOIN REGION RE ON RE.ID_REGION = CO.ID_REGION JOIN PAIS PA ON PA.ID_PAIS = RE.ID_PAIS", {}, {
+        connection.execute("SELECT * FROM TIPO_USUARIO", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -466,7 +476,7 @@ app.get('/PROPIEDADES', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT P.NOMBRE_PROPIEDAD,P.CANTIDAD_HECTARIAS,TP.TIPO_PRODUCCION,DO.DIRECCION||' '||DO.NUMERO AS DIRECCION,TIPO_DIRECCION AS DOMICILIO,CO.NOMBRE_COMUNA,RE.NOMBRE_REGION,PA.NOMBRE_PAIS, TP.DESCRIPCION FROM PROPIEDAD P JOIN TIPO_PRODUCCION TP ON P.ID_TIPO_PRODUCCION = TP.ID_TIPO_PRODUCCION JOIN DOMICILIO DO ON DO.ID_DOMICILIO = P.ID_DOMICILIO JOIN COMUNA CO ON CO.ID_COMUNA = CO.ID_COMUNA JOIN REGION RE ON RE.ID_REGION = CO.ID_REGION JOIN PAIS PA ON PA.ID_PAIS = RE.ID_PAIS", {}, {
+      connection.execute("SELECT * FROM PROPIEDAD", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -560,7 +570,7 @@ app.get('/SIEMBRAS', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT S.TIPO_SIEMBRA,S.NOMBRE_SIEMBRA,S.CANTIDAD_SIEMBRA,S.DESCRIPCION FROM SIEMBRA S JOIN PROPIEDAD PR ON S.ID_PROPIEDAD = PR.ID_PROPIEDAD JOIN REPORTE RP ON RP.ID_REPORTE = S.ID_REPORTE", {}, {
+      connection.execute("SELECT * FROM SIEMBRA", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -837,7 +847,78 @@ app.delete('/DEL_ANIMAL/:ID', function (req, res) {
       });
   });
 });
-////////--------------METODOS UPDATE------------//////////////////
+////////--------------METODOS INSERT------------//////////////////
+//consulta get tabla CONTACTOS
+app.post('/postContacto', function (req, res) {
+    "use strict";
+  
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("INSERT INTO TIPO_USUARIO (ID_TIPO_USUARIO, TIPO_USUARIO,EMAIL,CONTRASEÑA, DESCRIPCION )", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+  
+            }
+            // Release the connection
+  
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+
+
+  / POST CREATE
+
+app.post('/postContacto', async (req, res) => {
+    var { ID_CONTACTO, NOMBRE, EMAIL, TELEFONO, DESCRIPCION} = req.body;
+
+    sql = "INSERT INTO CONTACTO (ID_CONTACTO, NOMBRE, EMAIL,TELEFONO,DESCRIPCION ) VALUES (:ID_CONTACTO, :NOMBRE, :EMAIL, :TELEFONO, :DESCRIPCION)";
+
+    await BD.Open(sql, [ID_CONTACTO, NOMBRE, EMAIL, TELEFONO , DESCRIPCION], true);
+
+    res.status(200).json({
+            "ID_CONTACTO":ID_CONTACTO.values,
+            "NOMBRE": NOMBRE.values,
+            "EMAIL": EMAIL.values,
+            "TELEFONO": TELEFONO.values,
+            "DESCRIPCION": DESCRIPCION.values
+    })
+    
+})
+
+
+
+
+
 
 
 ////MENSAJE POR TERMINAL PARA PROBAR SI FUNCIONA EL SERVIDOR

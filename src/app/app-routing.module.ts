@@ -33,45 +33,73 @@ const routes: Routes = [
     loadChildren: () => import('./pages/owner/owner.module').then( m => m.OwnerPageModule)
 
   },
-  {
-    path: 'create-property',
-    loadChildren: () => import('./pages/create-property/create-property.module').then( m => m.CreatePropertyPageModule)
-  },
+
   {
     path: 'property',
+    children: [
+      {
+        path:"",
     loadChildren: () => import('./pages/property/property.module').then( m => m.PropertyPageModule)
   },
   {
-    path: 'create-employee',
-    loadChildren: () => import('./pages/create-employee/create-employee.module').then( m => m.CreateEmployeePageModule)
+    path: ':propertyId',
+    loadChildren: () => import('./pages/property/detalle-proprerty/detalle-proprerty-routing.module').then( m => m.DetalleProprertyPageRoutingModule)
+  }
+    ]
   },
   {
     path: 'employee',
-    loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule)
-  },
-  {
-    path: 'create-won',
-    loadChildren: () => import('./pages/create-won/create-won.module').then( m => m.CreateWonPageModule)
+    children: [
+      {
+      path:"",
+      loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule)
+      },
+      {
+        path: ":employeeId",
+        loadChildren: () => import('./pages/employee/detlle-employee/detlle-employee-routing.module').then(m => m.DetlleEmployeePageRoutingModule)
+      }
+    ]
+  
   },
   {
     path: 'won',
-    loadChildren: () => import('./pages/won/won.module').then( m => m.WonPageModule)
+    children: [
+    {
+      path:"",
+    loadChildren: () => import('./pages/won/won.module').then( m => m.WonPageModule)    
+    },
+    {
+      path: ":wonId", 
+      loadChildren: () => import('./pages/won/detalle-won/detalle-won-routing.module').then(m => m.DetalleWonPageRoutingModule)
+    }
+    ]
   },
   {
     path: 'sowing',
-    loadChildren: () => import('./pages/sowing/sowing.module').then( m => m.SowingPageModule)
+    children:[
+    {
+      path: "",
+    loadChildren: () => import('./pages/sowing/sowing.module').then( m => m.SowingPageModule)  
   },
   {
-    path: 'create-sowing',
-    loadChildren: () => import('./pages/create-sowing/create-sowing.module').then( m => m.CreateSowingPageModule)
+    path: ":sowingId",
+    loadChildren: () => import('./pages/sowing/detalle-sowing/detalle-sowing-routing.module').then(m => m.DetalleSowingPageRoutingModule)
+  }
+    ]
   },
-  {
-    path: 'create-contact',
-    loadChildren: () => import('./pages/create-contact/create-contact.module').then( m => m.CreateContactPageModule)
-  },
+
   {
     path: 'contact',
-    loadChildren: () => import('./pages/contact/contact.module').then( m => m.ContactPageModule)
+    children: [
+      {
+        path:"",
+        loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
+      },
+      {
+        path: ":contactId",
+        loadChildren: () => import('./pages/contact/detalle-contacto/detalle-contacto.module').then(m => m.DetalleContactoPageModule)
+      }
+    ]
   },
   {
     path: 'profile',
@@ -81,6 +109,28 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
   },
+  {
+    path: 'agregar-contactos',
+    loadChildren: () => import('./pages/contact/agregar-contactos/agregar-contactos.module').then( m => m.AgregarContactosPageModule)
+  },
+  {
+    path: 'agregar-empleados',
+    loadChildren: () => import('./pages/employee/agregar-employee/agregar-employee-routing.module').then( m => m.AgregarEmployeePageRoutingModule)
+  },
+  {
+    path: 'agregar-ganado',
+    loadChildren: () => import('./pages/won/agregar-won/agregar-won-routing.module').then( m => m.AgregarWonPageRoutingModule)
+  },
+  {
+    path: 'agregar-granja',
+    loadChildren: () => import('./pages/property/agregar-property/agregar-property-routing.module').then( m => m.AgregarPropertyPageRoutingModule)
+  },
+  {
+    path: 'agregar-siembra',
+    loadChildren: () => import('./pages/sowing/agregar-sowing/agregar-sowing-routing.module').then( m => m.AgregarSowingPageRoutingModule)
+  },
+
+
   
 
 ];

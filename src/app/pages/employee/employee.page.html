@@ -7,152 +7,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule" routerLink="/owner">
-        <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="schedule" routerLink="/event">
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
-      <ion-tab-button tab="map">
-        <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
 
 
 
-  <ion-card-content>
-    <ion-card>
-      <ion-item id="formsContacto">
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-rut">
-            <ion-col size="12">
-              <ion-label class="label-seccion">Rut: </ion-label>
-              <ion-label class="label-descripcion"> {{rut}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-nombre">
-            <ion-col size="12">
-              <ion-label class="label-seccion"> Nombre: </ion-label>
-              <ion-label class="label-descripcion"> {{nombre}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-email">
-            <ion-col size="12">
-              <ion-label class="label-seccion">Email: </ion-label>
-              <ion-label class="label-descripcion"> {{email}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-telefono">
-            <ion-col size="12">
-              <ion-label class="label-seccion"> Telefono: </ion-label>
-              <ion-label class="label-descripcion"> {{telefono}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-fecha">
-            <ion-col size="12">
-              <ion-label class="label-seccion"> Fecha Nacimiento: </ion-label>
-              <ion-label class="label-descripcion"> {{fecha_nacimiento}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-tipoUsuario">
-            <ion-col size="12">
-              <ion-label class="label-seccion"> Tipo Usuario: </ion-label>
-              <ion-label class="label-descripcion"> {{tipo_usuario}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-direccion">
-            <ion-col size="12">
-              <ion-label position="absolute" class="label-seccion"> Direccion: </ion-label>
-              <ion-label class="label-descripcion"> {{direccion}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-tipoDireccion">
-            <ion-col size="12">
-              <ion-label class="label-seccion">Tipo Direccion: </ion-label>
-              <ion-label class="label-descripcion"> {{tipo_direccion}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-comuna">
-            <ion-col size="12">
-              <ion-label class="label-seccion">Comuna: </ion-label>
-              <ion-label class="label-descripcion"> {{comuna}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-region">
-            <ion-col size="12">
-              <ion-label class="label-seccion">Region: </ion-label>
-              <ion-label class="label-descripcion"> {{region}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item>
-        <ion-grid fixed class="contenedor-perfil ion-no-padding">
-          <ion-row class="contenedor-pais">
-            <ion-col size="12">
-              <ion-label class="label-seccion">Pais: </ion-label>
-              <ion-label class="label-descripcion"> {{pais}} </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </ion-card>
-
-    <ion-button (click)="empleado()">Cambiar nombre</ion-button>
-  </ion-card-content>
+<ion-content fullscreen class="ion-padding">
 
 
-  <ion-card-content class="createproperty">
-    <ion-tab-button>
-      <ion-img src="../../../assets/icon/icons/EMPLEADO.png" routerLink="/create-employee"></ion-img>
-      <ion-text>Crear Empleado</ion-text>
-    </ion-tab-button>
-  </ion-card-content>
+  <ion-list>
+    <ion-item *ngFor="let e of Empleado" [routerLink]="['/employee', e.ID_TIPO_USUARIO]">
+      <ion-avatar slot="start">
+        <ion-img src="../../../assets/icon/icons/EMPLEADO.png"></ion-img>
+      </ion-avatar>
+      <ion-label>{{e.TIPO_USUARIO}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" class="createproperty">
+    <ion-fab-button (click)="agregarEmpleado()">
+      <ion-img src="../../../assets/icon/icons/EMPLEADO.png"></ion-img>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-text>Crear Empleado</ion-text>
+  </ion-fab>
 
 </ion-content>
 

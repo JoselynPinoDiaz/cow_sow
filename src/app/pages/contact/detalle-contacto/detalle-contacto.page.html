@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+    <ion-back-button defaultHref="/contact"></ion-back-button>
+  </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)=" eliminarContacto()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding" *ngFor="let info o info">
+      <ion-row>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>{{info.NOMBRE}}</ion-label>
+          <!--<h1 class="ion-text-center">{{info?.EMAIL}}</h1>
+          <h1 class="ion-text-center">{{info?.TELEFONO}}</h1>
+          <h1 class="ion-text-center">{{info?.DESCRIPCION}}</h1>-->
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+</ion-content>

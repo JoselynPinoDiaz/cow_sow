@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
 import { WonService } from './won.service';
 
 @Component({
@@ -8,25 +10,25 @@ import { WonService } from './won.service';
 })
 export class WonPage implements OnInit {
 
-  public numero_serie: number;
-  public nombre: string;
-  public tipo_ganado: string;
-  public tipo_produccion: string;
-  public sexo: string;
+  public Ganado = []
 
-  constructor(public Swon: WonService) { }
+  constructor(public SwonService: WonService,
+              public modalCtrl: ModalController, 
+              public navCtrl: NavController,
+              private routerOutlet: IonRouterOutlet,
+              private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter(){
+    this.SwonService.cargarGanado()
+    .subscribe( data =>{
+      this.Ganado = data
+    })
   }
 
-  async ganado(){
-    const ganados = await this.Swon.ganados();
-    this.numero_serie = ganados[0].NUMERO_SERIE;
-    this.nombre = ganados[0].NOMBRE_ANIMAL;
-    this.tipo_ganado = ganados[0].NOMBRE_TIPO_ANIMAL;
-    this.tipo_produccion = ganados[0].TIPO_PROD_ANIMAL;
-    this.sexo = ganados[0].SEXO;
-
+  agregarGanado(){
+    this.router.navigate(['/agregar-ganado'])
   }
 
 }

@@ -7,7 +7,15 @@ const routes: Routes = [
   {
     path: '',
     component: WonPage
+  },  {
+    path: 'detalle-won',
+    loadChildren: () => import('./detalle-won/detalle-won.module').then( m => m.DetalleWonPageModule)
+  },
+  {
+    path: 'agregar-won',
+    loadChildren: () => import('./agregar-won/agregar-won.module').then( m => m.AgregarWonPageModule)
   }
+
 ];
 
 @NgModule({

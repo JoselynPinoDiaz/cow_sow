@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>agregar-contactos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text"  placeholder="Ingresar Id" #ID_SIEMBRA required></ion-input>
+          <ion-input type="text"  placeholder="Ingresar Nombre" #TIPO_SIEMBRA required></ion-input>
+          <ion-input type="email" placeholder="Ingresar Email" #DESCRIPCION required></ion-input>
+          <ion-button color="primary" (click)="agregarNuevoContacto(ID_SIEMBRA, TIPO_SIEMBRA, DESCRIPCION)">
+            Guardar Siembra
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

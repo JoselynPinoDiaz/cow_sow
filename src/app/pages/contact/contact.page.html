@@ -11,75 +11,22 @@
 
 <ion-content fullscreen class="ion-padding">
 
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule" routerLink="/owner">
-        <ion-icon name="grid-outline"></ion-icon>
-        <ion-label>Menu</ion-label>
-      </ion-tab-button>
 
-      <ion-tab-button tab="schedule" routerLink="/event">
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Eventos</ion-label>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
+  <ion-list>
+    <ion-item *ngFor="let co of Lcontactos" [routerLink]="['/contact', co.ID_CONTACTO]">
+      <ion-avatar slot="start">
+        <ion-img src="../../../assets/icon/icons/contactos.png"></ion-img>
+      </ion-avatar>
+      <ion-label>{{co.NOMBRE}}</ion-label>
+    </ion-item>
+  </ion-list>
 
-      <ion-tab-button tab="map">
-        <ion-icon name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesion</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-
-  <ion-card>
-    <ion-item id="formsContacto">
-      <ion-grid fixed class="contenedor-perfil ion-no-padding">
-        <ion-row class="contenedor-correo">
-          <ion-col size="12">
-            <ion-label class="label-seccion"> Nombre: </ion-label>
-            <ion-label class="label-descripcion"> {{nombre}} </ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid fixed class="contenedor-perfil ion-no-padding">
-        <ion-row class="contenedor-correo">
-          <ion-col size="12">
-            <ion-label class="label-seccion">Email: </ion-label>
-            <ion-label class="label-descripcion"> {{email}} </ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid fixed class="contenedor-perfil ion-no-padding">
-        <ion-row class="contenedor-correo">
-          <ion-col size="12">
-            <ion-label class="label-seccion"> Telefono: </ion-label>
-            <ion-label class="label-descripcion"> {{telefono}} </ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid fixed class="contenedor-perfil ion-no-padding">
-        <ion-row class="contenedor-correo">
-          <ion-col size="12">
-            <ion-label class="label-seccion"> Descripción: </ion-label>
-            <ion-label class="label-descripcion"> {{descripcionCO}} </ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-  </ion-card>
-  <ion-button (click)="listaContacto()">Cambiar nombre</ion-button>
-
-  <ion-card-content class="createcontact">
-    <ion-tab-button>
-      <ion-img src="../../../assets/icon/icons/crearcontactos.png" routerLink="/create-contact"></ion-img>
-      <ion-text>Crear Contacto</ion-text>
-    </ion-tab-button>
-  </ion-card-content>
+  <ion-fab vertical="bottom" horizontal="end" class="createcontact">
+    <ion-fab-button (click)="agregarContacto()">
+      <ion-img src="../../../assets/icon/icons/crearcontactos.png"></ion-img>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-text>Crear Contacto</ion-text>
+  </ion-fab>
 
 </ion-content>

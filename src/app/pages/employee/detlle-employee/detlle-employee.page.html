@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+    <ion-back-button defaultHref="/employee"></ion-back-button>
+  </ion-buttons>
+    <ion-title>{{Einfo?.TIPO_USUARIO}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)=" eliminarEmpleado()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h1 class="ion-text-center">{{Einfo?.TIPO_USUARIO}}</h1>
+          <h1 class="ion-text-center">{{Einfo?.EMAIL}}</h1>
+          <h1 class="ion-text-center">{{Einfo?.DESCRIPCION}}</h1>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+</ion-content>
+

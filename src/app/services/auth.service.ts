@@ -14,10 +14,8 @@ import { catchError, tap } from 'rxjs/operators';
 //nombre del servicio angular
 export class AuthService {
 
-  nombre: string;
-  email: string;
-  telefono: number;
-  descripcion: string;
+
+ 
 
  constructor(private http: HttpClient) {
   }
@@ -27,5 +25,14 @@ public async cargarPaises(){
    return paises;
 
 }
+
+public async getcontacto(){
+  const contacto = await this.http.get('http://localhost:8301/getContacto').toPromise();
+  return contacto;
+}
+
+
+
+
 }
      

@@ -54,6 +54,16 @@ export class LoginPage implements OnInit {
       return ;
     }
   }
+
+
+  credenciales ={
+     correo: null,
+     password: null
+  }
+
+  login(){
+    console.log('credenciales ->' , this.credenciales);
+  }
   
 
 }

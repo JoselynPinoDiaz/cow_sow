@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+    <ion-back-button defaultHref="/contact"></ion-back-button>
+  </ion-buttons>
+    <ion-title>{{infoSiembra?.TIPO_SIEMBRA}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)=" eliminarContacto()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h1 class="ion-text-center">{{infoSiembra?.ID_SIEMBRA}}</h1>
+          <h1 class="ion-text-center">{{infoSiembra?.TIPO_SIEMBRA}}</h1>
+          <h1 class="ion-text-center">{{infoSiembra?.DESCRIPCION}}</h1>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+</ion-content>
+

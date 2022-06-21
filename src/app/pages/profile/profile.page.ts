@@ -1,49 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { ProfileService } from './profile.service';
+import { Router } from '@angular/router';
+import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  public rut: number;
-  public nombre: string;
-  public email: string;
-  public telefono: string;
-  public fecha_nacimiento: string;
-  public tipo_usuario: string;
-  public direccion: string;
-  public tipo_direccion: string;
-  public comuna: string;
-  public region: string;
-  public pais: string;
-  public descripcionTP: string;
-  public descripcionCO: string;
+
+  public perfil = []
+  public perfil1= []
 
 
-  constructor(public Sprofile: ProfileService) { 
+  constructor(public Sprofile: ProfileService,
+              public modalCtrl: ModalController, 
+              public navCtrl: NavController,
+              private routerOutlet: IonRouterOutlet,
+              private router: Router) { 
     //this.ProfileService.perfil();
   }
       
   ngOnInit() {
+    this.Sprofile.cargarPerfil()
+    .subscribe( data =>{
+      this.perfil = data
+    })
+    this.Sprofile.cargarPerfil1()
+    .subscribe( data =>{
+      this.perfil1 = data
+    })
   }
 
-  async perfil(){
-    const perfiles = await this.Sprofile.perfil();
-    this.rut = perfiles[0].RUT;
-    this.nombre = perfiles[0].NOMBRE;
-    this.email = perfiles[0].EMAIL;
-    this.telefono = perfiles[0].TELEFONO;
-    this.fecha_nacimiento = perfiles[0].FECHA_NACIMIENTO;
-    this.tipo_usuario = perfiles[0].TIPO_USUARIO;
-    this.direccion = perfiles[0].DIRECCION;
-    this.tipo_direccion = perfiles[0].TIPO_DIRECCION;
-    this.comuna = perfiles[0].NOMBRE_COMUNA;
-    this.region = perfiles[0].NOMBRE_REGION;
-    this.pais = perfiles[0].NOMBRE_PAIS;
-    this.descripcionTP = perfiles[0].DESCRIPCION;
-    this.descripcionCO = perfiles[0].DESCRIPCION_1;
+  onViewWillEnter(){
+   
+  }
+
+ 
   
   }
-}
+
