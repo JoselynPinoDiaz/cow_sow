@@ -20,9 +20,9 @@ export class DetalleContactoPage implements OnInit {
 
   ngOnInit() {
 
-    this.activate.paramMap.subscribe (co => {
+    this.activate.paramMap.subscribe(paramMap=> {
       //redireccionar
-      const ID_CONTACTO = co.get('contactId');
+      const ID_CONTACTO = paramMap.get('contactId');
       this.infoServi.infoContactos(ID_CONTACTO).subscribe(data => {
         this.info = data
       })

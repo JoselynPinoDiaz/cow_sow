@@ -25,7 +25,7 @@ export class ContactService {
 
 
   infoContactos(ID_CONTACTO: string): Observable<any>{
-    return this.http.get(this.url+ID_CONTACTO)
+    return this.http.get(this.url + '/' + ID_CONTACTO)
 
   }
 

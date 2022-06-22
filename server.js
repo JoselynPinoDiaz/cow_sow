@@ -1,5 +1,4 @@
 //npm install express npm body-parse npm cors npm oracledb
-
 ///importacion de los instaladores
 var express = require("express");
 var app = express();
@@ -7,13 +6,15 @@ var bodyparser = require('body-parser'); //para el json
 var oracledb = require('oracledb');
 const cors = require('cors');
 
-app.use(cors({
-    origin: ['http://localhost:8100'],
-    "methods": "GET,PUT,POST",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204,
-    credentials: true
-}));
+//app.use(cors({
+ //   origin: ['http://localhost:8100'],
+ //   "methods": "GET,PUT,POST",
+ //   "preflightContinue": false,
+ //   "optionsSuccessStatus": 204,
+ //   credentials: true
+//}));
+
+
 
 //variable de pass bd - manu: DESA
 //var password = '123abc' ;
@@ -849,7 +850,7 @@ app.delete('/DEL_ANIMAL/:ID', function (req, res) {
 });
 ////////--------------METODOS INSERT------------//////////////////
 //consulta get tabla CONTACTOS
-app.post('/postContacto', function (req, res) {
+app.post('/postPrueba', function (req, res) {
     "use strict";
   
     oracledb.getConnection(connAttrs, function (err, connection) {
@@ -863,7 +864,7 @@ app.post('/postContacto', function (req, res) {
             }));
             return;
         }
-        connection.execute("INSERT INTO TIPO_USUARIO (ID_TIPO_USUARIO, TIPO_USUARIO,EMAIL,CONTRASEÑA, DESCRIPCION )", {}, {
+        connection.execute("INSERT INTO PRUEBA (ID_TIPO_USUARIO, PNOMBRE, SNOMBRE ) VALUES (:ID_TIPO_USUARIO, :PNOMBRE, :SNOMBRE)", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -895,25 +896,6 @@ app.post('/postContacto', function (req, res) {
     });
   });
 
-
-  / POST CREATE
-
-app.post('/postContacto', async (req, res) => {
-    var { ID_CONTACTO, NOMBRE, EMAIL, TELEFONO, DESCRIPCION} = req.body;
-
-    sql = "INSERT INTO CONTACTO (ID_CONTACTO, NOMBRE, EMAIL,TELEFONO,DESCRIPCION ) VALUES (:ID_CONTACTO, :NOMBRE, :EMAIL, :TELEFONO, :DESCRIPCION)";
-
-    await BD.Open(sql, [ID_CONTACTO, NOMBRE, EMAIL, TELEFONO , DESCRIPCION], true);
-
-    res.status(200).json({
-            "ID_CONTACTO":ID_CONTACTO.values,
-            "NOMBRE": NOMBRE.values,
-            "EMAIL": EMAIL.values,
-            "TELEFONO": TELEFONO.values,
-            "DESCRIPCION": DESCRIPCION.values
-    })
-    
-})
 
 
 
