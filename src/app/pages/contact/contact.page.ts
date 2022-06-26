@@ -13,7 +13,7 @@ import { ContactService } from './contact.service';
 })
 export class ContactPage implements OnInit {
 
-public Lcontactos = []
+public Lcontactos = [];
   
 
 
@@ -26,6 +26,10 @@ public Lcontactos = []
 
    
   ngOnInit (){
+    this.Scontacto.cargarContactos()
+    .subscribe( data =>{
+      this.Lcontactos = data
+    })
   }
 
   

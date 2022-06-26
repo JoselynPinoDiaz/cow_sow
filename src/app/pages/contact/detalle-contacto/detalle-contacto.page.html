@@ -3,29 +3,40 @@
     <ion-buttons slot="start">
     <ion-back-button defaultHref="/contact"></ion-back-button>
   </ion-buttons>
-    <ion-title>{{info?.NOMBRE}}</ion-title>
+    <ion-title  ></ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)=" eliminarContacto()">
+      <ion-button >
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <ion-grid class="ion-no-padding" >
-      <ion-row>
-        <ion-col>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-label>{{info?.NOMBRE}}</ion-label>
-          <h1 class="ion-text-center">{{info?.EMAIL}}</h1>
-          <h1 class="ion-text-center">{{info?.TELEFONO}}</h1>
-          <h1 class="ion-text-center">{{info?.DESCRIPCION}}</h1>
-        </ion-col>
-      </ion-row>
-  </ion-grid>
+<ion-content fullscreen class="ion-padding">
+  <footer>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="schedule" routerLink="/owner">
+          <ion-icon name="grid-outline"></ion-icon>
+          <ion-label>Menu</ion-label>
+        </ion-tab-button>
+  
+        <ion-tab-button tab="schedule" routerLink="/evento">
+          <ion-icon name="calendar"></ion-icon>
+          <ion-label>Schedule</ion-label>
+          <ion-badge>6</ion-badge>
+        </ion-tab-button>
+  
+        <ion-tab-button tab="map">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Cerrar sesion</ion-label>
+        </ion-tab-button>
+  
+      </ion-tab-bar>
+    </ion-tabs>
+  </footer>
 
+  <ion-list >
+      <ion-label>{{ info.}}</ion-label>
+  </ion-list>
 </ion-content>

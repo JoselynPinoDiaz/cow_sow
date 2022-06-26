@@ -12,7 +12,7 @@ import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular'
 export class ProfilePage implements OnInit {
 
   public perfil = []
-  public perfil1= []
+
 
 
   constructor(public Sprofile: ProfileService,
@@ -28,10 +28,7 @@ export class ProfilePage implements OnInit {
     .subscribe( data =>{
       this.perfil = data
     })
-    this.Sprofile.cargarPerfil1()
-    .subscribe( data =>{
-      this.perfil1 = data
-    })
+
   }
 
   onViewWillEnter(){

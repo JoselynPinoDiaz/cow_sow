@@ -16,7 +16,6 @@ export class ContactService {
 
   cargarContactos(): Observable<any>{
     return this.http.get<any>(this.url)
-
   }
 
   agregarContacto(contacto: Contacto): Observable<any>{
@@ -24,14 +23,12 @@ export class ContactService {
   }
 
 
-  infoContactos(ID_CONTACTO: string): Observable<any>{
-    return this.http.get(this.url + '/' + ID_CONTACTO)
-
+  public infoContactos(ID_CONTACTO): Observable<any>{
+    return this.http.get(this.url, ID_CONTACTO)
   }
 
   eliminarContacto(ID_CONTACTO: string): Observable<any>{
     return this.http.delete(this.url+ID_CONTACTO)
-
   }
 
   

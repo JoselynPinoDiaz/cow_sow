@@ -9,13 +9,14 @@ const routes: Routes = [
     component: ContactPage
   },
   {
+    path: ':contactId',
+    loadChildren: () => import('./detalle-contacto/detalle-contacto.module').then( m => m.DetalleContactoPageModule)
+  },
+  {
     path: 'agregar-contactos',
     loadChildren: () => import('./agregar-contactos/agregar-contactos.module').then( m => m.AgregarContactosPageModule)
   },
-  {
-    path: '',
-    loadChildren: () => import('./detalle-contacto/detalle-contacto.module').then( m => m.DetalleContactoPageModule)
-  }
+  
 
 ];
 

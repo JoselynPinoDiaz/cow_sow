@@ -240,7 +240,7 @@ app.get('/CONTACTOS', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT ID_CONTACTO, NOMBRE, EMAIL, EMAIL,TELEFONO, DESCRIPCION FROM CONTACTO WHERE ID_CONTACTO = ID_CONTACTO", {}, {
+      connection.execute("SELECT * FROM CONTACTO ", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -850,7 +850,7 @@ app.delete('/DEL_ANIMAL/:ID', function (req, res) {
 });
 ////////--------------METODOS INSERT------------//////////////////
 //consulta get tabla CONTACTOS
-app.post('/postPrueba', function (req, res) {
+app.put('/postPrueba', function (req, res) {
     "use strict";
   
     oracledb.getConnection(connAttrs, function (err, connection) {
@@ -863,7 +863,7 @@ app.post('/postPrueba', function (req, res) {
                 detailed_message: err.message
             }));
             return;
-        }
+        }      
         connection.execute("INSERT INTO PRUEBA (ID_TIPO_USUARIO, PNOMBRE, SNOMBRE ) VALUES (:ID_TIPO_USUARIO, :PNOMBRE, :SNOMBRE)", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {

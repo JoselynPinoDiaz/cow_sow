@@ -20,16 +20,7 @@ export class AuthService {
  constructor(private http: HttpClient) {
   }
 
-public async cargarPaises(){
-   const paises = await this.http.get('http://localhost:8201/paises').toPromise();
-   return paises;
 
-}
-
-public async getcontacto(){
-  const contacto = await this.http.get('http://localhost:8301/getContacto').toPromise();
-  return contacto;
-}
 
 
 

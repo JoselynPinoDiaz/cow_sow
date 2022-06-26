@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
 import { Contacto } from '../../modelos/conatcto.interface';
 import { ContactService } from '../contact.service';
 
@@ -10,34 +11,43 @@ import { ContactService } from '../contact.service';
 })
 export class DetalleContactoPage implements OnInit {
 
-  url = 'http://localhost:8201/CONTACTOS/'
-
-   info: Contacto
+ public info = [];
 
   constructor(private infoServi: ContactService, 
               private router: Router,
-              private activate: ActivatedRoute) { }
+              public modalCtrl: ModalController, 
+              public navCtrl: NavController,
+              private routerOutlet: IonRouterOutlet,
+              public activate: ActivatedRoute) { }
 
   ngOnInit() {
 
-    this.activate.paramMap.subscribe(paramMap=> {
+    this.activate.paramMap.subscribe(param=> {
       //redireccionar
-      const ID_CONTACTO = paramMap.get('contactId');
-      this.infoServi.infoContactos(ID_CONTACTO).subscribe(data => {
+      var id = param.get('contactId');
+      this.infoServi.infoContactos(id)
+      .subscribe(data => {
         this.info = data
-      })
-    })
-      
+    }) 
+  })  
   }
-
 
   eliminarContacto(){
 
   }
 
 
+  onViewWillEnter(){
+
+   
+  }
+
   
 
 
 
 }
+function ID_CONTACTO(ID_CONTACTO: any) {
+  throw new Error('Function not implemented.');
+}
+

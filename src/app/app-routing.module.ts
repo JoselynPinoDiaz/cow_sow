@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 /** Importamos Librerias a utilizar */
-import { AuthGuard } from './guards/auth.guard';
+import { CanActivate } from '@angular/router'; 
+import { RolesGuard } from './guards/roles.guard';
+
 
 
 const routes: Routes = [
@@ -18,7 +20,6 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-
   },
   {
     path: 'register',
@@ -30,8 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'owner',
-    loadChildren: () => import('./pages/owner/owner.module').then( m => m.OwnerPageModule)
-
+    loadChildren: () => import('./pages/owner/owner.module').then( m => m.OwnerPageModule),
+    
   },
 
   {
@@ -111,7 +112,8 @@ const routes: Routes = [
   },
   {
     path: 'agregar-contactos',
-    loadChildren: () => import('./pages/contact/agregar-contactos/agregar-contactos.module').then( m => m.AgregarContactosPageModule)
+    loadChildren: () => import('./pages/contact/agregar-contactos/agregar-contactos.module').then( m => m.AgregarContactosPageModule),
+    canActivate: [RolesGuard] 
   },
   {
     path: 'agregar-empleados',

@@ -12,10 +12,11 @@ import { AuthService } from './services/auth.service';
 import { EventPageModule } from './pages/event/event.module'; 
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, EventPageModule],  // se agrega HttpClientModule
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, EventPageModule,],  // se agrega HttpClientModule
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },AuthService],
   bootstrap: [AppComponent],
 })

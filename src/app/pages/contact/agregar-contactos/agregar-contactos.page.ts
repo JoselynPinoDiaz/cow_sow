@@ -22,12 +22,11 @@ export class AgregarContactosPage implements OnInit {
 
   agregarNuevoContacto(ID_CONTACTO, NOMBRE, EMAIL, TELEFONO, DESCRIPCION){
     const contacto : Contacto = {     
-      ID_CONTACTO: ID_CONTACTO.value,
-      NOMBRE: NOMBRE.value,
-      EMAIL:EMAIL.value,
-      TELEFONO: TELEFONO.value,
-      DESCRIPCION: DESCRIPCION.value,
-      VISTAS: "0"
+      id: ID_CONTACTO.value,
+      nombre: NOMBRE.value,
+      email:EMAIL.value,
+      telefono: TELEFONO.value,
+      descripcion: DESCRIPCION.value
     }
     this.serviContacto.agregarContacto(contacto)
     .subscribe(data =>{

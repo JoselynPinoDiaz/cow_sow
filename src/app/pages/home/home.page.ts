@@ -1,7 +1,8 @@
 //import { Component } from '@angular/core';
 //import { FormControl } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MenuController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service'; //es el servicio get
 
 @Component({
@@ -10,13 +11,14 @@ import { AuthService } from 'src/app/services/auth.service'; //es el servicio ge
   styleUrls: ['home.page.scss']
 })
 
-/*
+
 export class HomePage implements OnInit{
 
   paises: any; //Creamos la variable donde guardaremos los datos que nos retorna el servicio
   //nombre = new FormControl('');
-  constructor(public services: AuthService){ }
+  constructor(public services: AuthService, private menu: MenuController){ }
   ngOnInit(){}
+  
   }
   /*
   ionViewDidLoad() {
@@ -36,7 +38,7 @@ export class HomePage implements OnInit{
 }
 
 ///primra vista
-*/export class HomePage {
+export class HomePage {
 
   nombre = new FormControl('');
   descripcion = new FormControl('');
@@ -54,4 +56,5 @@ export class HomePage implements OnInit{
    
 
 }
-}
+}*/
+
