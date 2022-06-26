@@ -27,55 +27,8 @@ app.get('/',function (req, res) {
 
     res.send([{ message: 'funciona' }]);
   });
-app.get('/paises', function (req, res) {
-  "use strict";
-  oracledb.getConnection(connAttrs, function (err, connection) {
-      if (err) {
-          // Error connecting to DB
-          res.set('Content-Type', 'application/json');
-          res.status(500).send(JSON.stringify({
-              status: 500,
-              message: "Error en la conexión con DB",
-              detailed_message: err.message
-          }));
-          return;
-      }
-      connection.execute( 'select * from pais',{}, {
-        outFormat: oracledb.OBJECT, // Return the result as Object
-        autoCommit :true
-        }, function (err, result) {
-        if (err) {
-        console.log('Error in execution of select statement'+err.message);
-        res.writeHead(500, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify({
-        status: 500,
-        message: "Error getting the departments",
-        detailed_message: err.message
-        })
-        );
-        } else {
-        console.log('db response is ready '+result.rows);
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify(result.rows));
-        }
-        doRelease(connection);
-        }
-        );
 
-          // Release the connection
-          connection.release(
-              function (err) {
-                  if (err) {
-                      console.error(err.message);
-                  } else {
-                      console.log("GET /sendTablespace : Connection released");
-                  }
-              });
-      });
-
-});
-//-----
-app.get('/delete1/:id', function (req, res,next) {
+  app.get('/paises', function (req, res) {
     "use strict";
 
     oracledb.getConnection(connAttrs, function (err, connection) {
@@ -89,9 +42,8 @@ app.get('/delete1/:id', function (req, res,next) {
             }));
             return;
         }
-        connection.execute("delete from pais where id_pais=:id", [req.params.id], {
-            outFormat: oracledb.OBJECT, // Return the result as Object
-            autoCommit:true
+        connection.execute("select * from pais", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
                 res.set('Content-Type', 'application/json');
@@ -106,8 +58,10 @@ app.get('/delete1/:id', function (req, res,next) {
                 res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
                 res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
                 res.send(JSON.stringify(result.rows));
+
             }
-            doRelease(connection);
+            // Release the connection
+
             connection.release(
                 function (err) {
                     if (err) {
@@ -119,7 +73,6 @@ app.get('/delete1/:id', function (req, res,next) {
         });
     });
   });
-///--
 ///consulta get tabla region
 app.get('/regiones', function (req, res) {
   "use strict";
@@ -822,103 +775,105 @@ app.get('/TP_PROD_ANIMAL', function (req, res) {
       });
   });
 });
+////-----------------METODOS DELETE
+app.get('/deletePais/:id', function (req, res,next) {
+    "use strict";
 
-//////////-------------METODOS POST--------------///////////////////
-app.delete('/delete/:id', function (req, res,next) {
-  console.log(req.params.id);
-  var id_test = req.params.id;
-  oracledb.getConnection(connAttrs, function (err, connection) {
-    if (err) {
-        // Error connecting to DB
-        res.set('Content-Type', 'application/json');
-        res.status(500).send(JSON.stringify({
-            status: 500,
-            message: "Error connecting to DB",
-            detailed_message: err.message
-        }));
-        return;}
-    connection.execute("delete from pais  where id_pais= "+id_test, {}, {
-        outFormat: oracledb.OBJECT // Return the result as Object
-    }, function (err, res) {
+    oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
-            res.header('Access-Control-Allow-Origin','*');
-            res.header('Access-Control-Allow-Headers','Content-Type');
-            res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
-            res.contentType('application/json').status(200);
-            res.send(JSON.stringify(err.message)) ;
-        } else {
-            res.header('Access-Control-Allow-Origin','*');
-            res.header('Access-Control-Allow-Headers','Content-Type');
-            res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
-            res.contentType('application/json').status(200);
-            res.send(JSON.stringify("1"))   ;
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
         }
-        // Release the connection
-        connection.release(
-            function (err) {
-                if (err) {
-                    console.error(err.message);
-                } else {
-                    console.log("POST /sendTablespace : Connection released");
-                }
-            });
+        connection.execute('DELETE FROM pais where id_pais =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
     });
-});
-});
-
-
-
-//// uso de procedimiento almacenado, creacion de pais--- test
-app.get('/add_pais', function (req, res) {
+  });
+//////--------------METODOS POST------------------///////////////////
+app.get('/addPais', function (req, res,next) {
   "use strict";
-
-  oracledb.getConnection(connAttrs, function (err, connection) {
+    var id_test = req.params.id;
+    var nombre = req.params.nombre;
+    var descrip = req.params.descrip;
+    oracledb.getConnection(connAttrs, function (err, connection) {
       if (err) {
           // Error connecting to DB
           res.set('Content-Type', 'application/json');
           res.status(500).send(JSON.stringify({
               status: 500,
-              message: "Error en la conexión con DB",
+              message: "Error connecting to DB",
               detailed_message: err.message
           }));
           return;
-      }
-      connection.execute("EXECUTE SP_ADD_PAIS(3, 'peru','XXXX')", {}, {
-          outFormat: oracledb.OBJECT // Return the result as Object
-      }, function (err, result) {
+        }
+          connection.execute("INSERT INTO PAIS (ID_PAIS, NOMBRE_PAIS, DESCRIPCION ) VALUES (2, 'cccc','Pais destacado por la ganaderia y agricultura') ", {}, {
+          outFormat: oracledb.OBJECT ,// Return the result as Object
+          autoCommit:true
+
+        }, function (err, result) {
           if (err) {
-              res.set('Content-Type', 'application/json');
-              res.status(500).send(JSON.stringify({
-                  status: 500,
-                  message: "Error getting the dba_tablespaces",
-                  detailed_message: err.message
-              }));
-          } else {
-              res.header('Access-Control-Allow-Origin','*');
-              res.header('Access-Control-Allow-Headers','Content-Type');
-              res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
-              res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
-              res.send(JSON.stringify(result.rows));
-
-          }
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error getting the dba_tablespaces",
+                detailed_message: err.message
+            }));
+        } else {
+            res.header('Access-Control-Allow-Origin','*');
+            res.header('Access-Control-Allow-Headers','Content-Type');
+            res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+            res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+            res.send(JSON.stringify(result.rows));
+        }
+        doRelease(connection);
           // Release the connection
-
           connection.release(
               function (err) {
                   if (err) {
                       console.error(err.message);
                   } else {
-                      console.log("GET /sendTablespace : Connection released");
+                    console.log("GET /sendTablespace : Connection released");
                   }
               });
       });
+  });
   });
 
 
 
 
-
-});///MENSAJE POR TERMINAL PARA PROBAR SI FUNCIONA EL SERVIDOR
+///MENSAJE POR TERMINAL PARA PROBAR SI FUNCIONA EL SERVIDOR
   app.listen(8201, 'localhost', function(){
       console.log("EL SERVIDOR ESTA ESCUCHANDO DESDE EL PUERTO: 8201");
   });

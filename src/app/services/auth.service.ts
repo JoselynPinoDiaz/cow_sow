@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 })
 //nombre del servicio angular
 export class AuthService {
+ ///public id_pais;
   constructor(private http: HttpClient) {
   }
 
@@ -31,9 +32,8 @@ public async cargarComuna(){
 
 ///metodo eliminar paises
 public async eliminarPaises(){   /// deberia tener de parametro el id del pais
-  const paises = await this.http.get('http://localhost:8201/dl_pais').toPromise();
+    const paises = await this.http.get('http://localhost:8201//deletePais/:id').toPromise();
   return paises;
-
 }
 
 /// metodo agregar pais
