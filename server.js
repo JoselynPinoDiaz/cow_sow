@@ -27,7 +27,7 @@ app.get('/',function (req, res) {
 
     res.send([{ message: 'funciona' }]);
   });
-
+///Metodo GET para traer la info de cada tabla
   app.get('/paises', function (req, res) {
     "use strict";
 
@@ -778,7 +778,6 @@ app.get('/TP_PROD_ANIMAL', function (req, res) {
 ////-----------------METODOS DELETE
 app.get('/deletePais/:id', function (req, res,next) {
     "use strict";
-
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB
@@ -820,7 +819,53 @@ app.get('/deletePais/:id', function (req, res,next) {
         });
     });
   });
-//////--------------METODOS POST------------------///////////////////
+////al aplicar el .delete tira 200 en postman pero no se ve reflejado el cambio en la bd.3
+app.get('/delete', function (req, res,next) {
+  var idPais = req.query.idPais;
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("DELETE FROM pais where id_pais =: idPais", [idPais], {
+          autoCommit:true,
+            outFormat: oracledb.OBJECT // Return the result as Object
+
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+//////--------------METODOS POST funciona con valores en duro------------------///////////////////
 app.get('/addPais', function (req, res,next) {
   "use strict";
     var id_test = req.params.id;
@@ -870,6 +915,98 @@ app.get('/addPais', function (req, res,next) {
   });
   });
 
+//prueba de post FUNCIONA CON UN PARAMETRO
+  app.get('/test', function (req, res,next) {
+    "use strict";
+   var IDTEST = req.query.IDTEST
+  oracledb.getConnection(connAttrs, function (err, connection) {
+      if (err) {
+          // Error connecting to DB
+          res.set('Content-Type', 'application/json');
+          res.status(500).send(JSON.stringify({
+              status: 500,
+              message: "Error en la conexión con DB",
+              detailed_message: err.message
+          }));
+          return;
+      }
+      connection.execute('INSERT INTO test (ID_TEST) VALUES (:IDTEST)', [IDTEST], {
+        autoCommit:true,
+        outFormat: oracledb.OBJECT // Return the result as Object
+      }, function (err, result) {
+          if (err) {
+              res.set('Content-Type', 'application/json');
+              res.status(500).send(JSON.stringify({
+                  status: 500,
+                  message: "Error getting the dba_tablespaces",
+                  detailed_message: err.message
+              }));
+          } else {
+              res.header('Access-Control-Allow-Origin','*');
+              res.header('Access-Control-Allow-Headers','Content-Type');
+              res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+              res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+              res.send(JSON.stringify(result.rows));
+          }
+          doRelease(connection);
+          connection.release(
+              function (err) {
+                  if (err) {
+                      console.error(err.message);
+                  } else {
+                      console.log("GET /sendTablespace : Connection released");
+                  }
+              });
+      });
+  });
+});
+///---- post de paises listo
+app.get('/add_Pais', function (req, res,next) {
+  "use strict";
+ var idPais = req.query.idPais
+ var nombrePais = req.query.nombrePais
+  var desPais = req.query.desPais
+oracledb.getConnection(connAttrs, function (err, connection) {
+    if (err) {
+        // Error connecting to DB
+        res.set('Content-Type', 'application/json');
+        res.status(500).send(JSON.stringify({
+            status: 500,
+            message: "Error en la conexión con DB",
+            detailed_message: err.message
+        }));
+        return;
+    }
+    connection.execute('INSERT INTO PAIS (ID_PAIS, NOMBRE_PAIS, DESCRIPCION) VALUES (:idPais,:nombrePais,:desPais)',[idPais,nombrePais,desPais], {
+      autoCommit:true,
+      outFormat: oracledb.OBJECT // Return the result as Object
+    }, function (err, result) {
+        if (err) {
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error getting the dba_tablespaces",
+                detailed_message: err.message
+            }));
+        } else {
+            res.header('Access-Control-Allow-Origin','*');
+            res.header('Access-Control-Allow-Headers','Content-Type');
+            res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+            res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+            res.send(JSON.stringify(result.rows));
+        }
+        doRelease(connection);
+        connection.release(
+            function (err) {
+                if (err) {
+                    console.error(err.message);
+                } else {
+                    console.log("GET /sendTablespace : Connection released");
+                }
+            });
+    });
+});
+});
 
 
 

@@ -9,9 +9,15 @@ import { Injectable } from '@angular/core';
 })
 //nombre del servicio angular
 export class AuthService {
- ///public id_pais;
   constructor(private http: HttpClient) {
+
   }
+///metodo eliminar paises
+public async eliminarPaises(idPais: string){   /// deberia tener de parametro el id del pais
+  const paises = await this.http.get(`http://localhost:8201/deletePais/${idPais}`).toPromise();
+  return paises;
+}
+
 
 public async cargarPaises(){
    const paises = await this.http.get('http://localhost:8201/PAISES').toPromise();
@@ -30,15 +36,18 @@ public async cargarComuna(){
   return comuna;
 }
 
-///metodo eliminar paises
-public async eliminarPaises(){   /// deberia tener de parametro el id del pais
-    const paises = await this.http.get('http://localhost:8201//deletePais/:id').toPromise();
-  return paises;
-}
 
 /// metodo agregar pais
-public async agregarPaises(){ ///deberia tener de parametros los atributos de la tabla
-  const paises = await this.http.get('http://localhost:8201/add_pais').toPromise();
+public async addPais(){
+  const paises = await this.http.get(`http://localhost:8201/add_Pais?idPais=8&nombrePais=nn&desPais=nnn`).toPromise();
+  return paises;
+
+}
+
+public async agregarPaises(idPais: string,nombrePais: string,desPais: string){
+  //const paises = await this.http.get(`http://localhost:8201/add_pais/${idPais}${nombrePais}${desPais}`).toPromise();
+//  const paises = await this.http.get(`http://localhost:8201/add_pais?${idPais}&${nombrePais}&${desPais}`).toPromise();
+const paises = await this.http.get(`http://localhost:8201/add_pais?${idPais}${nombrePais}${desPais}`).toPromise();
   return paises;
 
 }

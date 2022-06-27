@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'create-employee',
+    redirectTo: 'home',// redirectTo: 'create-employee',
     pathMatch: 'full'
   },
   {

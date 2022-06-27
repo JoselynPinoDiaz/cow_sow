@@ -33,8 +33,37 @@
 
   </ion-grid>
 </ion-content>
-prueba de get
----->
+--->
+<ion-content>
+  <ion-item>
+    <ion-label>idPais:</ion-label>
+    <ion-input [formControl]="idPais"></ion-input>
+  </ion-item>
+
+<ion-item>
+    <ion-label>nombrePais:</ion-label>
+    <ion-input [formControl]="nombrePais"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>descripcionPais:</ion-label>
+    <ion-input [formControl]="desPais"></ion-input>
+  </ion-item>
+
+  <p class="ion-padding">{{ idPais.value }}</p>
+  <p class="ion-padding">{{ nombrePais.value }}</p>
+  <p class="ion-padding">{{ desPais.value }}</p>
+  <p class="ion-text-center">
+    <ion-button (click)="agregarPais(idPais.value,nombrePais.value,desPais.value)">Agregar Pais</ion-button>
+  </p>
+</ion-content>
+<!----->
+
+
+
+
+<!---PRUEBAS FUNCIONALES-->
+<!---prueba de get
 <ion-content>
   <ion-item>
     <ion-label>Nombre:</ion-label>
@@ -46,3 +75,16 @@ prueba de get
     <ion-button (click)="mostrarPaiseS()">Cambiar nombre</ion-button>
   </p>
 </ion-content>
+----->
+<!----PRUEBA DE DELETE PAIS-->
+<!---<ion-content>
+  <ion-item>
+    <ion-label>Nombre:</ion-label>
+    <ion-input [formControl]="nombre"></ion-input>
+  </ion-item>
+
+  <p class="ion-padding">{{ nombre.value }}</p>
+  <p class="ion-text-center">
+    <ion-button (click)="eliminarPais(nombre.value)">Cambiar nombre</ion-button>
+  </p>
+</ion-content>--->

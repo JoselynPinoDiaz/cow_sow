@@ -39,6 +39,9 @@ export class HomePage implements OnInit{
 */export class HomePage {
 
   nombre = new FormControl('');
+  idPais = new FormControl('');
+  nombrePais = new FormControl('');
+  desPais = new FormControl('');
   constructor(public servicioPaises: AuthService) {
    // this.servicioPaises.cargarPaises(); /// solo cuando quiero que se muestre en la carga de la pagina
 
@@ -49,14 +52,14 @@ export class HomePage implements OnInit{
   this.nombre.setValue(nombrePaises[1].NOMBRE_PAIS); // muestra por pantalla el nombre del pais
 }
 //metodo elimar pais
-async eliminarPaiseS(){ /// deberia entrar un parametro de id
-  const nombrePaises = await this.servicioPaises.eliminarPaises();  // deberia usar el parametro de entrada para que funcione el metdo
-  this.nombre.setValue(nombrePaises[1].NOMBRE_PAIS); // no deberia aparecer argentina
+async eliminarPais(idPais: string){ /// deberia entrar un parametro de id
+  //this.nombre.setValue(idPais);
+  const nombrePaises = await this.servicioPaises.eliminarPaises(idPais);  // deberia usar el parametro de entrada para que funcione el metdo
+//  this.nombre.setValue(nombrePaises[1].NOMBRE_PAIS); // no deberia aparecer argentina
 }
 //metodo agregar pais
-async agregarPaiseS(){
-  const nombrePaises = await this.servicioPaises.agregarPaises();
-  this.nombre.setValue(nombrePaises[0].NOMBRE_PAIS);
+async agregarPais(idPais: string,nombrePais: string,desPais: string){
+  const nombrePaises = await this.servicioPaises.agregarPaises(idPais,nombrePais,desPais);
 }
 
 }
