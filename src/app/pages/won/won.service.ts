@@ -13,7 +13,7 @@ export class WonService {
   constructor(private  http: HttpClient) { }
 
   cargarGanado(): Observable<any>{
-    return this.http.get<any>(this.url)
+    return this.http.get(this.url)
 
   }
 
@@ -23,7 +23,7 @@ export class WonService {
 
 
   infoGanado(NUMERO_SERIE: string): Observable<any>{
-    return this.http.get(this.url+NUMERO_SERIE)
+    return this.http.get(this.url + NUMERO_SERIE)
 
   }
 

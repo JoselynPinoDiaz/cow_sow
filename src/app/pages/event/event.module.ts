@@ -7,13 +7,23 @@ import { IonicModule } from '@ionic/angular';
 import { EventPageRoutingModule } from './event-routing.module';
 
 import { EventPage } from './event.page';
+import { NgCalendarModule  } from 'ionic2-calendar';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EventPageRoutingModule
+    EventPageRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: EventPage
+      }
+    ]),
+    NgCalendarModule
   ],
   declarations: [EventPage]
 })

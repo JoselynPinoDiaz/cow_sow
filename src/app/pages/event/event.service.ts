@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController, Platform } from '@ionic/angular';
+import { NgCalendarModule } from 'ionic2-calendar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
 
-  constructor(private menu: MenuController) { }
 
 
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
-  openEnd() {
-    this.menu.open('end');
-  }
-  openCustom() {
-    this.menu.enable(true, 'custom');
-    this.menu.open('custom');
-  }
+
+  constructor() { 
+
 
   
+}
+
+
+
 }

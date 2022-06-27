@@ -11,18 +11,19 @@
   <ion-row>
     <ion-col>
       <ion-card>
+        <form action="">
         <ion-card-content>
           <ion-input type="text"  placeholder="Ingresar Rut" #RUT required></ion-input>
           <ion-input type="text"  placeholder="Ingresar Primer Nombre" #PNOMBRE required></ion-input>
-          <ion-input type="email" placeholder="Ingresar Segundo Nombre" #SNOMBRE required></ion-input>
-          <ion-input type="email" placeholder="Ingresar Primer Apellido" #PAPELLIDO required></ion-input>
+          <ion-input type="text" placeholder="Ingresar Segundo Nombre" #SNOMBRE required></ion-input>
+          <ion-input type="text" placeholder="Ingresar Primer Apellido" #PAPELLIDO required></ion-input>
           <ion-input type="text"  placeholder="Ingresar Segundo Apellido" #SAPELLIDO required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Email" #EMAIL required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Nuevamente Email"  required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Segundo Apellido" #PASSWORD required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Nuevamente Password" required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Telefono" #TELEFONO required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Fecha Nacimiento" #FECHA_NACIMIENTO required></ion-input>
+          <ion-input type="Email"  placeholder="Ingresar Email" #EMAIL required></ion-input>
+          <ion-input type="Email"  placeholder="Ingresar Nuevamente Email"  required></ion-input>
+          <ion-input type="Password"  placeholder="Ingresar Password" #PASSWORD required></ion-input>
+          <ion-input type="Password"  placeholder="Ingresar Nuevamente Password" required></ion-input>
+          <ion-input type="number"  placeholder="Ingresar Telefono" #TELEFONO required></ion-input>
+          <ion-input type="date"  placeholder="Ingresar Fecha Nacimiento" #FECHA_NACIMIENTO required></ion-input>
           <ion-input type="text"  placeholder="Ingresar Comuna" #NOMBRE_COMUNA required></ion-input>
           <ion-input type="text"  placeholder="Ingresar Region" #NOMBRE_REGION required></ion-input>
           <ion-select type="text"  placeholder="Ingresar Pais" #NONBRE_PAIS required>
@@ -35,6 +36,7 @@
             Registrarse
           </ion-button>
         </ion-card-content>
+      </form>
       </ion-card>
     </ion-col>
   </ion-row>

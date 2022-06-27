@@ -4,9 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import {  HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+export interface User {
+  name: string;
+  role: string;
+  permissions: string[];
+}
 @Injectable({
   providedIn: 'root'
 
@@ -14,10 +18,8 @@ import { catchError, tap } from 'rxjs/operators';
 //nombre del servicio angular
 export class AuthService {
 
-
- 
-
- constructor(private http: HttpClient) {
+ constructor(private http: HttpClient, private router: Router) {
+   
   }
 
 

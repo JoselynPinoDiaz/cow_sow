@@ -22,7 +22,9 @@ export class DetalleWonPage implements OnInit {
       //redireccionar
       const NUMERO_SERIE = paramMap.get('wonId');
       this.wonService.infoGanado(NUMERO_SERIE).subscribe(data => {
-        this.infoGanado = data
+        this.infoGanado = data;
+        console.log(data);
+
       })
     })
   }

@@ -19,10 +19,10 @@ export class AgregarWonPage implements OnInit {
   ngOnInit() { }
 
   agregarNuevoContacto(NUMERO_SERIE, NOMBRE_ANIMAL, PESO){
-    const ganado : Ganado = {     
+    const ganado : Ganado = {
       NUMERO_SERIE: NUMERO_SERIE.value,
       NOMBRE_ANIMAL: NOMBRE_ANIMAL.value,
-      PESO:PESO.value,
+      PESO: PESO.value,
       VISTAS: "0"
     }
     this.wonService.agregarGanado(ganado)

@@ -13,10 +13,11 @@ import { AuthService } from 'src/app/services/auth.service'; //es el servicio ge
 
 
 export class HomePage implements OnInit{
+  
 
   paises: any; //Creamos la variable donde guardaremos los datos que nos retorna el servicio
   //nombre = new FormControl('');
-  constructor(public services: AuthService, private menu: MenuController){ }
+  constructor(public services: AuthService, private menu: MenuController, private authService: AuthService){ }
   ngOnInit(){}
   
   }

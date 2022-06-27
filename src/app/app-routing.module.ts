@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 /** Importamos Librerias a utilizar */
-import { CanActivate } from '@angular/router'; 
-import { RolesGuard } from './guards/roles.guard';
-
+import { AuthGuard } from './guards/auth.guard';
+import { IngresadoGuard } from './guards/ingresado.guard';
+import { NoIngresadoGuard } from './guards/no-ingresado.guard';
 
 
 const routes: Routes = [
@@ -19,11 +19,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    canActivate: [NoIngresadoGuard]
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule),
+    canActivate: [NoIngresadoGuard]
   },
   {
     path: 'forgot-password',
@@ -32,7 +34,10 @@ const routes: Routes = [
   {
     path: 'owner',
     loadChildren: () => import('./pages/owner/owner.module').then( m => m.OwnerPageModule),
-    
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   },
 
   {
@@ -40,11 +45,19 @@ const routes: Routes = [
     children: [
       {
         path:"",
-    loadChildren: () => import('./pages/property/property.module').then( m => m.PropertyPageModule)
+    loadChildren: () => import('./pages/property/property.module').then( m => m.PropertyPageModule),
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   },
   {
     path: ':propertyId',
-    loadChildren: () => import('./pages/property/detalle-proprerty/detalle-proprerty-routing.module').then( m => m.DetalleProprertyPageRoutingModule)
+    loadChildren: () => import('./pages/property/detalle-proprerty/detalle-proprerty-routing.module').then( m => m.DetalleProprertyPageRoutingModule),
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   }
     ]
   },
@@ -53,11 +66,19 @@ const routes: Routes = [
     children: [
       {
       path:"",
-      loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule)
+      loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule),
+      canActivate: [NoIngresadoGuard],
+      data: {
+        role: 'ADMIN'
+      }
       },
       {
         path: ":employeeId",
-        loadChildren: () => import('./pages/employee/detlle-employee/detlle-employee-routing.module').then(m => m.DetlleEmployeePageRoutingModule)
+        loadChildren: () => import('./pages/employee/detlle-employee/detlle-employee-routing.module').then(m => m.DetlleEmployeePageRoutingModule),
+        canActivate: [NoIngresadoGuard],
+        data: {
+          role: 'ADMIN'
+        }
       }
     ]
   
@@ -67,11 +88,14 @@ const routes: Routes = [
     children: [
     {
       path:"",
-    loadChildren: () => import('./pages/won/won.module').then( m => m.WonPageModule)    
+    loadChildren: () => import('./pages/won/won.module').then( m => m.WonPageModule),
+    canActivate: [NoIngresadoGuard],
+     
     },
     {
       path: ":wonId", 
-      loadChildren: () => import('./pages/won/detalle-won/detalle-won-routing.module').then(m => m.DetalleWonPageRoutingModule)
+      loadChildren: () => import('./pages/won/detalle-won/detalle-won-routing.module').then(m => m.DetalleWonPageRoutingModule),
+      canActivate: [NoIngresadoGuard]
     }
     ]
   },
@@ -80,11 +104,13 @@ const routes: Routes = [
     children:[
     {
       path: "",
-    loadChildren: () => import('./pages/sowing/sowing.module').then( m => m.SowingPageModule)  
+    loadChildren: () => import('./pages/sowing/sowing.module').then( m => m.SowingPageModule),
+    canActivate: [NoIngresadoGuard]  
   },
   {
     path: ":sowingId",
-    loadChildren: () => import('./pages/sowing/detalle-sowing/detalle-sowing-routing.module').then(m => m.DetalleSowingPageRoutingModule)
+    loadChildren: () => import('./pages/sowing/detalle-sowing/detalle-sowing-routing.module').then(m => m.DetalleSowingPageRoutingModule),
+    canActivate: [NoIngresadoGuard]
   }
     ]
   },
@@ -94,17 +120,20 @@ const routes: Routes = [
     children: [
       {
         path:"",
-        loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
+        loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule),
+        canActivate: [NoIngresadoGuard]
       },
       {
         path: ":contactId",
-        loadChildren: () => import('./pages/contact/detalle-contacto/detalle-contacto.module').then(m => m.DetalleContactoPageModule)
+        loadChildren: () => import('./pages/contact/detalle-contacto/detalle-contacto.module').then(m => m.DetalleContactoPageModule),
+        canActivate: [NoIngresadoGuard]
       }
     ]
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [NoIngresadoGuard]
   },
   {
     path: 'event',
@@ -113,23 +142,42 @@ const routes: Routes = [
   {
     path: 'agregar-contactos',
     loadChildren: () => import('./pages/contact/agregar-contactos/agregar-contactos.module').then( m => m.AgregarContactosPageModule),
-    canActivate: [RolesGuard] 
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   },
   {
     path: 'agregar-empleados',
-    loadChildren: () => import('./pages/employee/agregar-employee/agregar-employee-routing.module').then( m => m.AgregarEmployeePageRoutingModule)
+    loadChildren: () => import('./pages/employee/agregar-employee/agregar-employee-routing.module').then( m => m.AgregarEmployeePageRoutingModule),
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   },
   {
     path: 'agregar-ganado',
-    loadChildren: () => import('./pages/won/agregar-won/agregar-won-routing.module').then( m => m.AgregarWonPageRoutingModule)
+    loadChildren: () => import('./pages/won/agregar-won/agregar-won-routing.module').then( m => m.AgregarWonPageRoutingModule),
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   },
   {
     path: 'agregar-granja',
-    loadChildren: () => import('./pages/property/agregar-property/agregar-property-routing.module').then( m => m.AgregarPropertyPageRoutingModule)
+    loadChildren: () => import('./pages/property/agregar-property/agregar-property-routing.module').then( m => m.AgregarPropertyPageRoutingModule),
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   },
   {
     path: 'agregar-siembra',
-    loadChildren: () => import('./pages/sowing/agregar-sowing/agregar-sowing-routing.module').then( m => m.AgregarSowingPageRoutingModule)
+    loadChildren: () => import('./pages/sowing/agregar-sowing/agregar-sowing-routing.module').then( m => m.AgregarSowingPageRoutingModule),
+    canActivate: [NoIngresadoGuard],
+    data: {
+      role: 'ADMIN'
+    }
   },
 
 

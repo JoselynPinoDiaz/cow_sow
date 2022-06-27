@@ -34,8 +34,13 @@
         <ion-card-content>
           <ion-input type="text"  placeholder="Ingresar Id" #ID_TIPO_USUARIO required></ion-input>
           <ion-input type="email" placeholder="Ingresar Email" #EMAIL required></ion-input>
-          <ion-input type="email" placeholder="Ingresar Telefono" #TIPO_USUARIO required></ion-input>
+          <ion-input type="number" placeholder="Ingresar Telefono" #TIPO_USUARIO required></ion-input>
           <ion-input type="text"  placeholder="Ingresar Descripción" #DESCRIPCION required></ion-input>
+          <ion-select type="text"  placeholder="Ingresar Tipo Usuario" #TIPO_USUARIO required>
+            <ion-select-option >Veterinario</ion-select-option>
+            <ion-select-option >Administrador</ion-select-option>
+            <ion-select-option >Calidad</ion-select-option>
+          </ion-select>
           <ion-button color="primary" (click)="agregarNuevoContacto(ID_TIPO_USUARIO,EMAIL, TIPO_USUARIO, DESCRIPCION)">
             Guardar Empleado
           </ion-button>

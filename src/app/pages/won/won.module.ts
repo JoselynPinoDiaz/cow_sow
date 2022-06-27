@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { WonPageRoutingModule } from './won-routing.module';
 
 import { WonPage } from './won.page';
+import { DetalleWonPage } from './detalle-won/detalle-won.page';
+import { DetalleWonPageModule } from './detalle-won/detalle-won.module';
 
 @NgModule({
+  entryComponents: [
+DetalleWonPage],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    WonPageRoutingModule
+    WonPageRoutingModule,
+    DetalleWonPageModule
   ],
   declarations: [WonPage]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
+import { DetalleSowingPage } from '../sowing/detalle-sowing/detalle-sowing.page';
 import { WonService } from './won.service';
 
 @Component({
@@ -30,5 +31,6 @@ export class WonPage implements OnInit {
   agregarGanado(){
     this.router.navigate(['/agregar-ganado'])
   }
+
 
 }

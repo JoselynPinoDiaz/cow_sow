@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 //Importando Librerias
 
 
@@ -17,7 +19,8 @@ export class LoginPage implements OnInit {
 
   constructor( public fb: FormBuilder, 
               public alertController: AlertController, 
-              public navCtrl: NavController) { 
+              public navCtrl: NavController,
+              private auth: AuthService, private router: Router) { 
 
     this.formularioLogin = this.fb.group({
 
@@ -56,14 +59,7 @@ export class LoginPage implements OnInit {
   }
 
 
-  credenciales ={
-     correo: null,
-     password: null
-  }
 
-  login(){
-    console.log('credenciales ->' , this.credenciales);
-  }
   
 
 }

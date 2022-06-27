@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EventPage } from './event.page';
 
+
 const routes: Routes = [
   {
     path: '',

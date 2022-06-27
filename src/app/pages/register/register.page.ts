@@ -31,7 +31,7 @@ export class RegisterPage implements OnInit {
 
 
   registrarse(RUT,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,EMAIL, TELEFONO, PASSWORD,FECHA_NACIMIENTO,NOMBRE_COMUNA,NOMBRE_REGION,NONBRE_PAIS){
-    const registro : Registro = {     
+    var registro : Registro = {     
       RUT: RUT.value(Validators.required),
       PNOMBRE: PNOMBRE.value(Validators.required),
       SNOMBRE: SNOMBRE.value(Validators.required),
@@ -46,15 +46,17 @@ export class RegisterPage implements OnInit {
       NONBRE_PAIS: NONBRE_PAIS.value(Validators.required),
       VISTAS: "0"
     }
-    this.regiService.agregarNuevoUsuario(registro)
-    .subscribe(data =>{
-     this.router.navigate(['/login'])
-     localStorage.setItem('Usuario', JSON.stringify(registro));
-    
-    })
+    //this.regiService.agregarNuevoUsuario(registro)
+   // .subscribe(data =>{
+   //  this.router.navigate(['/login'])
+    // localStorage.setItem('Usuario', JSON.stringify(registro));
+    localStorage.setItem('Usuario', JSON.stringify(registro));
+  localStorage.setItem('ingresado','true');
+      this.navCtrl.navigateRoot('login');
+    }
   }
   
 
-}
+
 
 

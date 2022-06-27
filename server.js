@@ -2,19 +2,15 @@
 ///importacion de los instaladores
 var express = require("express");
 var app = express();
+//var router = express.Router();
 var bodyparser = require('body-parser'); //para el json
 var oracledb = require('oracledb');
 const cors = require('cors');
+const { resetSourceFiles } = require("@ionic/app-scripts/dist/transpile");
 
-//app.use(cors({
- //   origin: ['http://localhost:8100'],
- //   "methods": "GET,PUT,POST",
- //   "preflightContinue": false,
- //   "optionsSuccessStatus": 204,
- //   credentials: true
-//}));
+const whiteList = ['http://localhost:8100','http://localhost:8201']
 
-
+app.use(cors({origin: whiteList}));
 
 //variable de pass bd - manu: DESA
 //var password = '123abc' ;
@@ -850,54 +846,17 @@ app.delete('/DEL_ANIMAL/:ID', function (req, res) {
 });
 ////////--------------METODOS INSERT------------//////////////////
 //consulta get tabla CONTACTOS
-app.put('/postPrueba', function (req, res) {
-    "use strict";
-  
-    oracledb.getConnection(connAttrs, function (err, connection) {
-        if (err) {
-            // Error connecting to DB
-            res.set('Content-Type', 'application/json');
-            res.status(500).send(JSON.stringify({
-                status: 500,
-                message: "Error en la conexión con DB",
-                detailed_message: err.message
-            }));
-            return;
-        }      
-        connection.execute("INSERT INTO PRUEBA (ID_TIPO_USUARIO, PNOMBRE, SNOMBRE ) VALUES (:ID_TIPO_USUARIO, :PNOMBRE, :SNOMBRE)", {}, {
-            outFormat: oracledb.OBJECT // Return the result as Object
-        }, function (err, result) {
-            if (err) {
-                res.set('Content-Type', 'application/json');
-                res.status(500).send(JSON.stringify({
-                    status: 500,
-                    message: "Error getting the dba_tablespaces",
-                    detailed_message: err.message
-                }));
-            } else {
-                res.header('Access-Control-Allow-Origin','*');
-                res.header('Access-Control-Allow-Headers','Content-Type');
-                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
-                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
-                res.send(JSON.stringify(result.rows));
-  
-            }
-            // Release the connection
-  
-            connection.release(
-                function (err) {
-                    if (err) {
-                        console.error(err.message);
-                    } else {
-                        console.log("GET /sendTablespace : Connection released");
-                    }
-                });
-        });
-    });
-  });
+app.post('/postPrueba', async (req, res) => {
+    var { ID_TIPO_USUARIO, PNOMBRE, SNOMBRE } = req.body;
 
 
+     oracledb.getConnection([ID_TIPO_USUARIO, PNOMBRE, SNOMBRE], true);
 
+    res.status(200).json({
+          
+    })
+    
+})
 
 
 

@@ -1,6 +1,6 @@
 export interface Ganado
 {
-    NUMERO_SERIE: number,
+    NUMERO_SERIE: string,
     NOMBRE_ANIMAL: string,
     PESO: number,
     //ID_VAC_SERIE
