@@ -1,14 +1,9 @@
 <ion-header>
-  <ion-toolbar >
+  <ion-toolbar>
     <ion-buttons slot="start">
-    <ion-back-button defaultHref="/sowing"></ion-back-button>
-  </ion-buttons>
-    <ion-title></ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)=" eliminarSiembra()">
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
+      <ion-back-button defaultHref="/sowing"></ion-back-button>
     </ion-buttons>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,13 +15,13 @@
           <ion-icon name="grid-outline"></ion-icon>
           <ion-label>Menú</ion-label>
         </ion-tab-button>
-  
+
         <ion-tab-button tab="schedule" routerLink="/event">
           <ion-icon name="calendar"></ion-icon>
           <ion-label>Calendario</ion-label>
           <ion-badge>6</ion-badge>
         </ion-tab-button>
-  
+
         <ion-tab-button tab="map">
           <ion-icon name="log-out-outline"></ion-icon>
           <ion-label>Cerrar sesión</ion-label>
@@ -40,17 +35,18 @@
       <ion-card>
         <ion-card-content *ngFor="let s of infoSiembra">
           <ion-item>
-          <ion-label type="text">Tipo Siembra: {{s.TIPO_SIEMBRA}}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label type="text">Descripción: {{s.DESCRIPCION}}</ion-label>
-        </ion-item>
-          <!--<ion-label type="email">{{g.}}</ion-label>
-          <ion-label type="number">{{g.}}</ion-label>
-          <ion-label type="text">{{g.}}</ion-label>-->
+            <ion-label type="text">Tipo Siembra: {{s.TIPO_SIEMBRA}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Descripción: {{s.DESCRIPCION}}</ion-label>
+          </ion-item>
         </ion-card-content>
-      </ion-card>
-    </ion-col>
+        <ion-buttons id="eli">
+          <ion-button (click)=" eliminarSiembra()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>     
+    </ion-col>   
   </ion-row>
-
 </ion-content>

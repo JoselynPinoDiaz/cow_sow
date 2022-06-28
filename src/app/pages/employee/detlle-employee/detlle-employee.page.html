@@ -4,11 +4,6 @@
     <ion-back-button defaultHref="/employee"></ion-back-button>
     </ion-buttons>
     <ion-title></ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)=" eliminarEmpleado()">
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -45,12 +40,14 @@
           <ion-label type="text">Email: {{e.EMAIL}}</ion-label>
         </ion-item>
           <ion-label type="email">{{e.DESCRIPCION}}</ion-label>
-          <!--<ion-label type="number">{{e.}}</ion-label>
-          <ion-label type="text">{{e.}}</ion-label>-->
-        </ion-card-content>
+        </ion-card-content>    
+        <ion-buttons slot="end">
+          <ion-button (click)=" eliminarEmpleado()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>   
       </ion-card>
     </ion-col>
   </ion-row>
-
 </ion-content>
 
