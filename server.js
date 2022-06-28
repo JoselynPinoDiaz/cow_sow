@@ -834,6 +834,700 @@ app.delete('/DEL_ANIMAL', function (req, res) {
       });
   });
 });
+
+////-----------------------METODOS DELETE
+app.get('/deletePais/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM pais where id_pais =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteAnimal/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM ANIMAL where NUMERO_SERIE =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteComuna/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM COMUNA where ID_COMUNA =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteContacto/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM CONTACTO where ID_CONTACTO =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteDomicilio/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM DOMICILIO where ID_DOMICILIO =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteEnfermedad/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM ENFERMEDAD where ID_ENFERMEDAD =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deletePersona/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM PERSONA where RUT =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deletePropiedad/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM PROPIEDAD where ID_PROPIEDAD =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteRegion/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM REGION where ID_REGION =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteReporte/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM REPORTE where ID_REPORTE =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteSiembra/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM SIEMBRA where ID_SIEMBRA =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteTAnimal/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM TIPO_ANIMAL where ID_TIPO_ANIMAL =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteTProduccion/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM TIPO_PRODUCCION where ID_TIPO_PRODUCCION =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteTProdAnimal/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM TIPO_PRODUCCION_ANIMAL where ID_TIPO_PROD_ANIMAL =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteTUsuario/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM TIPO_USUARIO where ID_TIPO_USUARIO =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+app.get('/deleteVacuna/:id', function (req, res,next) {
+    "use strict";
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM VACUNA where ID_VAC_SERIE =: id ', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            doRelease(connection);
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+
+
+
+
 ////////--------------METODOS UPDATE------------//////////////////
 
 
