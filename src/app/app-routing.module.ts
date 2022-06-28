@@ -125,13 +125,15 @@ const routes: Routes = [
     path: 'agregar-siembra',
     loadChildren: () => import('./pages/sowing/agregar-sowing/agregar-sowing.module').then( m => m.AgregarSowingPageModule)
   },  {
-    path: 'evento',
-    loadChildren: () => import('./pages/evento/evento/evento.module').then( m => m.EventoPageModule)
+    path: 'reporte',
+    loadChildren: () => import('./pages/reporte/reporte.module').then( m => m.ReportePageModule)
   },
   {
-    path: 'reporte',
-    loadChildren: () => import('./pages/reporte/reporte/reporte.module').then( m => m.ReportePageModule)
+    path: 'evento',
+    loadChildren: () => import('./pages/evento/evento.module').then( m => m.EventoPageModule)
   },
+
+
 
 
 
