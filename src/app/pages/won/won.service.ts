@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { observable, Observable } from 'rxjs';
 import { Ganado } from '../modelos/won.interface';
-import { Url } from 'url';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class WonService {
 
-  url = 'http://localhost:8201/ANIMALES/'
+  url: string = 'http://localhost:8201/ANIMALES/'
 
   constructor(private  http: HttpClient) { }
 
@@ -23,10 +23,8 @@ export class WonService {
   }
 
 
-  public async getInfoGanado(){
-    const ganado = await this.http.get('http://localhost:8201/ANIMALES/').toPromise();
-    return ganado;
-
+  getnfoGanado(numero_serie: string): Observable<any>{
+    return this.http.get(this.url)
 
   }
 

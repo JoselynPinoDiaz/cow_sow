@@ -12,9 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DetalleWonPage implements OnInit {
 
-
-    public peso: string;
-
+   infoGanado = {}
    //dato = {};
 
   constructor(private wonService: WonService,
@@ -24,25 +22,17 @@ export class DetalleWonPage implements OnInit {
 
   ngOnInit() {
 
-   //this.activate.paramMap.subscribe (p => {
+    this.activate.paramMap.subscribe (p => {
       //redireccionar
       //var id= p.get('numero_serie');
-     // this.wonService.getInfoGanado(p.get('numero_serie'))
-      //.subscribe(data => {
-       // this.infoGanado = data;
-    //    console.log(this.infoGanado)
+      this.infoGanado = this.wonService.getnfoGanado(p.get('numero_serie'))
+      .subscribe(data => {
+        this.infoGanado = data;
+        console.log(this.infoGanado)
 
-   //   })
- // })
+      })
+  })
   }
-  async detalleGanado(){
-    const ganados = await this.wonService.getInfoGanado();
-    this.peso = ganados[0].PESO;
-
-  
-  }
-
-
 
 
 
