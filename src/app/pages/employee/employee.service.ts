@@ -24,7 +24,7 @@ export class EmployeeService {
 
 
   infoEmpleados(ID_TIPO_USUARIO: string): Observable<any>{
-    return this.http.get(this.url+ID_TIPO_USUARIO)
+    return this.http.get(this.url)
 
   }
 

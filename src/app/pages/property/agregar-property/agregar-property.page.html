@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>agregar-property</ion-title>
+    <ion-title>Agregar Propiedad</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,24 +8,54 @@
   <footer>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="schedule" routerLink="/owner">
+        <ion-tab-button tab="owner" routerLink="/owner">
           <ion-icon name="grid-outline"></ion-icon>
-          <ion-label>Menu</ion-label>
+          <ion-label>Menú</ion-label>
         </ion-tab-button>
   
-        <ion-tab-button tab="schedule" routerLink="/evento">
+        <ion-tab-button tab="schedule" routerLink="/event">
           <ion-icon name="calendar"></ion-icon>
-          <ion-label>Schedule</ion-label>
-          <ion-badge>6</ion-badge>
+          <ion-label>Calendario</ion-label>
         </ion-tab-button>
   
         <ion-tab-button tab="map">
           <ion-icon name="log-out-outline"></ion-icon>
-          <ion-label>Cerrar sesion</ion-label>
+          <ion-label>Cerrar sesión</ion-label>
         </ion-tab-button>
   
       </ion-tab-bar>
     </ion-tabs>
   </footer>
+
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <ion-input type="text"  placeholder="Nombre Propiedad"  required></ion-input>
+            <ion-select type="text" placeholder="Tipo Producción" required>
+              <ion-select-option>Leche</ion-select-option>
+              <ion-select-option>Carne</ion-select-option>
+              <ion-select-option>Ambas</ion-select-option>         
+            </ion-select >
+            <ion-select type="text"  placeholder="Ingrese Pais"  required>
+              <ion-select-option >Agentina</ion-select-option>
+              <ion-select-option >Bolivia</ion-select-option>
+              <ion-select-option >Brasil</ion-select-option>
+              <ion-select-option >Chile</ion-select-option>
+              <ion-select-option >Colombia</ion-select-option>
+              <ion-select-option >Venezuela</ion-select-option>
+              <ion-select-option >Uruguay</ion-select-option>
+              <ion-select-option >Paraguay</ion-select-option>
+            </ion-select>
+          <ion-input type="text"  placeholder="Ingresar Comuna"  required></ion-input>
+          <ion-input type="text" placeholder="Ingresar Región"  required></ion-input>
+          <ion-input type="txt" placeholder="Cantidad de Hectareas"  required></ion-input>
+          <ion-button color="primary" >
+            Guardar Propiedad
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

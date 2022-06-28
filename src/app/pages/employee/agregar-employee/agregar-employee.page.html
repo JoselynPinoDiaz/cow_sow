@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>agregar-contactos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/employee"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Empleado</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,20 +11,20 @@
   <footer>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="schedule" routerLink="/owner">
+        <ion-tab-button tab="owner" routerLink="/owner">
           <ion-icon name="grid-outline"></ion-icon>
-          <ion-label>Menu</ion-label>
+          <ion-label>Menú</ion-label>
         </ion-tab-button>
   
-        <ion-tab-button tab="schedule" routerLink="/evento">
+        <ion-tab-button tab="schedule" routerLink="/event">
           <ion-icon name="calendar"></ion-icon>
-          <ion-label>Schedule</ion-label>
+          <ion-label>Calendario</ion-label>
           <ion-badge>6</ion-badge>
         </ion-tab-button>
   
         <ion-tab-button tab="map">
           <ion-icon name="log-out-outline"></ion-icon>
-          <ion-label>Cerrar sesion</ion-label>
+          <ion-label>Cerrar sesión</ion-label>
         </ion-tab-button>
   
       </ion-tab-bar>
@@ -39,7 +42,7 @@
           <ion-select type="text"  placeholder="Ingresar Tipo Usuario" #TIPO_USUARIO required>
             <ion-select-option >Veterinario</ion-select-option>
             <ion-select-option >Administrador</ion-select-option>
-            <ion-select-option >Calidad</ion-select-option>
+            <ion-select-option >Control de calidad</ion-select-option>
           </ion-select>
           <ion-button color="primary" (click)="agregarNuevoContacto(ID_TIPO_USUARIO,EMAIL, TIPO_USUARIO, DESCRIPCION)">
             Guardar Empleado

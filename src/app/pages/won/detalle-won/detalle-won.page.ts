@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DetalleWonPage implements OnInit {
 
-   infoGanado = {}
+   infoGanado = []
    //dato = {};
 
   constructor(private wonService: WonService,
@@ -25,19 +25,15 @@ export class DetalleWonPage implements OnInit {
     this.activate.paramMap.subscribe (p => {
       //redireccionar
       //var id= p.get('numero_serie');
-      this.infoGanado = this.wonService.getnfoGanado(p.get('numero_serie'))
+     // this.infoGanado = 
+      this.wonService.getnfoGanado(p.get('numero_serie'))
       .subscribe(data => {
         this.infoGanado = data;
-        console.log(this.infoGanado)
-
+        //console.log(this.infoGanado)
       })
   })
   }
 
-
-
-  eliminarGanado(){
-
-  }
+  eliminarGanado(){}
 
 }

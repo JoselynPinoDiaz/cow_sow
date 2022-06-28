@@ -18,13 +18,13 @@ export class PropertyService {
 
   }
 
-  agregarPropiedad(propiedad: Propi): Observable<any>{
+  postAgregarPropiedad(propiedad: Propi): Observable<any>{
       return this.http.post<any>(this.url, propiedad)
   }
 
 
   infoPropiedad(ID_PROPIEDAD: string): Observable<any>{
-    return this.http.get(this.url+ID_PROPIEDAD)
+    return this.http.get(this.url)
 
   }
 

@@ -23,7 +23,7 @@ export class ContactService {
 
 
   infoContactos(ID_CONTACTO: string){
-    return this.http.get<Contacto>(this.url + ID_CONTACTO)
+    return this.http.get<any>(this.url)
   }
 
   eliminarContacto(ID_CONTACTO: number): Observable<any>{

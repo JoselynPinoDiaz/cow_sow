@@ -13,17 +13,18 @@ export class DetalleSowingPage implements OnInit {
 
   url = 'http://localhost:8201/SIEMBRAS/'
 
-  infoSiembra: Siembra
+  infoSiembra = []
 
   constructor(private SowingServi: SowingService,
               private router: Router,
               private activate: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activate.paramMap.subscribe (paramMap => {
+    this.activate.paramMap.subscribe (p => {
       //redireccionar
-      const ID_SIEMBRA = paramMap.get('sowingId');
-      this.SowingServi.infoSiembra(ID_SIEMBRA).subscribe(data => {
+     // const ID_SIEMBRA = paramMap.get('sowingId');
+      this.SowingServi.infoSiembra(p.get('sowing'))
+      .subscribe(data => {
         this.infoSiembra = data
       })
     })
@@ -31,7 +32,7 @@ export class DetalleSowingPage implements OnInit {
   }
 
 
-  eliminarContacto(){
+  eliminarSiembra(){
 
   }
 }

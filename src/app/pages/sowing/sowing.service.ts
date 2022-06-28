@@ -23,7 +23,7 @@ export class SowingService {
 
 
   infoSiembra(ID_SIEMBRA: string): Observable<any>{
-    return this.http.get(this.url+ID_SIEMBRA)
+    return this.http.get(this.url)
 
   }
 

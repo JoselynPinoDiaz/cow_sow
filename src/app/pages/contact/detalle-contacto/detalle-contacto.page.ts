@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
-import { Contacto } from '../../modelos/conatcto.interface';
 import { ContactService } from '../contact.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DetalleContactoPage implements OnInit {
 
-infoContacto: Contacto;
+infoContacto = []
 
   constructor(private infoServi: ContactService, 
               private router: Router,
@@ -25,12 +24,12 @@ infoContacto: Contacto;
 
   ngOnInit() {
 
-    this.activate.paramMap.subscribe(param=> {
+    this.activate.paramMap.subscribe(p => {
       //redireccionar
-      var ID_CONTACTO = param.get('contactId');
-      this.infoServi.infoContactos(ID_CONTACTO)
+      //var ID_CONTACTO = param.get('contactId');
+      this.infoServi.infoContactos(p.get('contactId'))
       .subscribe(data => {
-        this.infoContacto = data
+        this.infoContacto = data;
     });
   })  
   }

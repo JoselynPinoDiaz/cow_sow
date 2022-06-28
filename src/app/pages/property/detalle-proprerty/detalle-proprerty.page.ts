@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Propi } from '../../modelos/propiedad.interface';
 import { PropertyService } from '../property.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class DetalleProprertyPage implements OnInit {
 
   url = 'http://localhost:8201/PROPIEDADES/'
 
-  infopropiedad : Propi
+  infopropiedad = []
 
   constructor(private infoProperty: PropertyService,
               private router: Router,
@@ -21,10 +20,11 @@ export class DetalleProprertyPage implements OnInit {
   ngOnInit() {
   
 
-  this.activate.paramMap.subscribe (paramMap => {
+  this.activate.paramMap.subscribe (p => {
     //redireccionar
-    const ID_PROPIEDAD = paramMap.get('propertyId');
-    this.infoProperty.infoPropiedad(ID_PROPIEDAD).subscribe(data => {
+    //const ID_PROPIEDAD = paramMap.get('propertyId');
+    this.infoProperty.infoPropiedad(p.get('propertyId'))
+    .subscribe(data => {
       this.infopropiedad = data
     })
   })

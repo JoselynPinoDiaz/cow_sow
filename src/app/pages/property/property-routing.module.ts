@@ -7,12 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: PropertyPage
-  },  {
+  },
+  {
     path: 'detalle-proprerty',
     loadChildren: () => import('./detalle-proprerty/detalle-proprerty.module').then( m => m.DetalleProprertyPageModule)
   },
   {
-    path: 'agregar-property',
+    path: 'agregar-granja',
     loadChildren: () => import('./agregar-property/agregar-property.module').then( m => m.AgregarPropertyPageModule)
   }
 

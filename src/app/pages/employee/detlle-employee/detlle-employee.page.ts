@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
-import { Empleado } from '../../modelos/employee.interface';
 
 @Component({
   selector: 'app-detlle-employee',
@@ -10,23 +9,24 @@ import { Empleado } from '../../modelos/employee.interface';
 })
 export class DetlleEmployeePage implements OnInit {
 
-  url = 'http://localhost:8201/TPUSUARIOS/'
-
-  Einfo: Empleado
+  Einfo = []
 
   constructor( private EinfoService: EmployeeService,
                 private router: Router,
                 private activate: ActivatedRoute) { }
 
   ngOnInit() {
-
-    this.activate.paramMap.subscribe (paramMap => {
+    this.activate.paramMap.subscribe (p => {
       //redireccionar
-      const ID_TIPO_USUARIO = paramMap.get('employeeId');
-      this.EinfoService.infoEmpleados(ID_TIPO_USUARIO).subscribe(data => {
-        this.Einfo = data
+      //var id= p.get('numero_serie');
+     // this.infoGanado = 
+      this.EinfoService.infoEmpleados(p.get('employeeId'))
+      .subscribe(data => {
+        this.Einfo = data;
+        //console.log(this.infoGanado)
+
       })
-    })
+  })
 
   }
 
