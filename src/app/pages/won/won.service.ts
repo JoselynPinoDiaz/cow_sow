@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 import { Ganado } from '../modelos/won.interface';
+import { Url } from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +19,23 @@ export class WonService {
   }
 
   agregarGanado(ganado: Ganado): Observable<any>{
-      return this.http.post<any>(this.url, ganado)
+      return this.http.post(this.url, ganado)
   }
 
 
-  infoGanado(NUMERO_SERIE: string): Observable<any>{
-    return this.http.get(this.url + NUMERO_SERIE)
+  public async getInfoGanado(){
+    const ganado = await this.http.get('http://localhost:8201/ANIMALES/').toPromise();
+    return ganado;
+
 
   }
 
-  eliminarGanado(NUMERO_SERIE: string): Observable<any>{
-    return this.http.delete(this.url+NUMERO_SERIE)
+  eliminarGanado(_NUMERO_SERIE: string,_NOMBRE: string, _PESO: number ): Observable<any>{
+    return this.http.delete(this.url)
 
   }
+
+
+
   
 }

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
 import { Contacto } from '../../modelos/conatcto.interface';
 import { ContactService } from '../contact.service';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-detalle-contacto',
@@ -11,24 +13,25 @@ import { ContactService } from '../contact.service';
 })
 export class DetalleContactoPage implements OnInit {
 
- public info = [];
+infoContacto: Contacto;
 
   constructor(private infoServi: ContactService, 
               private router: Router,
               public modalCtrl: ModalController, 
               public navCtrl: NavController,
               private routerOutlet: IonRouterOutlet,
-              public activate: ActivatedRoute) { }
+              public activate: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit() {
 
     this.activate.paramMap.subscribe(param=> {
       //redireccionar
-      var id = param.get('contactId');
-      this.infoServi.infoContactos(id)
+      var ID_CONTACTO = param.get('contactId');
+      this.infoServi.infoContactos(ID_CONTACTO)
       .subscribe(data => {
-        this.info = data
-    }) 
+        this.infoContacto = data
+    });
   })  
   }
 
@@ -36,18 +39,5 @@ export class DetalleContactoPage implements OnInit {
 
   }
 
-
-  onViewWillEnter(){
-
-   
-  }
-
-  
-
-
-
-}
-function ID_CONTACTO(ID_CONTACTO: any) {
-  throw new Error('Function not implemented.');
 }
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WonService } from '../won.service';
 import { Ganado } from '../../modelos/won.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-detalle-won',
@@ -10,24 +12,39 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetalleWonPage implements OnInit {
 
-  infoGanado: Ganado
+
+    public peso: string;
+
+   //dato = {};
 
   constructor(private wonService: WonService,
               private router: Router,
-              private activate: ActivatedRoute) { }
+              private activate: ActivatedRoute,
+              private http: HttpClient) { }
 
   ngOnInit() {
 
-    this.activate.paramMap.subscribe (paramMap => {
+   //this.activate.paramMap.subscribe (p => {
       //redireccionar
-      const NUMERO_SERIE = paramMap.get('wonId');
-      this.wonService.infoGanado(NUMERO_SERIE).subscribe(data => {
-        this.infoGanado = data;
-        console.log(data);
+      //var id= p.get('numero_serie');
+     // this.wonService.getInfoGanado(p.get('numero_serie'))
+      //.subscribe(data => {
+       // this.infoGanado = data;
+    //    console.log(this.infoGanado)
 
-      })
-    })
+   //   })
+ // })
   }
+  async detalleGanado(){
+    const ganados = await this.wonService.getInfoGanado();
+    this.peso = ganados[0].PESO;
+
+  
+  }
+
+
+
+
 
   eliminarGanado(){
 

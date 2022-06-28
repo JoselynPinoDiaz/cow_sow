@@ -93,7 +93,7 @@ const routes: Routes = [
      
     },
     {
-      path: ":wonId", 
+      path: ":numero_serie", 
       loadChildren: () => import('./pages/won/detalle-won/detalle-won-routing.module').then(m => m.DetalleWonPageRoutingModule),
       canActivate: [NoIngresadoGuard]
     }

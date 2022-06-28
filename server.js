@@ -8,6 +8,8 @@ var oracledb = require('oracledb');
 const cors = require('cors');
 const { resetSourceFiles } = require("@ionic/app-scripts/dist/transpile");
 
+
+
 const whiteList = ['http://localhost:8100','http://localhost:8201']
 
 app.use(cors({origin: whiteList}));
@@ -36,7 +38,7 @@ app.get('/',function (req, res) {
 //***********---------METODOS GET-----------********** */
   //METODO GET PARA EXTRAER DATOS DE LA BD
 /////Consula get para tabla pais
-app.get('/paises', function (req, res) {
+app.get('/PRUEBAS', function (req, res) {
   "use strict";
 
   oracledb.getConnection(connAttrs, function (err, connection) {
@@ -50,7 +52,7 @@ app.get('/paises', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT * FROM PAIS", {}, {
+      connection.execute("SELECT * FROM PRUEBA", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -236,7 +238,7 @@ app.get('/CONTACTOS', function (req, res) {
           }));
           return;
       }
-      connection.execute("SELECT * FROM CONTACTO ", {}, {
+      connection.execute("SELECT ID_CONTACTO, NOMBRE, EMAIL, EMAIL,TELEFONO, DESCRIPCION FROM CONTACTO WHERE ID_CONTACTO = ID_CONTACTO", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {
@@ -846,17 +848,17 @@ app.delete('/DEL_ANIMAL/:ID', function (req, res) {
 });
 ////////--------------METODOS INSERT------------//////////////////
 //consulta get tabla CONTACTOS
-app.post('/postPrueba', async (req, res) => {
-    var { ID_TIPO_USUARIO, PNOMBRE, SNOMBRE } = req.body;
-
-
-     oracledb.getConnection([ID_TIPO_USUARIO, PNOMBRE, SNOMBRE], true);
-
-    res.status(200).json({
-          
-    })
-    
-})
+app.getGanado = async (req, res) => {
+    try {
+        const conexion = await connAttrs();
+         const result = await conexion.query("SELECT * FROM ANIMALES");
+            res.json(result)
+        
+    } catch (error) {
+        res.status(500);
+        res.send(error.message)  
+    } 
+};
 
 
 

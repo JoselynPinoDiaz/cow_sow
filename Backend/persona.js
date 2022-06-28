@@ -3,39 +3,38 @@ const router = Router();
 const BD = require('../base_datos/configbd');
 
 //READ
-router.get('/ganado', async (req, res) => {
-    sql = "SELECT * FROM ANIMALES";
+router.all('/prueba', async (req, res) => {
+    sql = "SELECT * FROM PRUEBA";
 
     let result = await BD.Open(sql, [], false);
-    Users = [];
+    Prueba = [];
 
-    result.rows.map(user => {
-        let userSchema = {
-            "codu": user[0],
-            "username": user[1],
-            "firstname": user[2],
-            "lastname": user[3]
+    result.rows.map(prueba => {
+        let pruebaSchema = {
+            "ID_TIPO_USUARIO": prueba[0],
+            "PNOMBRE": prueba[1],
+            "SNOMBRE": prueba[2]
         }
 
-        Users.push(userSchema);
+        Prueba.push(pruebaSchema);
     })
 
-    res.json(Users);
+    res.json(Prueba);
 })
 
 //CREATE
 
-router.post('/addUser', async (req, res) => {
-    const { username, firstname, lastname } = req.body;
+router.post('/addPrueba', async (req, res) => {
+    const { ID_TIPO_USUARIO, PNOMBRE, SNOMBRE } = req.body;
 
-    sql = "insert into person(username,firstname,lastname) values (:username,:firstname,:lastname)";
+    sql = "INSERT INTO PRUEBA(ID_TIPO_USUARIO, PNOMBRE, SNOMBRE) values (:ID_TIPO_USUARIO,:PNOMBRE,:SNOMBRE)";
 
-    await BD.Open(sql, [username, firstname, lastname], true);
+    await BD.Open(sql, [ID_TIPO_USUARIO, PNOMBRE, SNOMBRE], true);
 
     res.status(200).json({
-        "username": username,
-        "firstname": firstname,
-        "lastname": lastname
+        "ID_TIPO_USUARIO": ID_TIPO_USUARIO,
+        "PNOMBRE": PNOMBRE,
+        "SNOMBRE": SNOMBRE
     })
 })
 

@@ -7,8 +7,9 @@ const routes: Routes = [
   {
     path: '',
     component: WonPage
-  },  {
-    path: 'detalle-won',
+  },
+  {
+    path: ':numero_serie',
     loadChildren: () => import('./detalle-won/detalle-won.module').then( m => m.DetalleWonPageModule)
   },
   {

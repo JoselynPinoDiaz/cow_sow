@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Contacto } from '../modelos/conatcto.interface';
+import { Ganado } from '../modelos/won.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,6 @@ import { Contacto } from '../modelos/conatcto.interface';
 export class ContactService {
   
   url = 'http://localhost:8201/CONTACTOS/'
-
-  //url = 'http://localhost:8301/getContacto/'
 
   constructor(private  http: HttpClient) { }
 
@@ -23,11 +22,11 @@ export class ContactService {
   }
 
 
-  public infoContactos(ID_CONTACTO): Observable<any>{
-    return this.http.get(this.url, ID_CONTACTO)
+  infoContactos(ID_CONTACTO: string){
+    return this.http.get<Contacto>(this.url + ID_CONTACTO)
   }
 
-  eliminarContacto(ID_CONTACTO: string): Observable<any>{
+  eliminarContacto(ID_CONTACTO: number): Observable<any>{
     return this.http.delete(this.url+ID_CONTACTO)
   }
 

@@ -20,10 +20,9 @@ export class AgregarWonPage implements OnInit {
 
   agregarNuevoContacto(NUMERO_SERIE, NOMBRE_ANIMAL, PESO){
     const ganado : Ganado = {
-      NUMERO_SERIE: NUMERO_SERIE.value,
-      NOMBRE_ANIMAL: NOMBRE_ANIMAL.value,
-      PESO: PESO.value,
-      VISTAS: "0"
+      id: NUMERO_SERIE.value,
+      nombre: NOMBRE_ANIMAL.value,
+      peso: PESO.value
     }
     this.wonService.agregarGanado(ganado)
     .subscribe(data =>{

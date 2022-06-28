@@ -28,16 +28,14 @@ public Lcontactos = [];
              ) { }
 
    
-  ngOnInit (){
-
-  }
+  ngOnInit (){}
 
   
   ionViewWillEnter(){
     this.Scontacto.cargarContactos()
     .subscribe( data =>{
       this.Lcontactos = data
-    })
+    });
   }
 
   agregarContacto(){
