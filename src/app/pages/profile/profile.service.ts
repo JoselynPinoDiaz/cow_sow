@@ -20,9 +20,7 @@ export class ProfileService {
 
   }
 
-  eliminarEmpleado(){
-    
-  }
+
 
 
 }

@@ -1,8 +1,7 @@
-
 <ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/owner"></ion-back-button>
     </ion-buttons>
     <ion-title>Contacto</ion-title>
   </ion-toolbar>
@@ -11,28 +10,8 @@
 
 
 <ion-content fullscreen class="ion-padding">
-  <footer>
-    <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="owner" routerLink="/owner">
-          <ion-icon name="grid-outline"></ion-icon>
-          <ion-label>Menú</ion-label>
-        </ion-tab-button>
-  
-        <ion-tab-button tab="schedule" routerLink="/event">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>Calendario</ion-label>
-        </ion-tab-button>
-  
-        <ion-tab-button tab="map">
-          <ion-icon name="log-out-outline"></ion-icon>
-          <ion-label>Cerrar sesión</ion-label>
-        </ion-tab-button>
-  
-      </ion-tab-bar>
-    </ion-tabs>
-  </footer>
 
+ 
 
   <ion-list>
     <ion-item *ngFor="let co of Lcontactos" [routerLink]="['/contact', co.ID_CONTACTO]"  >
@@ -50,7 +29,6 @@
     </ion-fab-button>
     <ion-text>Crear Contacto</ion-text>
   </ion-fab>
-  
 
 </ion-content>
 

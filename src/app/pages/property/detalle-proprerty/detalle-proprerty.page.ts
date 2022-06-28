@@ -32,7 +32,7 @@ export class DetalleProprertyPage implements OnInit {
 }
 
 
-eliminarContacto(){
+eliminarPropiedad(){
 
 }
 

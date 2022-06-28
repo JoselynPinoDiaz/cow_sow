@@ -4,36 +4,10 @@
     <ion-back-button defaultHref="/contact"></ion-back-button>
   </ion-buttons>
     <ion-title></ion-title>
-    <ion-buttons slot="end">
-      <ion-button >
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <footer>
-    <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="owner" routerLink="/owner">
-          <ion-icon name="grid-outline"></ion-icon>
-          <ion-label>Menú</ion-label>
-        </ion-tab-button>
-  
-        <ion-tab-button tab="schedule" routerLink="/event">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>Calendario</ion-label>
-        </ion-tab-button>
-  
-        <ion-tab-button tab="map">
-          <ion-icon name="log-out-outline"></ion-icon>
-          <ion-label>Cerrar sesión</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </footer>
-
   <ion-row>
     <ion-col>
       <ion-card *ngFor="let c of infoContacto">
@@ -47,6 +21,11 @@
         <ion-item>
           <ion-label type="text">Teléfono: {{c.TELEFONO}}</ion-label>
         </ion-item>
+        <ion-buttons slot="end">
+          <ion-button >
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
         </ion-card-content>
       </ion-card>
     </ion-col>

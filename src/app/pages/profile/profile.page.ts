@@ -35,7 +35,9 @@ export class ProfilePage implements OnInit {
    
   }
 
- 
+  modificarPerfil(){
+    
+  }
   
   }
 
