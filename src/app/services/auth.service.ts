@@ -12,44 +12,39 @@ export class AuthService {
   constructor(private http: HttpClient) {
 
   }
-///metodo eliminar paises
+
+//Metodos get
+
+public async cargarPaises(){
+  const paises = await this.http.get('http://localhost:8201/PAISES').toPromise();
+  return paises;
+}
+public async cargarTipUser(){
+ const tipoEmpleado = await this.http.get('http://localhost:8201/TPUSUARIOS').toPromise();
+ return tipoEmpleado;
+}
+public async cargarRegion(){
+ const region = await this.http.get('http://localhost:8201/regiones').toPromise();
+ return region;
+}
+public async cargarComuna(){
+ const comuna = await this.http.get('http://localhost:8201/comunas').toPromise();
+ return comuna;
+}
+/// Metodos Delete
 public async eliminarPaises(idPais: string){   /// deberia tener de parametro el id del pais
   const paises = await this.http.get(`http://localhost:8201/deletePais/${idPais}`).toPromise();
   return paises;
 }
 
 
-public async cargarPaises(){
-   const paises = await this.http.get('http://localhost:8201/PAISES').toPromise();
-   return paises;
-}
-public async cargarTipUser(){
-  const tipoEmpleado = await this.http.get('http://localhost:8201/TPUSUARIOS').toPromise();
-  return tipoEmpleado;
-}
-public async cargarRegion(){
-  const region = await this.http.get('http://localhost:8201/regiones').toPromise();
-  return region;
-}
-public async cargarComuna(){
-  const comuna = await this.http.get('http://localhost:8201/comunas').toPromise();
-  return comuna;
-}
-
-
 /// metodo agregar pais
-public async addPais(){
-  const paises = await this.http.get(`http://localhost:8201/add_Pais?idPais=8&nombrePais=nn&desPais=nnn`).toPromise();
-  return paises;
-
-}
-
 public async agregarPaises(idPais: string,nombrePais: string,desPais: string){
-  //const paises = await this.http.get(`http://localhost:8201/add_pais/${idPais}${nombrePais}${desPais}`).toPromise();
-//  const paises = await this.http.get(`http://localhost:8201/add_pais?${idPais}&${nombrePais}&${desPais}`).toPromise();
-const paises = await this.http.get(`http://localhost:8201/add_pais?${idPais}${nombrePais}${desPais}`).toPromise();
+  ///localhost:8201/add_Pais?parametro1=`${idPais}`&parametro2=`${nombrePais}`&parametro3=`${desPais}`
+  const url = `http://localhost:8201/add_Pais?idPais=${idPais}&nombrePais=${nombrePais}&desPais=${desPais}`;
+  const paises = await this.http.get(`${url}`).toPromise();
   return paises;
-
 }
+
 
 }
