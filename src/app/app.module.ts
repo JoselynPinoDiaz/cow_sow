@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule} from '@angular/common/http';
 
 import { AuthService } from './services/auth.service';
-import { EventPageModule } from './pages/event/event.module'; 
+
 
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { environment } from 'src/environments/environment';
@@ -19,8 +19,7 @@ import { environment } from 'src/environments/environment';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,IonicModule.forRoot(), 
-    AppRoutingModule, HttpClientModule, 
-    EventPageModule,
+    AppRoutingModule, HttpClientModule
 
   ],  // se agrega HttpClientModule
   providers: [
