@@ -9,14 +9,15 @@ import { AuthService } from 'src/app/services/auth.service'; //es el servicio ge
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-/*
+
 export class RegisterPage implements OnInit {
 
   formularioRegistro: FormGroup;
 
   constructor(public fb: FormBuilder,
             public alertController: AlertController,
-            public navCtrl: NavController) {
+            public navCtrl: NavController,
+            public servicioUser: AuthService) {
 
     this.formularioRegistro = this.fb.group({
 
@@ -73,29 +74,6 @@ export class RegisterPage implements OnInit {
   localStorage.setItem('ingresado','true');
       this.navCtrl.navigateRoot('login');}
 }
-*/
-////
-
-export class RegisterPage  implements OnInit  {
-  formularioRegistro: FormGroup;
-  nom = new FormControl              ('') ;
-  pAPEL  = new FormControl          ('') ;
-  sAPELLDO  = new FormControl          ('') ;
-  eMAIL  = new FormControl              ('') ;
-  confirmarEmail  = new FormControl     ('') ;
-  pASS  = new FormControl           ('') ;
-  confirmarPassword  = new FormControl  ('') ;
-  pAIS  = new FormControl               ('') ;
-  cOMUNA  = new FormControl             ('') ;
-  rEGION  = new FormControl             ('') ;
-
-  constructor(public servicioUser: AuthService) {
-    this.servicioUser.cargarPaises(); /// solo cuando quiero que se muestre en la carga de la pagina
-    this.servicioUser.cargarComuna(); /// solo cuando quiero que se muestre en la carga de la pagina
-    this.servicioUser.cargarRegion(); /// solo cuando quiero que se muestre en la carga de la pagina
-   }
-   ngOnInit() {
-  }
 //metodo get para traer los paises
  async mostrarPaiseS(){
   const nombrePaises = await this.servicioUser.cargarPaises();
@@ -115,4 +93,4 @@ async agregarUser(nom: string,pAPEL: string,sAPELLDO: string,eMAIL: string,pASS:
   const nombrePaises = await this.servicioUser.agregarUser(nom,pAPEL,sAPELLDO,eMAIL,pASS,pAIS,cOMUNA,rEGION);
 }
 
-}
+
