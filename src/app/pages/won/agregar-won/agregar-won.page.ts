@@ -5,6 +5,7 @@ import { Ganado } from '../../modelos/won.interface';
 import { WonService } from '../won.service';
 
 
+
 @Component({
   selector: 'app-agregar-won',
   templateUrl: './agregar-won.page.html',
