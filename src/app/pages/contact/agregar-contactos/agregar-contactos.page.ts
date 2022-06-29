@@ -34,6 +34,11 @@ export class AgregarContactosPage implements OnInit {
     
     })
   }
+
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+  
   
  
     }

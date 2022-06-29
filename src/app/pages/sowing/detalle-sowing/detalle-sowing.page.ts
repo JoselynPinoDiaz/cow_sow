@@ -33,6 +33,10 @@ export class DetalleSowingPage implements OnInit {
 
 
   eliminarSiembra(){
-
   }
+
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+  
 }

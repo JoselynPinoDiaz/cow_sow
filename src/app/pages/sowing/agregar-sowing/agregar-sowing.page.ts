@@ -34,4 +34,8 @@ export class AgregarSowingPage implements OnInit {
     })
   }
 
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+
 }

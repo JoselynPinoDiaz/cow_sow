@@ -11,28 +11,28 @@
   <ion-row>
     <ion-col>
       <ion-card>
-        <form action="">
+        <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
         <ion-card-content>
-          <ion-input type="text"  placeholder="Ingresar Rut" #RUT required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Primer Nombre" #PNOMBRE required></ion-input>
-          <ion-input type="text" placeholder="Ingresar Segundo Nombre" #SNOMBRE required></ion-input>
-          <ion-input type="text" placeholder="Ingresar Primer Apellido" #PAPELLIDO required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Segundo Apellido" #SAPELLIDO required></ion-input>
-          <ion-input type="Email"  placeholder="Ingresar Email" #EMAIL required></ion-input>
-          <ion-input type="Email"  placeholder="Ingresar Nuevamente Email"  required></ion-input>
-          <ion-input type="Password"  placeholder="Ingresar Password" #PASSWORD required></ion-input>
-          <ion-input type="Password"  placeholder="Ingresar Nuevamente Password" required></ion-input>
-          <ion-input type="number"  placeholder="Ingresar Telefono" #TELEFONO required></ion-input>
-          <ion-input type="date"  placeholder="Ingresar Fecha Nacimiento" #FECHA_NACIMIENTO required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Comuna" #NOMBRE_COMUNA required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Region" #NOMBRE_REGION required></ion-input>
-          <ion-select type="text"  placeholder="Ingresar Pais" #NONBRE_PAIS required>
+          <ion-input formControlName="rut" type="text"  placeholder="Ingresar Rut" #RUT required></ion-input>
+          <ion-input formControlName="pNombre" type="text"  placeholder="Ingresar Primer Nombre"  required></ion-input>
+          <ion-input formControlName="sNombre" type="text" placeholder="Ingresar Segundo Nombre" required></ion-input>
+          <ion-input formControlName="pApellido" type="text" placeholder="Ingresar Primer Apellido"  required></ion-input>
+          <ion-input formControlName="sApellido" type="text"  placeholder="Ingresar Segundo Apellido"  required></ion-input>
+          <ion-input formControlName="email" type="Email"  placeholder="Ingresar Email"  required></ion-input>
+          <ion-input formControlName="confirmarEmail" type="Email"  placeholder="Ingresar Nuevamente Email"  required></ion-input>
+          <ion-input formControlName="password" type="Password"  placeholder="Ingresar Password" D required></ion-input>
+          <ion-input  formControlName="confirmarPassword" type="Password"  placeholder="Ingresar Nuevamente Password" required></ion-input>
+          <ion-input formControlName="telefono" type="text"  placeholder="Ingresar Telefono"  required></ion-input>
+          <ion-input formControlName="fecha" type="date"  placeholder="Ingresar Fecha Nacimiento"  required></ion-input>
+          <ion-input formControlName="comuna" type="text"  placeholder="Ingresar Comuna"  required></ion-input>
+          <ion-input formControlName="region" type="text"  placeholder="Ingresar Region" required></ion-input>
+          <ion-select formControlName="pais" type="text"  placeholder="Ingresar Pais"  required>
             <ion-select-option >Agentina</ion-select-option>
             <ion-select-option >Chile</ion-select-option>
             <ion-select-option >Colombia</ion-select-option>
             <ion-select-option >Brasil</ion-select-option>
           </ion-select>
-          <ion-button color="primary" (click)="registrarse(RUT,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,EMAIL, TELEFONO, PASSWORD,FECHA_NACIMIENTO,NOMBRE_COMUNA,NOMBRE_REGION,NONBRE_PAIS)">
+          <ion-button type="submit" color="danger" expand="block" (click)="guardar()">
             Registrarse
           </ion-button>
         </ion-card-content>

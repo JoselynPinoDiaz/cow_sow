@@ -33,7 +33,11 @@ export class DetalleProprertyPage implements OnInit {
 
 
 eliminarPropiedad(){
-
 }
+
+cerrarSecion(){
+  this.router.navigate(['/home'])
+}
+
 
 }

@@ -31,5 +31,8 @@ export class SowingPage implements OnInit {
     this.router.navigate(['/agregar-siembra'])
   }
 
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
 
 }

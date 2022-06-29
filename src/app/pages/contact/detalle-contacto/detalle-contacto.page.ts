@@ -38,5 +38,10 @@ infoContacto = []
 
   }
 
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+  
+
 }
 

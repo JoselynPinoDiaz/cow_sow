@@ -31,5 +31,10 @@ export class EmployeePage implements OnInit {
   agregarEmpleado(){
     this.router.navigate(['/agregar-empleados'])
   }
+
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+  
   
 }

@@ -36,4 +36,8 @@ export class DetalleWonPage implements OnInit {
 
   eliminarGanado(){}
 
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+
 }

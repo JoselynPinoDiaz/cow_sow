@@ -1544,17 +1544,58 @@ app.get('/deleteVacuna/:id', function (req, res,next) {
 
 ////////--------------METODOS INSERT------------//////////////////
 //consulta get tabla CONTACTOS
-app.getGanado = async (req, res) => {
-    try {
-        const conexion = await connAttrs();
-         const result = await conexion.query("SELECT * FROM ANIMALES");
-            res.json(result)
-        
-    } catch (error) {
-        res.status(500);
-        res.send(error.message)  
-    } 
-};
+app.get('/addPais', function (req, res,next) {
+    "use strict";
+      var id_test = req.params.id;
+      var nombre = req.params.nombre;
+      var descrip = req.params.descrip;
+      oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+          }
+            connection.execute("INSERT INTO PAIS (ID_PAIS, NOMBRE_PAIS, DESCRIPCION ) VALUES (2, 'cccc','Pais destacado por la ganaderia y agricultura') ", {}, {
+            outFormat: oracledb.OBJECT ,// Return the result as Object
+            autoCommit:true
+  
+          }, function (err, result) {
+            if (err) {
+              res.set('Content-Type', 'application/json');
+              res.status(500).send(JSON.stringify({
+                  status: 500,
+                  message: "Error getting the dba_tablespaces",
+                  detailed_message: err.message
+              }));
+          } else {
+              res.header('Access-Control-Allow-Origin','*');
+              res.header('Access-Control-Allow-Headers','Content-Type');
+              res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+              res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+              res.send(JSON.stringify(result.rows));
+          }
+          doRelease(connection);
+            // Release the connection
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                      console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+    });
+  
+
+
+
 
 
 

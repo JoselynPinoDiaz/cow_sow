@@ -42,6 +42,10 @@ public Lcontactos = [];
     this.router.navigate(['/agregar-contactos'])
   }
 
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+
 
 
 }

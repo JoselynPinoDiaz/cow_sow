@@ -30,6 +30,10 @@ export class AgregarWonPage implements OnInit {
     
     })
   }
+
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
   
 
 

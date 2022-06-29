@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonRouterOutlet, MenuController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 
 
@@ -15,12 +16,17 @@ export class OwnerPage implements OnInit {
 
 
 
-  constructor( private menu: MenuController) { }
+  constructor( private menu: MenuController,
+              public navCtrl: NavController,
+              private routerOutlet: IonRouterOutlet,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
-  
+cerrarSecion(){
+  this.router.navigate(['/home'])
+}
 
   
 

@@ -32,6 +32,11 @@ public propiedad = []
     this.router.navigate(['/agregar-granja'])
   }
 
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+  
+
 
 }
 

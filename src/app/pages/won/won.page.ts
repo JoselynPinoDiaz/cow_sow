@@ -32,5 +32,9 @@ export class WonPage implements OnInit {
     this.router.navigate(['/agregar-ganado'])
   }
 
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+
 
 }

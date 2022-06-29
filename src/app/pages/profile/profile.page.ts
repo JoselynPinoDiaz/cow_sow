@@ -38,6 +38,11 @@ export class ProfilePage implements OnInit {
   modificarPerfil(){
     
   }
+
+  cerrarSecion(){
+    this.router.navigate(['/home'])
+  }
+  
   
   }
 
