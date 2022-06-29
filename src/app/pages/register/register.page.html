@@ -9,12 +9,12 @@
 
 <ion-content>
   <ion-grid fixed>
-    <form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
+    <form [formGroup]="formularioRegistro" (keyup.enter)="agregarUser(nom.value,pAPEL.value,sAPELLDO.value,eMAIL.value,pASS.value,pAIS.value,cOMUNA.value,rEGION.value)">
       <ion-row>
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Nombre</ion-label>
-            <ion-input formControlName="nombre" type="text" required></ion-input>
+            <ion-input [formControl]="nom" type="text" required></ion-input>
 
 
           </ion-item>
@@ -24,7 +24,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Primer Apellido</ion-label>
-            <ion-input formControlName="pApellido" type="text" required></ion-input>
+            <ion-input [formControl]="pAPEL" type="text" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -32,7 +32,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Segundo Apellido</ion-label>
-            <ion-input formControlName="sApellido" type="text" required></ion-input>
+            <ion-input [formControl]="sAPELLDO" type="text" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -40,7 +40,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Ingresar Email</ion-label>
-            <ion-input formControlName="email" type="email" required></ion-input>
+            <ion-input [formControl]="eMAIL" type="email" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -56,7 +56,7 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Contraseña</ion-label>
-            <ion-input formControlName="password" type="password" required></ion-input>
+            <ion-input [formControl]="pASS" type="password" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -69,23 +69,20 @@
         </ion-col>
       </ion-row>
       <ion-row>
-      <ion-col>
-        
-          <!-- Listado Paises -->
+      <ion-row>
+        <ion-col>
           <ion-item lines="full">
-            <ion-label >País</ion-label>
-            
-            <ion-select formControlName="pais" placeholder="Seleccione">
-              <ion-select-option  >Agentina</ion-select-option>
-            </ion-select>
+            <ion-label position="floating">Ingresar Pais</ion-label>
+            <ion-input [formControl]="pAIS" required></ion-input>
           </ion-item>
-      </ion-col>
+        </ion-col>
+      </ion-row>
     </ion-row>
       <ion-row>
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Ingresar Comuna</ion-label>
-            <ion-input formControlName="comuna" required></ion-input>
+            <ion-input [formControl]="cOMUNA" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -93,15 +90,16 @@
         <ion-col>
           <ion-item lines="full">
             <ion-label position="floating">Ingresar Region</ion-label>
-            <ion-input formControlName="region" required></ion-input>
+            <ion-input [formControl]="rEGION" required></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="danger" expand="block" (click)="guardar()">Registrarse</ion-button>
+          <ion-button type="submit" color="danger" expand="block" (click)="agregarUser(nom.value,pAPEL.value,sAPELLDO.value,eMAIL.value,pASS.value,pAIS.value,cOMUNA.value,rEGION.value)">Registrarse</ion-button>
         </ion-col>
       </ion-row>
     </form>
   </ion-grid>
 </ion-content>
+

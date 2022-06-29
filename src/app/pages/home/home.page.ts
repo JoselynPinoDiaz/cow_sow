@@ -36,7 +36,8 @@ export class HomePage implements OnInit{
 }
 
 ///primra vista
-*/export class HomePage {
+*/
+export class HomePage {
 
   nombre = new FormControl('');
   idPais = new FormControl('');
