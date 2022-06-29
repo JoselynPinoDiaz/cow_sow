@@ -17,23 +17,29 @@ export class WonService {
     return this.http.get(this.url)
 
   }
-
   agregarGanado(ganado: Ganado): Observable<any>{
       return this.http.post(this.url, ganado)
   }
-
-
   getnfoGanado(numero_serie: string): Observable<any>{
     return this.http.get(this.url)
 
   }
-
   eliminarGanado(_NUMERO_SERIE: string,_NOMBRE: string, _PESO: number ): Observable<any>{
     return this.http.delete(this.url)
 
   }
 
+getPosts(){
+  return this.http.get(this.url)
+}
+
+getPostsById(){}
+
+createPosts(){}
+
+removepostsId(){}
+
+deletePosts(){}
 
 
-  
 }
