@@ -7,7 +7,6 @@ var  asyncScheduler  = require("rxjs");
 var cors = require('cors');
 var  autoCommit  = require("oracledb");
 app.use(cors());
-
 //variable de pass bd - manu: DESA
 var password = '123abc' ;
 
