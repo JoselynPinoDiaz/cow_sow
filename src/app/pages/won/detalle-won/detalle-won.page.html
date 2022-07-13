@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
     <ion-back-button defaultHref="/won"></ion-back-button>
   </ion-buttons>
-    <ion-title>Información Ganado</ion-title>
+    <ion-title>Información Ganado:</ion-title>
     <ion-buttons slot="end" >
       <ion-button (click)=" cerrarSecion()">
         <ion-icon name="log-out-outline"></ion-icon>
@@ -16,8 +16,8 @@
 
   <ion-row>
     <ion-col>
-      <ion-card>
-        <ion-card-content *ngFor="let g of infoGanado">
+      <ion-card *ngFor="let g of infoGanado">
+        <ion-card-content >
           <ion-item>
           <ion-label type="text">Nombre: {{g.NOMBRE_ANIMAL}}</ion-label>
         </ion-item>

@@ -1,10 +1,13 @@
 export interface Empleado
+
 {
-    ID_TIPO_USUARIO: number,
+
+
+    //ID: number,
     //RUT: number,
     //NOMBRE: string,
     EMAIL: string,
-    //TELEFONO: number,
+    TELEFONO: number,
     //FECHA_NACIMIENTO: Date,
     TIPO_USUARIO: string,
     //DIRECCION: string,
@@ -13,7 +16,7 @@ export interface Empleado
     //NOMBRE_REGION: string,
     //PAIS: string,
     DESCRIPCION: string
-    VISTAS: string
+    //VISTAS: string
 
 
 }

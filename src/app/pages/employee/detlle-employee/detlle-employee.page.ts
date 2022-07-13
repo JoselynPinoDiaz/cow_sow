@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
@@ -9,31 +10,26 @@ import { EmployeeService } from '../employee.service';
 })
 export class DetlleEmployeePage implements OnInit {
 
-  Einfo = []
+  Einfo: any;
 
-  constructor( private EinfoService: EmployeeService,
-                private router: Router,
-                private activate: ActivatedRoute) { }
+
+  constructor(
+    private router: Router,
+    private activate: ActivatedRoute,
+    private http: HttpClient,
+    public getService: EmployeeService) { }
+
+
 
   ngOnInit() {
-    this.activate.paramMap.subscribe (p => {
+    this.activate.paramMap.subscribe(p => {
       //redireccionar
-      //var id= p.get('numero_serie');
-     // this.infoGanado = 
-      this.EinfoService.infoEmpleados(p.get('employeeId'))
-      .subscribe(data => {
-        this.Einfo = data;
-        //console.log(this.infoGanado)
-
-      })
-  })
+      const RUT_PERSONA = p.get('employeeId')
+    this.getService.getInfoEmpleados(p.get('RUT_PERSONA'))
+        .subscribe(data => {
+        this.Einfo = data
+       });
+    });
 
   }
-
-
-  eliminarEmpleado(){
-
-  }
-
-
 }

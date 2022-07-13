@@ -8,23 +8,53 @@
 </ion-header>
 
 <ion-content>
-  
   <ion-row>
     <ion-col>
       <ion-card>
         <ion-card-content>
-          <ion-input type="text"  placeholder="Ingresar Id" #ID_TIPO_USUARIO required></ion-input>
-          <ion-input type="email" placeholder="Ingresar Email" #EMAIL required></ion-input>
-          <ion-input type="number" placeholder="Ingresar Telefono" #TIPO_USUARIO required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Descripción" #DESCRIPCION required></ion-input>
-          <ion-select type="text"  placeholder="Ingresar Tipo Usuario" #TIPO_USUARIO required>
-            <ion-select-option >Veterinario</ion-select-option>
-            <ion-select-option >Administrador</ion-select-option>
-            <ion-select-option >Control de calidad</ion-select-option>
+          <ion-item class="input">
+            <ion-input [(ngModel)] = "usuario.RUT_PERSONA" type="text" placeholder="Ingresar Rut" required></ion-input>
+          </ion-item>
+            <ion-item class="input">
+            <ion-input [(ngModel)] = "usuario.PNOMBRE" type="text" placeholder="Ingresar Primer Nombre"  required></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] = "usuario.SNOMBRE" type="text" placeholder="Ingresar Segundo Nombre" required></ion-input>
+          </ion-item>
+            <ion-item class="input">
+            <ion-input [(ngModel)] = "usuario.PAPELLIDO" type="text" placeholder="Ingresar Primer Apellido"  required></ion-input>
+          </ion-item>
+          <ion-item class="input">
+          <ion-input [(ngModel)] = "usuario.SAPELLIDO" type="text" placeholder="Ingresar Segundo Apellido" required></ion-input>
+        </ion-item>
+          <ion-item class="input">
+          <ion-input [(ngModel)] = "usuario.FECHA_NACIMIENTO" type="text" placeholder="Fecha Nacimiento 18/04/2022"  required></ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <ion-select class="input" [(ngModel)] = "usuario.TIPO_USUARIO" type="text"  placeholder="Ingresar Tipo Usuario" required>
+            <ion-select-option value="Veterinario" >Veterinario</ion-select-option>
+            <ion-select-option value="Administrador" >Administrador</ion-select-option>
+            <ion-select-option value="Control de Calidad" >Control de Calidad</ion-select-option>
           </ion-select>
-          <ion-button color="primary" (click)="agregarNuevoContacto(ID_TIPO_USUARIO,EMAIL, TIPO_USUARIO, DESCRIPCION)">
-            Guardar Empleado
+        </ion-item>
+        <ion-item class="input">
+          <ion-input [(ngModel)] = "usuario.EMAIL" type="email" placeholder="Ingresar Email" required></ion-input>
+        </ion-item>
+          <ion-item class="input">
+          <ion-input [(ngModel)] = "usuario.CLAVE" type="password" placeholder="Ingresar Password"  required></ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <ion-label position="floating">Propiedad</ion-label>
+          <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] = "usuario.ID_PROPIEDAD" >
+            <ion-select-option *ngFor="let p of propiedad">{{p.ID_PROPIEDAD}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <br>
+        <div>
+          <ion-button color="primary" (click)="agregarEmpleado()">
+            Crear Empleado
           </ion-button>
+        </div>
         </ion-card-content>
       </ion-card>
     </ion-col>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { Ganado } from '../../modelos/won.interface';
+import { AlertController, NavController } from '@ionic/angular';
 import { WonService } from '../won.service';
 
 
@@ -13,29 +12,91 @@ import { WonService } from '../won.service';
 })
 export class AgregarWonPage implements OnInit {
 
+  alert;
+
+ganado: any = {
+    NUMERO_SERIE:"",
+    TIPO_ANIMAL:"",
+    RAZA:"",
+    PESO:"",
+    ANOS_EDAD:"",
+    MESES_EDAD:"",
+    CRIAS:"",
+    TIPO_PRODUCCION:"",
+    FECHA:"",
+    PRECIO_COMPRA:"",
+    PRECIO_VENTA:"",
+    VACUNA:"",
+    PRECIO_VACUNA:"",
+    ENFERMEDAD:"",
+    MEDICAMENTO:"",
+    PRECIO_MEDICAMENTO:"",
+    ID_EVENTO:"",
+    ID_PROPIEDAD:""
+}
+
+public propiedad = [];
+public eventos = [];
+
   constructor(private wonService: WonService,
               private router: Router,
-              private alert: AlertController,) { }
+              private alerta: AlertController,
+              public navCtrl: NavController) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.wonService.cargarPropiedad()
+    .subscribe( data =>{
+      this.propiedad = data
+    });
 
-  agregarNuevoContacto(NUMERO_SERIE, NOMBRE_ANIMAL, PESO){
-    const ganado : Ganado = {
-      id: NUMERO_SERIE.value,
-      nombre: NOMBRE_ANIMAL.value,
-      peso: PESO.value
-    }
-    this.wonService.agregarGanado(ganado)
-    .subscribe(data =>{
-     this.router.navigate(['/won'])
-    
-    })
+    this.wonService.cargarEvento()
+    .subscribe( data =>{
+      this.eventos = data
+    });
   }
 
+/**  METODO CERRAR SESION*/ 
   cerrarSecion(){
     this.router.navigate(['/home'])
   }
-  
+
+
+  //*** METODO CREAR UN GANADO */
+
+  crearGanado(){
+  if (this.ganado.NUMERO_SERIE==""){
+    }else if (this.ganado.TIPO_ANIMAL==""){
+    }else if (this.ganado.RAZA==""){
+    }else if (this.ganado.PESO==""){
+    }else if (this.ganado.ANOS_EDAD==""){
+    }else if (this.ganado.MESES_EDAD==""){
+    }else if (this.ganado.CRIAS==""){
+    }else if (this.ganado.TIPO_PRODUCCION==""){
+    }else if (this.ganado.FECHA==""){
+    }else if (this.ganado.PRECIO_COMPRA==""){
+    }else if (this.ganado.PRECIO_VENTA==""){
+    }else if (this.ganado.VACUNA==""){
+    }else if (this.ganado.PRECIO_VACUNA==""){
+    }else if (this.ganado.ENFERMEDAD==""){
+    }else if (this.ganado.MEDICAMENTO==""){
+    }else if (this.ganado.PRECIO_MEDICAMENTO==""){
+    }else if (this.ganado.ID_EVENTO==""){
+    }else if (this.ganado.ID_PROPIEDAD==""){
+    }else {
+      this.wonService.postGanado(this.ganado.NUMERO_SERIE,this.ganado.TIPO_ANIMAL,this.ganado.RAZA,this.ganado.PESO,this.ganado.ANOS_EDAD,
+        this.ganado.MESES_EDAD,this.ganado.CRIAS,this.ganado.TIPO_PRODUCCION,this.ganado.FECHA,this.ganado.PRECIO_COMPRA,
+        this.ganado.PRECIO_VENTA,this.ganado.VACUNA,this.ganado.PRECIO_VACUNA,this.ganado.ENFERMEDAD,this.ganado.MEDICAMENTO,
+        this.ganado.PRECIO_MEDICAMENTO,this.ganado.ID_EVENTO,this.ganado.ID_PROPIEDAD).subscribe((resultado) => {
+          console.log(resultado);
+        this.router.navigate(['/won']);
+        
+    });
+  }
+}
+
+
+
+
 
 
 }

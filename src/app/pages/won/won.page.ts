@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
-import { DetalleSowingPage } from '../sowing/detalle-sowing/detalle-sowing.page';
 import { WonService } from './won.service';
 
 @Component({
@@ -16,25 +15,29 @@ export class WonPage implements OnInit {
   constructor(public SwonService: WonService,
               public modalCtrl: ModalController, 
               public navCtrl: NavController,
-              private routerOutlet: IonRouterOutlet,
               private router: Router) { }
 
   ngOnInit() {}
 
   ionViewWillEnter(){
-    this.SwonService.cargarGanado()
+    this.SwonService.ObtnerGanado()
     .subscribe( data =>{
       this.Ganado = data
-    })
+    });
   }
 
   agregarGanado(){
     this.router.navigate(['/agregar-ganado'])
   }
 
+
+  //*Cerrar Sesion
   cerrarSecion(){
     this.router.navigate(['/home'])
   }
+
+ 
+
 
 
 }

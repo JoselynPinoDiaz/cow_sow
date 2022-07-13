@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { Contacto } from '../../modelos/conatcto.interface';
 import { ContactService } from '../contact.service';
 
 
@@ -13,35 +12,41 @@ import { ContactService } from '../contact.service';
 export class AgregarContactosPage implements OnInit {
 
 
-  constructor(private serviContacto: ContactService,
-              private router: Router,
-              private alert: AlertController,) { }
-
-  ngOnInit(){}
-
-
-  agregarNuevoContacto(ID_CONTACTO, NOMBRE, EMAIL, TELEFONO, DESCRIPCION){
-    const contacto : Contacto = {     
-      id: ID_CONTACTO.value,
-      nombre: NOMBRE.value,
-      email:EMAIL.value,
-      telefono: TELEFONO.value,
-      descripcion: DESCRIPCION.value
-    }
-    this.serviContacto.agregarContacto(contacto)
-    .subscribe(data =>{
-     this.router.navigate(['/contact'])
-    
-    })
+  contacto: any = {
+    NOMBRE: "",
+    EMAIL: "",
+    TELEFONO: "",
+    DESCRIPCION: ""
   }
 
-  cerrarSecion(){
+
+  constructor(private serviContacto: ContactService,
+    private router: Router,
+    private alert: AlertController,) { }
+
+  ngOnInit() { }
+
+
+  agregarContacto() {
+    if(this.contacto.NOMBRE==""){
+      }else if(this.contacto.EMAIL==""){
+      }else if(this.contacto.TELEFONO==""){
+      }else if(this.contacto.DESCRIPCION==""){
+      }else{
+        this.serviContacto.crearContacto(this.contacto.NOMBRE,this.contacto.EMAIL,this.contacto.TELEFONO,this.contacto.DESCRIPCION).subscribe((resultado)=> {
+          this.router.navigate(['/contact']);
+          console.log(resultado);
+        });
+      }
+  }
+
+  cerrarSecion() {
     this.router.navigate(['/home'])
   }
-  
-  
- 
-    }
+
+
+
+}
 
 
 

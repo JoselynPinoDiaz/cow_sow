@@ -95,13 +95,13 @@ const routes: Routes = [
         loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactPageModule)
       },
       {
-        path: ":contactId",
+        path: "contacto/:id",
         loadChildren: () => import('./pages/contact/detalle-contacto/detalle-contacto.module').then(m => m.DetalleContactoPageModule)
       }
     ]
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
@@ -124,7 +124,8 @@ const routes: Routes = [
   {
     path: 'agregar-siembra',
     loadChildren: () => import('./pages/sowing/agregar-sowing/agregar-sowing.module').then( m => m.AgregarSowingPageModule)
-  },  {
+  },
+  {
     path: 'reporte',
     loadChildren: () => import('./pages/reporte/reporte.module').then( m => m.ReportePageModule)
   },
@@ -132,6 +133,11 @@ const routes: Routes = [
     path: 'evento',
     loadChildren: () => import('./pages/evento/evento.module').then( m => m.EventoPageModule)
   },
+  {
+    path: 'prueba/:id',
+    loadChildren: () => import('./pages/prueba/prueba.module').then( m => m.PruebaPageModule)
+  },
+
 
 
 

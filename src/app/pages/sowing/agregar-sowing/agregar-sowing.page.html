@@ -13,17 +13,73 @@
 </ion-header>
 
 <ion-content>
- 
   <ion-row>
     <ion-col>
       <ion-card>
         <ion-card-content>
-          <ion-input type="text"  placeholder="Ingresar Id" #ID_SIEMBRA required></ion-input>
-          <ion-input type="text"  placeholder="Ingresar Nombre" #TIPO_SIEMBRA required></ion-input>
-          <ion-input type="email" placeholder="Ingresar Email" #DESCRIPCION required></ion-input>
-          <ion-button color="primary" (click)="agregarNuevoContacto(ID_SIEMBRA, TIPO_SIEMBRA, DESCRIPCION)">
-            Guardar Siembra
+          <ion-item class="input">
+            <ion-select  okText="Okay" cancelText="Cerrar" type="text" [(ngModel)] ="siembra.TIPO_SIEMBRA" placeholder="Selecione Tipo Siembra" required >
+              <ion-select-option value="Fruta">Fruta</ion-select-option>
+              <ion-select-option value="Verdura">Verdura</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="input">
+            <ion-select  okText="Okay" cancelText="Cerrar" type="text" [(ngModel)] ="siembra.TIPO_FRU_VER" placeholder="Selecione Tipo Verdura o Fruta" required >
+              <ion-select-option value="Manzana">Manzana</ion-select-option>
+              <ion-select-option value="Pera">Pera</ion-select-option>
+              <ion-select-option value="Brokoli">Brokoli</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)]  ="siembra.COLOR" type="text" placeholder="Ingresar Color" required></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.VARIEDAD" type="text" placeholder="Ingresar Variedad" required></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.CANTIDAD" type="number" placeholder="Ingresar Cantidad" required></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.METROS_OCUPADOS" type="number" placeholder="Ingresar Metros Cuadrados" ></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.FECHA" type="text" placeholder="Ingresar Fecha 12/04/2022"></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.PRECIO_COMPRA" type="number" placeholder="Ingresar Precio Compra"></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.PRECIO_VENTA" type="number" placeholder="Ingresar Precio Venta" ></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.FERTILIZANTE" type="text" placeholder="Ingresar Fertilizante"></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.PRECIO_FERTILIZANTE" type="number" placeholder="Ingresar Precio Fertilizante"></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.FUMIGACION" type="text" placeholder="Ingresar Fumigacion" ></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-input [(ngModel)] ="siembra.PRECIO_FUMIGACION" type="text" placeholder="Ingresar Precio Fumigacion"></ion-input>
+          </ion-item>
+          <ion-item class="input">
+            <ion-label position="floating">Propiedad</ion-label>
+            <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] ="siembra.ID_PROPIEDAD">
+              <ion-select-option *ngFor="let p of propiedad">{{p.ID_PROPIEDAD}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="input">
+            <ion-label position="floating">Evento</ion-label>
+            <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] ="siembra.ID_EVENTO">
+              <ion-select-option *ngFor="let e of eventos ">{{e.ID_EVENTO}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div>
+          <ion-button color="primary" (click)="postSiembra()">
+            Agregar Siembra
           </ion-button>
+        </div>
         </ion-card-content>
       </ion-card>
     </ion-col>

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController, NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { EmployeeService } from './employee.service';
+
+
 
 @Component({
   selector: 'app-employee',
@@ -10,31 +13,38 @@ import { EmployeeService } from './employee.service';
 })
 export class EmployeePage implements OnInit {
 
-  public Empleado = []
+  public Empleado = [];
 
-  constructor( public  Sempleado: EmployeeService,
+  constructor( 
                 public modalCtrl: ModalController, 
                 public navCtrl: NavController,
                 private routerOutlet: IonRouterOutlet,
-                private router: Router) { }
+                private router: Router,
+                public getService:EmployeeService
+                ) { }
 
   ngOnInit() {
   }
 
   ionViewWillEnter(){
-    this.Sempleado.cargarEmpleados()
+    this.getService.getEmpleados()
     .subscribe( data =>{
-      this.Empleado = data
+      this.Empleado = data;
     })
   }
 
+
+  
   agregarEmpleado(){
     this.router.navigate(['/agregar-empleados'])
   }
 
   cerrarSecion(){
+    localStorage.removeItem('UsuarioLogueado');
     this.router.navigate(['/home'])
   }
+
+  
   
   
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
-
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { LoginService } from './login.service';
+import { LoginI } from '../modelos/login.interface';
+import { ResponceI } from '../modelos/response.interface';
+
 //Importando Librerias
 
 
@@ -15,53 +17,72 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPage implements OnInit {
 
-  formularioLogin: FormGroup;
+
 
   constructor( public fb: FormBuilder, 
               public alertController: AlertController, 
               public navCtrl: NavController,
-              private auth: AuthService, private router: Router) { 
+              private Slogin: LoginService, 
+              private router: Router,
+              public alerta:AlertController) { }
 
-    this.formularioLogin = this.fb.group({
+alert;
+usuario: any = {
+  ROL_ADMIN: "",
+  CLAVE: "",
+              }
 
-      'email' : new FormControl("", Validators.required),
-      'password' : new FormControl("", Validators.required)
+  ngOnInit() {}
+
+  ingresar(){
+    this.Slogin.login(this.usuario.ROL_ADMIN, this.usuario.CLAVE).subscribe((res) =>{
+      console.log(res['msg']);
+      console.log(res['RUT_USUARIO']);
+
+      if(res['msg']){
+        let DataUser:any=res['RUT_USUARIO'];
+        this.Slogin.setCurrentUser(DataUser);
+        this.router.navigate(['/home'])
+        this.usuario.ROL_ADMIN= "admin";
+        this.usuario.CLAVE = "admin";
+      }else{
+        this.error("");
+        this.usuario.ROL_ADMIN = "admin";
+        this.usuario.CLAVE = "admin";
+      }
     })
 
   }
-
-
-  ngOnInit() {
+  async error(mensaje) {
+    this.alert = await this.alerta.create({
+     cssClass: 'my-custom-class',
+     header: 'Ingreso incorrecto',
+     subHeader: 'Vuelva a intentarlo',
+     message: mensaje,
+     buttons: ['Aceptar']
+   });
+  
+   await this.alert.present();
+  
   }
 
-  async ingresar(){
-    var f = this.formularioLogin.value;
+  showPassword = false;
 
-    var usuario = JSON.parse(localStorage.getItem('Usuario'));
+  mostrarContrasena(): void{
 
-    if(usuario.email == f.email && usuario.password == f.password){
-      console.log('Ingresado');
-      localStorage.setItem('ingresado','true');
-      this.navCtrl.navigateRoot('owner');
-    }else{
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Datos Incorrectos',
-        subHeader: '',
-        message: 'El email o contraseña Incorrecta',
-        buttons: ['Aceptar']
-      });
-  
-      await alert.present();
-  
-      return ;
-    }
+    this.showPassword = !this.showPassword;
   }
-
-
-
   
-
+  
+    
 }
+  
+  
+  
+
+
+  
+
+
 
 

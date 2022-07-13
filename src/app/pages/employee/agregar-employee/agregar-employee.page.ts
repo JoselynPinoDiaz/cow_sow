@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { EmployeeService } from '../employee.service';
-import { Empleado } from '../../modelos/employee.interface';
+
 
 @Component({
   selector: 'app-agregar-employee',
@@ -11,27 +11,60 @@ import { Empleado } from '../../modelos/employee.interface';
 })
 export class AgregarEmployeePage implements OnInit {
 
-  url = 'http://localhost:8201/TPUSUARIOS/'
+  usuario: any={
+      RUT_PERSONA:"",
+      PNOMBRE:"",
+      SNOMBRE:"",
+      PAPELLIDO:"",
+      SAPELLIDO:"",
+      FECHA_NACIMIENTO:"",
+      TIPO_USUARIO:"",
+      EMAIL:"",
+      CLAVE: "",
+      ID_PROPIEDAD:""
+  }
+
+  public propiedad = [];
 
   constructor(private serviEmpleado: EmployeeService,
               private router: Router,
               private alert: AlertController,) { }
 
-  ngOnInit() {}
-
-  agregarNuevoContacto(ID_TIPO_USUARIO,EMAIL, TIPO_USUARIO, DESCRIPCION){
-    const empleado : Empleado = {     
-      ID_TIPO_USUARIO: ID_TIPO_USUARIO.value,
-      EMAIL:EMAIL.value,
-      TIPO_USUARIO: TIPO_USUARIO.value,
-      DESCRIPCION: DESCRIPCION.value,
-      VISTAS: "0"
-    }
-    this.serviEmpleado.agregarEmpleado(empleado)
-    .subscribe(data =>{
-     this.router.navigate(['/employee'])
-    
-    })
+  ngOnInit() {
+    this.serviEmpleado.getPropiedad()
+    .subscribe( data =>{
+      this.propiedad = data
+    });
   }
 
-}
+  agregarEmpleado(){   
+     if (this.usuario.RUT_PERSONA==""){
+     }else if (this.usuario.PNOMBRE ==""){
+     }else if(this.usuario.SNOMBRE==""){
+    }else if (this.usuario.PAPELLIDO==""){
+    }else if(this.usuario.SAPELLIDO==""){
+    }else if (this.usuario.FECHA_NACIMIENTO==""){
+    }else if(this.usuario.TIPO_USUARIO==""){
+    }else if (this.usuario.EMAIL ==""){
+    }else if(this.usuario.CLAVE==""){
+    }else if(this.usuario.ID_PROPIEDAD==""){
+     }else{
+        this.serviEmpleado.postEmpleado(this.usuario.RUT_PERSONA,this.usuario.PNOMBRE,this.usuario.SNOMBRE,this.usuario.PAPELLIDO,this.usuario.SAPELLIDO,this.usuario.FECHA_NACIMIENTO,this.usuario.TIPO_USUARIO,this.usuario.EMAIL,this.usuario.CLAVE,this.usuario.ID_PROPIEDAD).subscribe((resultado)=>{
+          console.log(resultado);
+           this.router.navigate(['/employee'])
+           
+      });
+     }
+    }
+
+
+
+  }
+    
+    
+    
+    
+
+  
+
+

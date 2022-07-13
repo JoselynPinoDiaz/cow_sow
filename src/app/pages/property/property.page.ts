@@ -22,13 +22,13 @@ public propiedad = []
   }
 
   ionViewWillEnter(){
-    this.Sproperty.cargarpropiedad()
+    this.Sproperty.getPropiedad()
     .subscribe( data =>{
       this.propiedad = data
     })
   }
 
-  agregarPropiedad(){
+  crearPropiedad(){
     this.router.navigate(['/agregar-granja'])
   }
 

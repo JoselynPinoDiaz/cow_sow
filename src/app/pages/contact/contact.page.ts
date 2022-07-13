@@ -1,10 +1,10 @@
 import { Component, OnInit,Input} from '@angular/core';
 import { IonRouterOutlet, ModalController, NavController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
-
-import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
-import { DetalleContactoPage } from './detalle-contacto/detalle-contacto.page';
 import { ContactService } from './contact.service';
+import { ActivatedRoute } from '@angular/router';
+import { identity } from 'rxjs';
+import { CONTACTOS } from 'src/app/services/contacto-crud.service';
 
 
 
@@ -16,7 +16,7 @@ import { ContactService } from './contact.service';
 })
 export class ContactPage implements OnInit {
 
-public Lcontactos = [];
+Lcontactos = [];
   
 
 
@@ -24,7 +24,8 @@ public Lcontactos = [];
               public modalCtrl: ModalController, 
               public navCtrl: NavController,
               private routerOutlet: IonRouterOutlet,
-              private router: Router
+              private router: Router,
+              private activate: ActivatedRoute
              ) { }
 
    
@@ -37,6 +38,19 @@ public Lcontactos = [];
       this.Lcontactos = data
     });
   }
+
+ 
+ ////Trae todo los Contactos
+  getAllContactos(){
+    //get saved lista Lcontactos
+    this.Scontacto.cargarContactos().subscribe(res =>{
+      console.log(res);
+      this.Lcontactos = res;
+    })
+  }
+
+
+
 
   agregarContacto(){
     this.router.navigate(['/agregar-contactos'])

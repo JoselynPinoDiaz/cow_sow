@@ -20,19 +20,20 @@ export class DetalleWonPage implements OnInit {
               private activate: ActivatedRoute,
               private http: HttpClient) { }
 
-  ngOnInit() {
+            
+                ngOnInit() {
 
-    this.activate.paramMap.subscribe (p => {
-      //redireccionar
-      //var id= p.get('numero_serie');
-     // this.infoGanado = 
-      this.wonService.getnfoGanado(p.get('numero_serie'))
-      .subscribe(data => {
-        this.infoGanado = data;
-        //console.log(this.infoGanado)
-      })
-  })
-  }
+                  this.activate.paramMap.subscribe (p => {
+                    //redireccionar
+                    //var id= p.get('numero_serie');
+                   // this.infoGanado = 
+                    this.wonService.getinfoGanado(p.get('numero_serie'))
+                    .subscribe(data => {
+                      this.infoGanado = data;
+                      console.log(this.infoGanado)
+                    })
+                })
+                }
 
   eliminarGanado(){}
 

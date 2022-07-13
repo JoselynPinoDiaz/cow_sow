@@ -11,15 +11,14 @@ import { HttpClientModule} from '@angular/common/http';
 
 import { AuthService } from './services/auth.service';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { NgCalendarModule  } from 'ionic2-calendar';
-import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,IonicModule.forRoot(), 
-    AppRoutingModule, HttpClientModule
+    AppRoutingModule, HttpClientModule,ReactiveFormsModule, FormsModule
 
   ],  // se agrega HttpClientModule
   providers: [

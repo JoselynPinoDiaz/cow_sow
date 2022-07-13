@@ -14,16 +14,15 @@
 
 
 <ion-content fullscreen class="ion-padding">
-
   <ion-list>
-    <ion-item *ngFor="let e of Empleado" [routerLink]="['/employee', e.ID_TIPO_USUARIO]">
+    <ion-item *ngFor="let e of Empleado" [routerLink]="['/employee',e.RUT_PERSONA]">
       <ion-avatar slot="start">
         <ion-img src="../../../assets/icon/icons/EMPLEADO.png"></ion-img>
       </ion-avatar>
-      <ion-label>{{e.TIPO_USUARIO}}</ion-label>
+      <ion-label>{{e.RUT_PERSONA}}</ion-label>
     </ion-item>
   </ion-list>
-
+<footer>
   <ion-fab vertical="bottom" horizontal="end" class="createproperty">
     <ion-fab-button (click)="agregarEmpleado()">
       <ion-img src="../../../assets/icon/icons/EMPLEADO.png"></ion-img>
@@ -31,5 +30,5 @@
     </ion-fab-button>
     <ion-text>Crear Empleado</ion-text>
   </ion-fab>
-
+</footer>
 </ion-content>
