@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, map, retry } from 'rxjs/operators';
 import { AppModule } from 'api/src/app/app.module';
 
 
@@ -11,6 +11,10 @@ import { AppModule } from 'api/src/app/app.module';
 })
 export class ContactService {
   
+  
+  url = 'http://localhost:8201'
+
+
   contacto: any = {
     ID_CONTACTO:"",
     NOMBRE: "",
@@ -20,8 +24,7 @@ export class ContactService {
   }
 
 
-  
-  url = 'http://localhost:8201'
+  headers: HttpHeaders | { [header: string]: string | string[]; };
 
   constructor(private  http: HttpClient) { }
 
@@ -33,8 +36,16 @@ export class ContactService {
     )
   }
 
-  ContactosById(id): Observable<any>{
-    return this.http.get<any>(this.url + '/getContactoid', this.httpOptions)
+  getinfoContacto(): Observable<any>{
+    return this.http.get(this.url + '/getContacto')
+
+  }
+
+
+
+
+  ContactosById(ID_CONTACTO): Observable<any>{
+    return this.http.get<any>(this.url + '/getContacto' + ID_CONTACTO , this.httpOptions)
   .pipe(
     retry(2),
     catchError(this.handlError)
@@ -64,19 +75,33 @@ export class ContactService {
 
 
 //** METODO DELETE ELIMINAR CONTACTO */
-  deleteContacto(ID_CONTACTO){
-    this.contacto = this.http.delete<any>(this.url + '/delete/' + ID_CONTACTO, this.httpOptions)
-    .pipe(
-      retry(2),
-      catchError(this.handlError)
-    )
+ 
+  DeleteUser(ID_CONTACTO) {
+    const urls = "http://localhost:8201/deleteContacto/" + ID_CONTACTO;
+    return this.http.delete(urls).pipe(map(data => data));
   }
 
 
 
+    //TODO:UPDATE USER
+
+    UpdateContacto(NOMBRE: string,EMAIL: string,TELEFONO: number,DESCRIPCION: string) {
+      const url = "http://localhost:8201/updateContacto/:id";
+  
+      return this.http.put(
+        url,
+        {
+          "NOMBRE": NOMBRE,
+          "EMAIL": EMAIL,
+          "TELEFONO": TELEFONO,
+          "DESCRIPCION": DESCRIPCION
+  
+        },
+        { headers: this.headers }
+      ).pipe(map(data => data));
+    }
 
 
- 
 
 
 

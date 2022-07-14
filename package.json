@@ -33,6 +33,7 @@
     "@fullcalendar/angular": "^5.11.0",
     "@fullcalendar/daygrid": "^5.11.0",
     "@fullcalendar/interaction": "^5.11.0",
+    "@ionic-native/file": "^5.36.0",
     "@ionic/angular": "^6.1.6",
     "@ionic/cli": "^6.19.1",
     "body-parser": "^1.20.0",
@@ -56,6 +57,7 @@
     "sequelize": "^6.21.1",
     "sequelize-oracle": "^3.3.2-0.0",
     "tslib": "^2.2.0",
+    "update": "^0.7.4",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

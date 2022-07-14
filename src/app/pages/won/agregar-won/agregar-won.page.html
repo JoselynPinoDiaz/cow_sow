@@ -43,7 +43,7 @@
             <ion-input [(ngModel)] ="ganado.CRIAS" type="number" placeholder="Ingresar Crias"></ion-input>
           </ion-item>
           <ion-item class="input"  >
-            <ion-select  okText="Okay" cancelText="Cerrar" type="text" [(ngModel)] ="ganado.TIPO_PRODUCCION" placeholder="Selecione Tipo Producción" required>
+            <ion-select  okText="Okay" cancelText="Cerrar" type="submit" [(ngModel)] ="ganado.TIPO_PRODUCCION" placeholder="Selecione Tipo Producción" required>
               <ion-select-option value="Leche">Leche</ion-select-option>
               <ion-select-option value="Carne">Carne</ion-select-option>
               <ion-select-option value="Ambas">Ambas</ion-select-option>
@@ -72,18 +72,6 @@
           </ion-item>
           <ion-item class="input">
             <ion-input [(ngModel)] ="ganado.PRECIO_MEDICAMENTO" type="number" placeholder="Ingresar Precio Medicamento"></ion-input>
-          </ion-item>
-          <ion-item class="input">
-            <ion-label position="floating">Propiedad</ion-label>
-            <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] ="ganado.ID_PROPIEDAD">
-              <ion-select-option *ngFor="let p of propiedad">{{p.ID_PROPIEDAD}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item class="input">
-            <ion-label position="floating">Evento</ion-label>
-            <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] ="ganado.ID_EVENTO">
-              <ion-select-option *ngFor="let e of eventos ">{{e.ID_EVENTO}}</ion-select-option>
-            </ion-select>
           </ion-item>
           <div>
             <ion-button color="primary" (click)="crearGanado()">

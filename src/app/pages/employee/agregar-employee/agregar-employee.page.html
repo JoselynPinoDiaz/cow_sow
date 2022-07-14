@@ -43,12 +43,6 @@
           <ion-item class="input">
           <ion-input [(ngModel)] = "usuario.CLAVE" type="password" placeholder="Ingresar Password"  required></ion-input>
         </ion-item>
-        <ion-item class="input">
-          <ion-label position="floating">Propiedad</ion-label>
-          <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] = "usuario.ID_PROPIEDAD" >
-            <ion-select-option *ngFor="let p of propiedad">{{p.ID_PROPIEDAD}}</ion-select-option>
-          </ion-select>
-        </ion-item>
         <br>
         <div>
           <ion-button color="primary" (click)="agregarEmpleado()">

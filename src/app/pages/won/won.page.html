@@ -14,14 +14,26 @@
 
 <ion-content fullscreen class="ion-padding">
 
-  <ion-list>
-    <ion-item *ngFor="let ga of Ganado" [routerLink]="['/won', ga.NUMERO_SERIE]" >
+  <ion-item-sliding *ngFor="let ga of Ganado">
+    <ion-item [routerLink]="['/won', ga.NUMERO_SERIE]" > 
       <ion-avatar slot="start">
-        <ion-img src="../../../assets/icon/icons/ganado.png"></ion-img>
+        <ion-img src="../../../assets/icon/icons/animal.png"></ion-img>
       </ion-avatar>
-      <ion-label>{{ga.NUMERO_SERIE}}</ion-label>
+      <ion-label >
+        {{ga.NUMERO_SERIE}}
+      </ion-label>
     </ion-item>
-  </ion-list>
+    <ion-item-options>
+      <ion-item-option color="secondary" >
+        <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        Modificar
+      </ion-item-option>
+      <ion-item-option color="danger"(click)="deleteGanado(ga.NUMERO_SERIE)">
+        <ion-icon slot="top"  name="trash-outline" ></ion-icon>
+        Borrar
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
 
   <ion-fab vertical="bottom" horizontal="end" class="createwon">
     <ion-fab-button (click)="agregarGanado()">

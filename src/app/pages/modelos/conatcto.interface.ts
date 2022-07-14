@@ -3,14 +3,13 @@
 
 export interface Contacto
 {
-    id?: string,
-    nombre: string,
-    email: string,
-    telefono: number,
-    descripcion: string,
+    ID_CONTACTO: number,
+    NOMBRE: string,
+    EMAIL: string,
+    TELEFONO: number,
+    DESCRIPCION: string,
     
 
 
 }
-
 

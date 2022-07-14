@@ -68,7 +68,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/won/won.module').then( m => m.WonPageModule)
     },
     {
-      path: ":numero_serie", 
+      path: "won/:id", 
       loadChildren: () => import('./pages/won/detalle-won/detalle-won-routing.module').then(m => m.DetalleWonPageRoutingModule)
     }
     ]

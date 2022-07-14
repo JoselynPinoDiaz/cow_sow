@@ -19,22 +19,20 @@
       <ion-card *ngFor="let g of infoGanado">
         <ion-card-content >
           <ion-item>
-          <ion-label type="text">Nombre: {{g.NOMBRE_ANIMAL}}</ion-label>
+          <ion-label type="text">Tipo Animal: {{g.TIPO_ANIMAL}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label type="text">Peso Animal: {{g.PESO}}</ion-label>
+          <ion-label type="text">Raza: {{g.RAZA}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Peso: {{g.PESO}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Años Edad: {{g.ANOS_EDAD}}</ion-label>
         </ion-item>
         </ion-card-content>
-        <ion-buttons id="eli">
-          <ion-button (click)=" eliminarGanado()">
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-card>
-      
-    </ion-col>
-    
+      </ion-card>     
+    </ion-col>  
   </ion-row>
-
 </ion-content>
 

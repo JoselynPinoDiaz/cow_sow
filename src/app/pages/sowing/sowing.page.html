@@ -14,14 +14,27 @@
 
 <ion-content fullscreen class="ion-padding">
 
-  <ion-list>
-    <ion-item *ngFor="let si of siembra" [routerLink]="['/sowing', si.ID_SIEMBRA]">
+
+  <ion-item-sliding *ngFor="let si of siembra" >
+    <ion-item [routerLink]="['/sowing', si.ID_SIEMBRA]"> 
       <ion-avatar slot="start">
         <ion-img src="../../../assets/icon/icons/siembra.png"></ion-img>
       </ion-avatar>
-      <ion-label>{{si.ID_SIEMBRA}}</ion-label>
+      <ion-label >
+        {{si.ID_SIEMBRA}}
+      </ion-label>
     </ion-item>
-  </ion-list>
+    <ion-item-options>
+      <ion-item-option color="secondary" >
+        <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        Modificar
+      </ion-item-option>
+      <ion-item-option color="danger" (click)="deleteSiembras(si.ID_SIEMBRA)">
+        <ion-icon slot="top"  name="trash-outline" ></ion-icon>
+        Borrar
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
 
   <ion-fab vertical="bottom" horizontal="end" class="createsowing">
     <ion-fab-button (click)="agregarSiembra()">

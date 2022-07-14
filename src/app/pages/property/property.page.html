@@ -14,14 +14,26 @@
 
 <ion-content fullscreen class="ion-padding">
 
-  <ion-list>
-    <ion-item *ngFor="let pr of propiedad" [routerLink]="['/property', pr.ID_PROPIEDAD]">
+  <ion-item-sliding *ngFor="let pr of propiedad">
+    <ion-item [routerLink]="['/property', pr.ID_PROPIEDAD]"> 
       <ion-avatar slot="start">
         <ion-img src="../../../assets/icon/icons/granja.png"></ion-img>
       </ion-avatar>
-      <ion-label>{{pr.NOMBRE_PROPIEDAD}}</ion-label>
+      <ion-label >
+        {{pr.NOMBRE_PROPIEDAD}}
+      </ion-label>
     </ion-item>
-  </ion-list>
+    <ion-item-options>
+      <ion-item-option color="secondary" >
+        <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        Modificar
+      </ion-item-option>
+      <ion-item-option color="danger" >
+        <ion-icon slot="top"  name="trash-outline" ></ion-icon>
+        Borrar
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
 
   <ion-fab vertical="bottom" horizontal="end" class="createproperty" >
     <ion-fab-button (click)="crearPropiedad()">

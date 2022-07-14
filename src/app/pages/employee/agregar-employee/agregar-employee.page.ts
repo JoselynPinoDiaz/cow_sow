@@ -20,8 +20,7 @@ export class AgregarEmployeePage implements OnInit {
       FECHA_NACIMIENTO:"",
       TIPO_USUARIO:"",
       EMAIL:"",
-      CLAVE: "",
-      ID_PROPIEDAD:""
+      CLAVE: ""
   }
 
   public propiedad = [];
@@ -47,9 +46,8 @@ export class AgregarEmployeePage implements OnInit {
     }else if(this.usuario.TIPO_USUARIO==""){
     }else if (this.usuario.EMAIL ==""){
     }else if(this.usuario.CLAVE==""){
-    }else if(this.usuario.ID_PROPIEDAD==""){
      }else{
-        this.serviEmpleado.postEmpleado(this.usuario.RUT_PERSONA,this.usuario.PNOMBRE,this.usuario.SNOMBRE,this.usuario.PAPELLIDO,this.usuario.SAPELLIDO,this.usuario.FECHA_NACIMIENTO,this.usuario.TIPO_USUARIO,this.usuario.EMAIL,this.usuario.CLAVE,this.usuario.ID_PROPIEDAD).subscribe((resultado)=>{
+        this.serviEmpleado.postEmpleado(this.usuario.RUT_PERSONA,this.usuario.PNOMBRE,this.usuario.SNOMBRE,this.usuario.PAPELLIDO,this.usuario.SAPELLIDO,this.usuario.FECHA_NACIMIENTO,this.usuario.TIPO_USUARIO,this.usuario.EMAIL,this.usuario.CLAVE).subscribe((resultado)=>{
           console.log(resultado);
            this.router.navigate(['/employee'])
            

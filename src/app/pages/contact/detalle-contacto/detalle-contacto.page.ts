@@ -5,6 +5,7 @@ import { ContactService } from '../contact.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Contacto } from '../../modelos/conatcto.interface';
 
 
 
@@ -15,7 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class DetalleContactoPage implements OnInit {
 
-infoContacto: any = []
+infoContacto = []
 
 
 contacto: any = {
@@ -39,10 +40,10 @@ contacto: any = {
       //redireccionar
       //var id= p.get('numero_serie');
      // this.infoGanado = 
-      this.infoServi.ContactosById(p.get('ID_CONTACTO'))
+      this.infoServi.cargarContactos()
       .subscribe(data => {
         this.infoContacto= data;
-        console.log(this.infoContacto)
+        console.log(data)
       })
   })
 
@@ -52,10 +53,6 @@ contacto: any = {
 
 
 
-update(){
-  this.infoServi.updateContacto(this.contacto.ID_CONTACTO).subscribe(res=>{
-  })
-}
 
 
 

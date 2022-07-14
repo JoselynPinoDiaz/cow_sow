@@ -26,17 +26,20 @@
         {{co.NOMBRE}}
       </ion-label>
     </ion-item>
-    <ion-item-options>
-      <ion-item-option color="secondary" >
-        <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+    <div [routerLink]="['/contact/'+ co.ID_CONTACTO]">
+    <ion-item-options >
+      <ion-item-option color="secondary" (click)="presentAlert1()" >
+        <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical" ></ion-icon>
         Modificar
-      </ion-item-option>
-      <ion-item-option color="danger" >
+      </ion-item-option >
+      <ion-item-option color="danger" (click)="deleteContacto(co.ID_CONTACTO)"  >
         <ion-icon slot="top"  name="trash-outline" ></ion-icon>
         Borrar
       </ion-item-option>
     </ion-item-options>
+  </div>
   </ion-item-sliding>
+
 
 
   

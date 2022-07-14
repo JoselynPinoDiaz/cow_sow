@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError  } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class SowingService {
 
 
 //** METODO POST AGREGAR SIEMBRA */
-  agregarSiembra(TIPO_SIEMBRA,TIPO_FRU_VER,COLOR,VARIEDAD,CANTIDAD,METROS_OCUPADOS,FECHA,PRECIO_COMPRA,PRECIO_VENTA,FERTILIZANTE,PRECIO_FERTILIZANTE,FUMIGACION,PRECIO_FUMIGACION,ID_EVENTO,ID_PROPIEDAD): Observable<any>{
+  agregarSiembra(TIPO_SIEMBRA,TIPO_FRU_VER,COLOR,VARIEDAD,CANTIDAD,METROS_OCUPADOS,FECHA,PRECIO_COMPRA,PRECIO_VENTA,FERTILIZANTE,PRECIO_FERTILIZANTE,FUMIGACION,PRECIO_FUMIGACION): Observable<any>{
     return this.http.post<any>(this.url + '/postSiembra',{
       "TIPO_SIEMBRA":TIPO_SIEMBRA,
       "TIPO_FRU_VER":TIPO_FRU_VER,
@@ -50,15 +51,15 @@ export class SowingService {
       "FERTILIZANTE":FERTILIZANTE,
       "PRECIO_FERTILIZANTE":PRECIO_FERTILIZANTE,
       "FUMIGACION":FUMIGACION,
-      "PRECIO_FUMIGACION":PRECIO_FUMIGACION,
-      "ID_EVENTO":ID_EVENTO,
-      "ID_PROPIEDAD":ID_PROPIEDAD
+      "PRECIO_FUMIGACION":PRECIO_FUMIGACION
     });
 }
 
-  eliminarSiembra(ID_SIEMBRA: string): Observable<any>{
-    return this.http.delete(this.url+ID_SIEMBRA)
-
+  //** METODO DELETE ELIMINAR SIEMBRA */
+ 
+  DeleteSiembra(ID_SIEMBRA) {
+    const urls = "http://localhost:8201/deleteSiembra/" + ID_SIEMBRA;
+    return this.http.delete(urls).pipe(map(data => data));
   }
 
 }

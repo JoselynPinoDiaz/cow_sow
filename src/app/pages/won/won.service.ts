@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient,HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
 
 
 
@@ -31,17 +32,21 @@ export class WonService {
   
 //** METODO GET VISUALIZAR GANADO */
   ObtnerGanado(): Observable<any>{
-    return this.http.get<any>(this.url + '/getAnimal');
+    return this.http.get<any>(this.url + '/getGanado', this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handlError)
+    );
   }
   
-  getinfoGanado(_NUMERO_SERIE): Observable<any>{
+  getinfoGanado(NUMERO_SERIE): Observable<any>{
     return this.http.get(this.url)
 
   }
 
 
   //** METODO POST AGREGAR GANADO */
-  postGanado(NUMERO_SERIE,TIPO_ANIMAL,RAZA,PESO,ANOS_EDAD,MESES_EDAD,CRIAS,TIPO_PRODUCCION,FECHA,PRECIO_COMPRA,PRECIO_VENTA,VACUNA,PRECIO_VACUNA,ENFERMEDAD,MEDICAMENTO,PRECIO_MEDICAMENTO,ID_EVENTO,ID_PROPIEDAD): Observable<any>{
+  postGanado(NUMERO_SERIE,TIPO_ANIMAL,RAZA,PESO,ANOS_EDAD,MESES_EDAD,CRIAS,TIPO_PRODUCCION,FECHA,PRECIO_COMPRA,PRECIO_VENTA,VACUNA,PRECIO_VACUNA,ENFERMEDAD,MEDICAMENTO,PRECIO_MEDICAMENTO): Observable<any>{
     return this.http.post<any>(this.url + '/postGanado',{
         "NUMERO_SERIE":NUMERO_SERIE,
         "TIPO_ANIMAL":TIPO_ANIMAL,
@@ -58,20 +63,44 @@ export class WonService {
         "PRECIO_VACUNA":PRECIO_VACUNA,
         "ENFERMEDAD":ENFERMEDAD,
         "MEDICAMENTO":MEDICAMENTO,
-        "PRECIO_MEDICAMENTO":PRECIO_MEDICAMENTO,
-        "ID_EVENTO":ID_EVENTO,
-        "ID_PROPIEDAD":ID_PROPIEDAD
+        "PRECIO_MEDICAMENTO":PRECIO_MEDICAMENTO
     });
 }
 
 
 
-//** METODO DELETE ELIMINAR PROPIEDAD */
+//** METODO DELETE ELIMINAR GANADO */
 
-  eliminarGanado(_NUMERO_SERIE: string,_NOMBRE: string, _PESO: number ): Observable<any>{
-    return this.http.delete(this.url)
+DeleteGanado(NUMERO_SERIE) {
+  const urls = "http://localhost:8201/deleteGanado/" + NUMERO_SERIE;
+  return this.http.delete(urls).pipe(map(data => data));
+}
 
-  }
+
+  //** Http Options */
+httpOptions = {
+  headers: new HttpHeaders({
+    'Content-type': 'applitation/json'
+  })
+}
+
+
+/** Handle Api Error */
+handlError(error: HttpErrorResponse){
+  if (error.error instanceof ErrorEvent){
+    //A client-side or network ocurred
+    console.error('A Ocurrido un Error:' ,  error.error.message);
+  }else{
+    //the backend returned an unsuccessful response code
+    console.error(
+    `Backend return code${error.status}`+
+    `Body was: ${error.error}`);
+   }
+   //Return an Obsevable whith
+   return throwError(
+     'Something bad >happened; please try again later');
+};
+
 
  
 

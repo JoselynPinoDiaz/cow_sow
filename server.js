@@ -87,6 +87,9 @@ app.post('/postAdmin', function (req, res) {
     });
 });
 
+
+//** FINAL DE LOS  METODOS ADMINISTRADOR */
+
 //** METODO PROPIEDAD CRUD GET POST UPDATE DELETE */
  //**  Http method: GET */
 //**  GET a new PROPIEDAD */
@@ -190,8 +193,11 @@ app.post('/postPropiedad', function (req, res) {
 });
 
 
+//** FINAL DE LOS  METODOS PROPIEDAD */
+
 
 //** METODO EMPLEADO CRUD GET POST UPDATE DELETE */
+
 app.get('/getEmpleados', function (req, res) {
     "use strict";
   
@@ -294,9 +300,59 @@ app.post('/postEmpleado', function (req, res) {
     });
 });
 
+   // Http method: DELETE
+//** ELIMINAR UN  EMPLEADO */
+////-----------------METODOS DELETE FUNCIONA
+app.delete('/deleteEmpleado/:id', function (req, res,next) {
+    "use strict";
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM PERSONA where RUT_PERSONA =:id', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+
+//** FINAL DE LOS  METODOS EMPLEADOS */
+
+
 //** METODO GANADO CRUD GET POST UPDATE DELETE */
-///consulta GET tabla ANIMAL
-app.get('/getAnimal', function (req, res) {
+///consulta GET tabla GANADO
+app.get('/getGanado', function (req, res) {
     "use strict";
   
     oracledb.getConnection(connAttrs, function (err, connection) {
@@ -310,7 +366,7 @@ app.get('/getAnimal', function (req, res) {
             }));
             return;
         }
-        connection.execute("SELECT * FROM ANIMAL WHERE NUMERO_SERIE = NUMERO_SERIE", {}, {
+        connection.execute("SELECT * FROM ANIMAL ", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -343,7 +399,53 @@ app.get('/getAnimal', function (req, res) {
   });
 
 
-///consulta POST tabla ANIMAL
+
+app.get('/getGanadoId', function (req, res,next) {
+    "use strict";
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('SELECT * FROM ANIMAL where NUMERO_SERIE =:id', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+
+
+///consulta POST tabla GANADO
 app.post('/postGanado', function (req, res) {
     "use strict";
     
@@ -397,11 +499,60 @@ app.post('/postGanado', function (req, res) {
             });
     });
 });
+
+   // Http method: DELETE
+//** ELIMINAR UN  GANADO*/
+////-----------------METODOS DELETE FUNCIONA
+app.delete('/deleteGanado/:id', function (req, res,next) {
+    "use strict";
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM ANIMAL where NUMERO_SERIE =:id', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
   
+
+//** FINAL DE LOS  METODOS GANADO */
 
 
 //** METODO SIEMBRA CRUD GET POST UPDATE DELETE */
-///consulta get tabla region
+///consulta get tabla SIEMBRA
 app.get('/getSiembra', function (req, res) {
     "use strict";
   
@@ -450,7 +601,7 @@ app.get('/getSiembra', function (req, res) {
 
 
 
-///consulta POST tabla ANIMAL
+///consulta POST tabla sIEMBRA
 app.post('/postSiembra', function (req, res) {
     "use strict";
     
@@ -466,10 +617,10 @@ app.post('/postSiembra', function (req, res) {
             return;
         }
         connection.execute("INSERT INTO SIEMBRA VALUES " +
-            "(:ID_SIEMBRA,:TIPO_SIEMBRA,:TIPO_FRU_VER,:COLOR,:VARIEDAD,:CANTIDAD,:METROS_OCUPADOS,:FECHA,:PRECIO_COMPRA,:PRECIO_VENTA,:FERTILIZANTE,:PRECIO_FERTILIZANTE,:FUMIGACION,:PRECIO_FUMIGACION,:ID_EVENTO,:ID_PROPIEDAD) ",
+            "(:ID_SIEMBRA,:TIPO_SIEMBRA,:TIPO_FRU_VER,:COLOR,:VARIEDAD,:CANTIDAD,:METROS_OCUPADOS,:FECHA,:PRECIO_COMPRA,:PRECIO_VENTA,:FERTILIZANTE,:PRECIO_FERTILIZANTE,:FUMIGACION,:PRECIO_FUMIGACION) ",
               [req.body.ID_SIEMBRA, req.body.TIPO_SIEMBRA ,req.body.TIPO_FRU_VER,req.body.COLOR,req.body.VARIEDAD, req.body.CANTIDAD ,req.body.METROS_OCUPADOS,
                 req.body.FECHA,req.body.PRECIO_COMPRA , req.body.PRECIO_VENTA ,req.body.FERTILIZANTE,req.body.PRECIO_FERTILIZANTE, req.body.FUMIGACION,
-                req.body.PRECIO_FUMIGACION,req.body.ID_EVENTO, req.body.ID_PROPIEDAD], {
+                req.body.PRECIO_FUMIGACION], {
                                 
                 autoCommit: true,
                 outFormat: oracledb.OBJECT // Return the result as Object
@@ -504,8 +655,55 @@ app.post('/postSiembra', function (req, res) {
             });
     });
 });
-  
 
+   // Http method: DELETE
+//** ELIMINAR UN  SIEMBRE */
+////-----------------METODOS DELETE FUNCIONA
+app.delete('/deleteSiembra/:id', function (req, res,next) {
+    "use strict";
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM SIEMBRA where ID_SIEMBRA =:id', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+  
+//** FINAL DE LOS  METODOS SIEMBRA */
 
 //** METODO CONTACTO CRUD GET POST UPDATE DELETE */
 ///consulta get tabla CONTACTOS
@@ -523,7 +721,7 @@ app.get('/getContacto', function (req, res) {
             }));
             return;
         }
-        connection.execute("select * from CONTACTO", {}, {
+        connection.execute("select ID_CONTACTO, NOMBRE, EMAIL, TELEFONO, DESCRIPCION from CONTACTO WHERE ID_CONTACTO = ID_CONTACTO", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -556,7 +754,7 @@ app.get('/getContacto', function (req, res) {
   });
 
 ///consulta get tabla CONTACTOS Lista Contactos
-app.get('/getContactoid', function (req, res) {
+app.get('/getContactoid/', function (req, res) {
     "use strict";
   
     oracledb.getConnection(connAttrs, function (err, connection) {
@@ -657,6 +855,53 @@ app.post('/postContacto', function (req, res) {
     });
 });
 
+   // Http method: DELETE
+//** ELIMINAR UN  CONTACTO */
+////-----------------METODOS DELETE FUNCIONA
+app.delete('/deleteContacto/:id', function (req, res,next) {
+    "use strict";
+
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute('DELETE FROM CONTACTO where ID_CONTACTO =:id', [ req.params.id], {
+            outFormat: oracledb.OBJECT, // Return the result as Object
+            autoCommit:true
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+            }
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+
 
 //Http method: UPDATE
 //** ACTULIZAR UN NEW CONTACTO */
@@ -674,16 +919,13 @@ app.put('/update/:id', (req, res) => {
         });
     }).then(() => {
         res.status(200).json("User successfully updated! ID: "+ req.params.ID_CONTACTO);            
-    }).then(()=>{
-        if(connection){
-            connection.close();
-        }
+    
     }).catch((error)=>{
         res.status(500).json({ message: error.message || "Some error occurred!" });
     });
 });
 
-//UPDATE
+//UPDATE FUNCIONA
 app.put("/updateContacto/:id", async (req, res) => {
     const {ID_CONTACTO,NOMBRE, EMAIL,TELEFONO, DESCRIPCION} = req.body;
 
@@ -698,32 +940,15 @@ app.put("/updateContacto/:id", async (req, res) => {
         "TELEFONO":TELEFONO,
         "DESCRIPCION":DESCRIPCION
     });
+    
+
 })
 
-   // Http method: DELETE
-//** ELIMINAR UN  CONTACTO */
-app.delete('/delete/', (req, res) => {
-    oracledb.getConnection(connAttrs)
-    .then((c) => {
-        connection = c;
-        return connection.execute("DELETE FROM CONTACTO WHERE ID_CONTACTO = :ID_CONTACTO",
-        {
-            id : req.params.ID_CONTACTO
-        });
-    }).then(() => {
-        res.status(200).json("User successfully deleted!");           
-    }).then(()=>{
-        if(connection){
-            connection.close();
-        }
-    }).catch((error)=>{
-        res.status(500).json({ message: error.message || "Some error occurred!" });
-    });
-});
 
 
 
 
+//** FINAL DE LOS  METODOS CONTACTOS */
 
 
 
@@ -1263,51 +1488,7 @@ app.get('/TP_PROD_ANIMAL', function (req, res) {
       });
   });
 });
-////-----------------METODOS DELETE
-app.delete('/deleteContacto', function (req, res,next) {
-    "use strict";
 
-    oracledb.getConnection(connAttrs, function (err, connection) {
-        if (err) {
-            // Error connecting to DB
-            res.set('Content-Type', 'application/json');
-            res.status(500).send(JSON.stringify({
-                status: 500,
-                message: "Error en la conexión con DB",
-                detailed_message: err.message
-            }));
-            return;
-        }
-        connection.execute('DELETE FROM CONTACTO where ID_CONTACTO =: ID_CONTACTO', [ req.params.ID_CONTACTO], {
-            outFormat: oracledb.OBJECT, // Return the result as Object
-            autoCommit:true
-        }, function (err, result) {
-            if (err) {
-                res.set('Content-Type', 'application/json');
-                res.status(500).send(JSON.stringify({
-                    status: 500,
-                    message: "Error getting the dba_tablespaces",
-                    detailed_message: err.message
-                }));
-            } else {
-                res.header('Access-Control-Allow-Origin','*');
-                res.header('Access-Control-Allow-Headers','Content-Type');
-                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
-                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
-                res.send(JSON.stringify(result.rows));
-            }
-            doRelease(connection);
-            connection.release(
-                function (err) {
-                    if (err) {
-                        console.error(err.message);
-                    } else {
-                        console.log("GET /sendTablespace : Connection released");
-                    }
-                });
-        });
-    });
-  });
 //////--------------METODOS POST------------------///////////////////
 app.get('/addvacuna', function (req, res,next) {
   "use strict";
@@ -1379,44 +1560,15 @@ app.post('/addContacto', async (req, res) => {
     })
 
 
-//Router to DELETE a learner's detail
-app.delete('/deleteT', (req, res) => {
-    oracledb.getConnection(connAttrs)
-    .then((c) => {
-        connection = c;
-        return connection.execute("DELETE FROM CONTACTO WHERE ID_CONTACTO= :ID_CONTACTO",
-        {
-            id: req.params.ID_CONTACTO
-        });
-    }).then(() => {
-        res.status(200).json("User successfully deleted!");           
-    }).then(()=>{
-        if(connection){
-            connection.close();
-        }
-    }).catch((error)=>{
-        res.status(500).json({ message: error.message || "Some error occurred!" });
-    });
-});
 
 
-//DELETE
-app.delete("/deleteUser", async (req, res) => {
-    const { ID_CONTACTO } = req.params;
-
-    sql = "DELETE FROM CONTACTO  where ID_CONTACTO =:ID_CONTACTO";
-
-    await Open(sql, [ID_CONTACTO], false);
-
-    res.status[400].json({ "msg": "Usuario Eliminado" })
-})
 
 
 /////////////////////////////////////////////////////////////////
 // Http method: DELETE
 // URI        : /userprofiles/:USER_NAME
 // Delete the profile of user given in :USER_NAME
-app.delete('/user_profiles', function (req, res) {
+app.delete('/user_profiles/:ID', function (req, res) {
     "use strict";
 
     oracledb.getConnection(connAttrs, function (err, connection) {
@@ -1431,7 +1583,7 @@ app.delete('/user_profiles', function (req, res) {
             return;
         }
 
-        connection.execute("DELETE FROM CONTACTO  WHERE ID_CONTACTO =:ID_CONTACTO", [req.params.ID_CONTACTO], {
+        connection.execute("UPDATE FROM CONTACTO  WHERE ID_CONTACTO =:ID_CONTACTO", [req.params.ID_CONTACTO], {
             autoCommit: true,
             outFormat: oracledb.OBJECT
         }, function (err, result) {
@@ -1464,8 +1616,8 @@ app.delete('/user_profiles', function (req, res) {
 
 
 
-app.delete('/delete1/:id', function (req, res,next) {
-    var ID_CONTACTO = req.query.ID_CONTACTO;
+app.delete('/deleteco/:id', function (req, res,next) {
+    var id = req.query.CONTACTO;
       "use strict";
       oracledb.getConnection(connAttrs, function (err, connection) {
           if (err) {
@@ -1478,7 +1630,7 @@ app.delete('/delete1/:id', function (req, res,next) {
               }));
               return;
           }
-          connection.execute("DELETE FROM CONTACTO where ID_CONTACTO =: ID_CONTACTO", [ID_CONTACTO], {
+          connection.execute("DELETE FROM CONTACTO WHERE ID_CONTACTO =:id", [id], {
             autoCommit:true,
               outFormat: oracledb.OBJECT // Return the result as Object
 
@@ -1509,6 +1661,27 @@ app.delete('/delete1/:id', function (req, res,next) {
           });
       });
     });
+
+
+
+
+
+//DELETE fUNCIONA
+app.delete("/deleteUser/:id", async (req, res) => {
+    const { id} = req.params;
+
+    sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO =:id";
+
+    await Open(sql, [id], true);
+
+    res.json({ "msg": "Usuario Eliminado" })
+}); 
+
+//DELETE PROPIEDAD fUNCIONA
+
+
+
+
 
 
 

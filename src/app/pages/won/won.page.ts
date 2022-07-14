@@ -12,6 +12,8 @@ export class WonPage implements OnInit {
 
   public Ganado = []
 
+  ganados: any;
+
   constructor(public SwonService: WonService,
               public modalCtrl: ModalController, 
               public navCtrl: NavController,
@@ -29,6 +31,22 @@ export class WonPage implements OnInit {
   agregarGanado(){
     this.router.navigate(['/agregar-ganado'])
   }
+
+
+
+ //** METODO DELETE GANADO */ 
+
+  deleteGanado(NUMERO_SERIE){
+    this.SwonService.DeleteGanado(NUMERO_SERIE).subscribe((resultado)=>{
+      console.log(resultado);
+      this.ganados = resultado;
+      
+    })
+  }
+
+
+
+
 
 
   //*Cerrar Sesion

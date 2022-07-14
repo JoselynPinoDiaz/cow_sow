@@ -24,9 +24,7 @@ export class AgregarSowingPage implements OnInit {
     FERTILIZANTE:"",
     PRECIO_FERTILIZANTE:"",
     FUMIGACION:"",
-    PRECIO_FUMIGACION:"",
-    ID_EVENTO:"",
-    ID_PROPIEDAD:""
+    PRECIO_FUMIGACION:""
 }
 
 public propiedad = [];
@@ -63,12 +61,10 @@ public eventos = [];
       }else if (this.siembra.PRECIO_FERTILIZANTE==""){
       }else if (this.siembra.FUMIGACION==""){
       }else if (this.siembra.PRECIO_FUMIGACION==""){
-      }else if (this.siembra.ID_EVENTO==""){
-      }else if (this.siembra.ID_PROPIEDAD==""){
       }else {
         this.ServiSowing.agregarSiembra(this.siembra.TIPO_SIEMBRA,this.siembra.TIPO_FRU_VER,this.siembra.COLOR,this.siembra.VARIEDAD,
           this.siembra.CANTIDAD,this.siembra.METROS_OCUPADOS,this.siembra.FECHA,this.siembra.PRECIO_COMPRA,this.siembra.PRECIO_VENTA,
-          this.siembra.FERTILIZANTE,this.siembra.PRECIO_FERTILIZANTE,this.siembra.FUMIGACION,this.siembra.PRECIO_FUMIGACION,this.siembra.ID_EVENTO,this.siembra.ID_PROPIEDAD ).subscribe((resultado) => {  
+          this.siembra.FERTILIZANTE,this.siembra.PRECIO_FERTILIZANTE,this.siembra.FUMIGACION,this.siembra.PRECIO_FUMIGACION).subscribe((resultado) => {  
             console.log(resultado); 
           this.router.navigate(['/sowing']);
           

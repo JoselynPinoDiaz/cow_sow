@@ -30,9 +30,7 @@ ganado: any = {
     PRECIO_VACUNA:"",
     ENFERMEDAD:"",
     MEDICAMENTO:"",
-    PRECIO_MEDICAMENTO:"",
-    ID_EVENTO:"",
-    ID_PROPIEDAD:""
+    PRECIO_MEDICAMENTO:""
 }
 
 public propiedad = [];
@@ -80,13 +78,11 @@ public eventos = [];
     }else if (this.ganado.ENFERMEDAD==""){
     }else if (this.ganado.MEDICAMENTO==""){
     }else if (this.ganado.PRECIO_MEDICAMENTO==""){
-    }else if (this.ganado.ID_EVENTO==""){
-    }else if (this.ganado.ID_PROPIEDAD==""){
     }else {
       this.wonService.postGanado(this.ganado.NUMERO_SERIE,this.ganado.TIPO_ANIMAL,this.ganado.RAZA,this.ganado.PESO,this.ganado.ANOS_EDAD,
         this.ganado.MESES_EDAD,this.ganado.CRIAS,this.ganado.TIPO_PRODUCCION,this.ganado.FECHA,this.ganado.PRECIO_COMPRA,
         this.ganado.PRECIO_VENTA,this.ganado.VACUNA,this.ganado.PRECIO_VACUNA,this.ganado.ENFERMEDAD,this.ganado.MEDICAMENTO,
-        this.ganado.PRECIO_MEDICAMENTO,this.ganado.ID_EVENTO,this.ganado.ID_PROPIEDAD).subscribe((resultado) => {
+        this.ganado.PRECIO_MEDICAMENTO).subscribe((resultado) => {
           console.log(resultado);
         this.router.navigate(['/won']);
         

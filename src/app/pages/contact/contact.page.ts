@@ -1,10 +1,10 @@
 import { Component, OnInit,Input} from '@angular/core';
-import { IonRouterOutlet, ModalController, NavController, NavParams } from '@ionic/angular';
+import { AlertController, IonRouterOutlet, ModalController, NavController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ContactService } from './contact.service';
 import { ActivatedRoute } from '@angular/router';
 import { identity } from 'rxjs';
-import { CONTACTOS } from 'src/app/services/contacto-crud.service';
+
 
 
 
@@ -18,6 +18,7 @@ export class ContactPage implements OnInit {
 
 Lcontactos = [];
   
+usuario:any;
 
 
   constructor(public Scontacto: ContactService, 
@@ -25,7 +26,9 @@ Lcontactos = [];
               public navCtrl: NavController,
               private routerOutlet: IonRouterOutlet,
               private router: Router,
-              private activate: ActivatedRoute
+              private activate: ActivatedRoute,
+              private alertController: AlertController
+
              ) { }
 
    
@@ -40,15 +43,28 @@ Lcontactos = [];
   }
 
  
- ////Trae todo los Contactos
-  getAllContactos(){
-    //get saved lista Lcontactos
-    this.Scontacto.cargarContactos().subscribe(res =>{
-      console.log(res);
-      this.Lcontactos = res;
-    })
+actualiar(){}
+
+
+deleteUser(id) {
+  this.Scontacto.DeleteUser('id').subscribe((res: any[]) => {
+    console.log(res);
+    this.Lcontactos = res;
+  })
+}
+
+
+public  deleteContacto(ID_CONTACTO){
+    this.Scontacto.DeleteUser(ID_CONTACTO).subscribe((resultado)=>{
+      console.log(resultado);
+      this.usuario = resultado;
+      
+      
+    })  
   }
 
+
+  //*** */
 
 
 
@@ -60,7 +76,38 @@ Lcontactos = [];
     this.router.navigate(['/home'])
   }
 
+  
+  async presentAlert1() {
+    const alert = await this.alertController.create({
+      header: 'Please enter your info',
+      buttons: ['OK'],
+      inputs: [
+        {
+          placeholder: 'Name'
+        },
+        {
+          placeholder: 'Nickname (max 8 characters)',
+          attributes: {
+            maxlength: 8
+          }
+        },
+        {
+          type: 'number',
+          placeholder: 'Age',
+          min: 1,
+          max: 100
+        },
+        {
+          type: 'textarea',
+          placeholder: 'A little about yourself'
+        }
+      ]
+    });
 
+    await alert.present();
+  }
+
+ 
 
 }
 
