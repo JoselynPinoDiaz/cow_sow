@@ -24,15 +24,17 @@ export class AgregarSowingPage implements OnInit {
     FERTILIZANTE:"",
     PRECIO_FERTILIZANTE:"",
     FUMIGACION:"",
-    PRECIO_FUMIGACION:""
+    PRECIO_FUMIGACION:"",
+    ID_PROPIEDAD:""
 }
 
 public propiedad = [];
 public eventos = [];
+alert:any;
 
   constructor(private ServiSowing: SowingService,
               private router: Router,
-              private alert: AlertController,) { }
+              private alertController: AlertController,) { }
 
   ngOnInit() {
     this.ServiSowing.cargarPropiedad()
@@ -61,16 +63,28 @@ public eventos = [];
       }else if (this.siembra.PRECIO_FERTILIZANTE==""){
       }else if (this.siembra.FUMIGACION==""){
       }else if (this.siembra.PRECIO_FUMIGACION==""){
+      }else if (this.siembra.ID_PROPIEDAD==""){
       }else {
         this.ServiSowing.agregarSiembra(this.siembra.TIPO_SIEMBRA,this.siembra.TIPO_FRU_VER,this.siembra.COLOR,this.siembra.VARIEDAD,
           this.siembra.CANTIDAD,this.siembra.METROS_OCUPADOS,this.siembra.FECHA,this.siembra.PRECIO_COMPRA,this.siembra.PRECIO_VENTA,
-          this.siembra.FERTILIZANTE,this.siembra.PRECIO_FERTILIZANTE,this.siembra.FUMIGACION,this.siembra.PRECIO_FUMIGACION).subscribe((resultado) => {  
-            console.log(resultado); 
+          this.siembra.FERTILIZANTE,this.siembra.PRECIO_FERTILIZANTE,this.siembra.FUMIGACION,this.siembra.PRECIO_FUMIGACION,this.siembra.ID_PROPIEDAD).subscribe((resultado) => {  
+          console.log(resultado); 
           this.router.navigate(['/sowing']);
-          
+          this.presentAlert("");
       });
     }
   }
+  async presentAlert(mensaje) {
+    this.alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Siembra Creada Correctamente',
+      message: mensaje,
+      buttons: ['Aceptar']
+    });
+    await this.alert.present();
+  }
+
+
 
   cerrarSecion(){
     this.router.navigate(['/home'])

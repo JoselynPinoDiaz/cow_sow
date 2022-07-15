@@ -19,16 +19,49 @@
       <ion-card *ngFor="let g of infoGanado">
         <ion-card-content >
           <ion-item>
+          <ion-label type="text">Numero Serie: {{g.NUMERO_SERIE}}</ion-label>
+        </ion-item>
+        <ion-item>
           <ion-label type="text">Tipo Animal: {{g.TIPO_ANIMAL}}</ion-label>
         </ion-item>
         <ion-item>
           <ion-label type="text">Raza: {{g.RAZA}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label type="text">Peso: {{g.PESO}}</ion-label>
+          <ion-label type="text">Años Edad: {{g.ANOS_EDAD}} año y {{g.MESES_EDAD}} Meses</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label type="text">Años Edad: {{g.ANOS_EDAD}}</ion-label>
+          <ion-label type="text">Tipo Animal: {{g.MESES_EDAD}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Cantidad: {{g.CRIAS}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Tipo Producción: {{g.TIPO_PRODUCCION}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Fecha: {{g.FECHA}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Precio Compra: {{g.PRECIO_COMPRA}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Precio Venta: {{g.PRECIO_VENTA}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Vacuna: {{g.VACUNA}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Precio Vacuna: {{g.PRECIO_VACUNA}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Enfermedad: {{g.ENFERMEDAD}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Medicamento: {{g.MEDICAMENTO}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label type="text">Precio Del Medicamento: {{g.PRECIO_MEDICAMENTO}}</ion-label>
         </ion-item>
         </ion-card-content>
       </ion-card>     

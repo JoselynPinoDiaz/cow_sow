@@ -3,8 +3,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
-import { LoginI } from '../modelos/login.interface';
-import { ResponceI } from '../modelos/response.interface';
+import {GoogleAuth} from '@codetrix-studio/capacitor-google-auth';
+import { isPlatform } from '@ionic/angular';
+
+
+
 
 //Importando Librerias
 
@@ -17,53 +20,50 @@ import { ResponceI } from '../modelos/response.interface';
 })
 export class LoginPage implements OnInit {
 
+  formularioLogin: FormGroup;
 
+  constructor(public fb: FormBuilder,
+    public alertController: AlertController,
+    public navCtrl: NavController,
+    private Slogin: LoginService,
+    private router: Router,
+    public alerta: AlertController) {
+      this.formularioLogin = this.fb.group({
 
-  constructor( public fb: FormBuilder, 
-              public alertController: AlertController, 
-              public navCtrl: NavController,
-              private Slogin: LoginService, 
-              private router: Router,
-              public alerta:AlertController) { }
-
-alert;
-usuario: any = {
-  ROL_ADMIN: "",
-  CLAVE: "",
-              }
-
-  ngOnInit() {}
-
-  ingresar(){
-    this.Slogin.login(this.usuario.ROL_ADMIN, this.usuario.CLAVE).subscribe((res) =>{
-      console.log(res['msg']);
-      console.log(res['RUT_USUARIO']);
-
-      if(res['msg']){
-        let DataUser:any=res['RUT_USUARIO'];
-        this.Slogin.setCurrentUser(DataUser);
-        this.router.navigate(['/home'])
-        this.usuario.ROL_ADMIN= "admin";
-        this.usuario.CLAVE = "admin";
-      }else{
-        this.error("");
-        this.usuario.ROL_ADMIN = "admin";
-        this.usuario.CLAVE = "admin";
-      }
-    })
-
-  }
-  async error(mensaje) {
-    this.alert = await this.alerta.create({
-     cssClass: 'my-custom-class',
-     header: 'Ingreso incorrecto',
-     subHeader: 'Vuelva a intentarlo',
-     message: mensaje,
-     buttons: ['Aceptar']
-   });
+        'RUT_ADMIN' : new FormControl("", Validators.required),
+        'CLAVE' : new FormControl("", Validators.required)
+      })
   
-   await this.alert.present();
+    }
+    
+
+
+
+  ngOnInit() { }
+
+
+  async ingresar(){
+    var f = this.formularioLogin.value;
+
+    var usuario = JSON.parse(localStorage.getItem('Administrador'));
+
+    if(usuario.RUT_ADMIN == f.RUT_ADMIN && usuario.CLAVE == f.CLAVE){
+      console.log('Ingresado');
+      localStorage.setItem('ingresado','true');
+      this.navCtrl.navigateRoot('owner');
+    }else{
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Datos Incorrectos',
+        subHeader: '',
+        message: 'El Email o Contraseña Incorrecta',
+        buttons: ['Aceptar']
+      });
   
+      await alert.present();
+  
+      return ;
+    }
   }
 
   showPassword = false;
@@ -72,16 +72,21 @@ usuario: any = {
 
     this.showPassword = !this.showPassword;
   }
-  
-  
-    
+
+
+
+
+
+
+
+
 }
-  
-  
-  
 
 
-  
+
+
+
+
 
 
 

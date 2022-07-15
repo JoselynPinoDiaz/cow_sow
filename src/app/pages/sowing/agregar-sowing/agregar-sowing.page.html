@@ -17,21 +17,15 @@
     <ion-col>
       <ion-card>
         <ion-card-content>
+          
           <ion-item class="input">
-            <ion-select  okText="Okay" cancelText="Cerrar" type="text" [(ngModel)] ="siembra.TIPO_SIEMBRA" placeholder="Selecione Tipo Siembra" required >
-              <ion-select-option value="Fruta">Fruta</ion-select-option>
-              <ion-select-option value="Verdura">Verdura</ion-select-option>
-            </ion-select>
+            <ion-input [(ngModel)] ="siembra.TIPO_SIEMBRA" type="text" placeholder="Selecione Tipo Siembra" required></ion-input>
           </ion-item>
           <ion-item class="input">
-            <ion-select  okText="Okay" cancelText="Cerrar" type="text" [(ngModel)] ="siembra.TIPO_FRU_VER" placeholder="Selecione Tipo Verdura o Fruta" required >
-              <ion-select-option value="Manzana">Manzana</ion-select-option>
-              <ion-select-option value="Pera">Pera</ion-select-option>
-              <ion-select-option value="Brokoli">Brokoli</ion-select-option>
-            </ion-select>
+            <ion-input [(ngModel)] ="siembra.TIPO_FRU_VER" type="text"  placeholder="Selecione Tipo Verdura o Fruta" required></ion-input>
           </ion-item>
           <ion-item class="input">
-            <ion-input [(ngModel)] ="siembra.COLOR" type="text" placeholder="Ingresar Color" required></ion-input>
+            <ion-input [(ngModel)] ="siembra.COLOR" type="text" placeholder="Ingresar Color" ></ion-input>
           </ion-item>
           <ion-item class="input">
             <ion-input [(ngModel)] ="siembra.VARIEDAD" type="text" placeholder="Ingresar Variedad" required></ion-input>
@@ -46,7 +40,7 @@
             <ion-input [(ngModel)] ="siembra.FECHA" type="text" placeholder="Ingresar Fecha 12/04/2022"></ion-input>
           </ion-item>
           <ion-item class="input">
-            <ion-input [(ngModel)] ="siembra.PRECIO_COMPRA" type="number" placeholder="Ingresar Precio Compra"></ion-input>
+            <ion-input [(ngModel)] ="siembra.PRECIO_COMPRA" type="number" placeholder="Ingresar Precio Compra" required></ion-input>
           </ion-item>
           <ion-item class="input">
             <ion-input [(ngModel)] ="siembra.PRECIO_VENTA" type="number" placeholder="Ingresar Precio Venta" ></ion-input>
@@ -61,8 +55,11 @@
             <ion-input [(ngModel)] ="siembra.FUMIGACION" type="text" placeholder="Ingresar Fumigacion" ></ion-input>
           </ion-item>
           <ion-item class="input">
-            <ion-input [(ngModel)] ="siembra.PRECIO_FUMIGACION" type="text" placeholder="Ingresar Precio Fumigacion"></ion-input>
+            <ion-input [(ngModel)] ="siembra.PRECIO_FUMIGACION" type="number" placeholder="Ingresar Precio Fumigacion"></ion-input>
           </ion-item>
+          <ion-select  okText="Listo" cancelText="Cerrar" [(ngModel)] ="siembra.ID_PROPIEDAD" placeholder="Propiedad" required>
+            <ion-select-option type="number" *ngFor="let p of propiedad">{{p.ID_PROPIEDAD}}</ion-select-option>
+          </ion-select>
           <div>
           <ion-button color="primary" (click)="postSiembra()">
             Agregar Siembra

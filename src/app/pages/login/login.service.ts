@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from '../modelos/users.interface';
 
 
 @Injectable({
@@ -9,21 +10,23 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  url = 'http://localhost:8201/';
+  url = 'http://localhost:8201';
 
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(RUT_USUARIO, PASSWORD_USUARIO){
-    return this.http.post(this.url + 'LOGIN', { 
-    "RUT_USUARIO": RUT_USUARIO,
-    "PASSWORD_USUARIO": PASSWORD_USUARIO})
+
+
+  login(RUT_PERSONA, CLAVE){
+    return this.http.post(this.http + 'loginEmpleado', { 
+    "RUT_PERSONA": RUT_PERSONA,
+    "CLAVE": CLAVE})
 
   }
-
-  loginAdmin(ROL_ADMIN, CLAVE){
-    return this.http.post(this.url + 'LOGIN', { 
-    "ROL_ADMIN": ROL_ADMIN,
+ 
+  loginAdmin(RUT_ADMIN, CLAVE){
+    return this.http.post(this.url + 'loginAdmin', { 
+    "RUT_ADMIN": RUT_ADMIN,
     "CLAVE": CLAVE})
 
   }
@@ -43,5 +46,7 @@ export class LoginService {
     }else{
       return null;
     }
+  
   }
+
 }

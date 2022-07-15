@@ -30,15 +30,16 @@ ganado: any = {
     PRECIO_VACUNA:"",
     ENFERMEDAD:"",
     MEDICAMENTO:"",
-    PRECIO_MEDICAMENTO:""
+    PRECIO_MEDICAMENTO:"",
+    ID_PROPIEDAD:""
 }
 
 public propiedad = [];
-public eventos = [];
+
 
   constructor(private wonService: WonService,
               private router: Router,
-              private alerta: AlertController,
+              private alertController: AlertController,
               public navCtrl: NavController) { }
 
   ngOnInit() { 
@@ -47,10 +48,6 @@ public eventos = [];
       this.propiedad = data
     });
 
-    this.wonService.cargarEvento()
-    .subscribe( data =>{
-      this.eventos = data
-    });
   }
 
 /**  METODO CERRAR SESION*/ 
@@ -78,20 +75,29 @@ public eventos = [];
     }else if (this.ganado.ENFERMEDAD==""){
     }else if (this.ganado.MEDICAMENTO==""){
     }else if (this.ganado.PRECIO_MEDICAMENTO==""){
+    }else if (this.ganado.ID_PROPIEDAD==""){ 
     }else {
       this.wonService.postGanado(this.ganado.NUMERO_SERIE,this.ganado.TIPO_ANIMAL,this.ganado.RAZA,this.ganado.PESO,this.ganado.ANOS_EDAD,
         this.ganado.MESES_EDAD,this.ganado.CRIAS,this.ganado.TIPO_PRODUCCION,this.ganado.FECHA,this.ganado.PRECIO_COMPRA,
         this.ganado.PRECIO_VENTA,this.ganado.VACUNA,this.ganado.PRECIO_VACUNA,this.ganado.ENFERMEDAD,this.ganado.MEDICAMENTO,
-        this.ganado.PRECIO_MEDICAMENTO).subscribe((resultado) => {
-          console.log(resultado);
+        this.ganado.PRECIO_MEDICAMENTO,this.ganado.ID_PROPIEDAD).subscribe((resultado) => {
+        console.log(resultado);         
+        this.presentAlert("");
         this.router.navigate(['/won']);
+        
         
     });
   }
 }
-
-
-
+async presentAlert(mensaje) {
+  this.alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Ganado Creado Correctamente',
+    message: mensaje,
+    buttons: ['Aceptar']
+  });
+  await this.alert.present();
+}
 
 
 

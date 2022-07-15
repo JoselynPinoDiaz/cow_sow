@@ -20,12 +20,9 @@
           <ion-item class="input">
             <ion-input [(ngModel)] ="ganado.NUMERO_SERIE" type="number" placeholder="Ingresar Numero Serie" required></ion-input>
           </ion-item>
+
           <ion-item class="input">
-            <ion-select  okText="Okay" cancelText="Cerrar"  [(ngModel)] ="ganado.TIPO_ANIMAL" placeholder="Selecione Tipo Ganado" required>
-              <ion-select-option value="Cerdo">Cerdo</ion-select-option>
-              <ion-select-option value="Vaca">Vaca</ion-select-option>
-              <ion-select-option value="Oveja">Oveja</ion-select-option>
-            </ion-select>
+            <ion-input [(ngModel)] ="ganado.TIPO_ANIMAL" placeholder="Selecione Tipo Ganado"  required></ion-input>
           </ion-item>
           <ion-item class="input">
             <ion-input [(ngModel)]  ="ganado.RAZA" type="text" placeholder="Ingresar Raza" required></ion-input>
@@ -42,13 +39,11 @@
           <ion-item class="input">
             <ion-input [(ngModel)] ="ganado.CRIAS" type="number" placeholder="Ingresar Crias"></ion-input>
           </ion-item>
-          <ion-item class="input"  >
-            <ion-select  okText="Okay" cancelText="Cerrar" type="submit" [(ngModel)] ="ganado.TIPO_PRODUCCION" placeholder="Selecione Tipo Producción" required>
-              <ion-select-option value="Leche">Leche</ion-select-option>
-              <ion-select-option value="Carne">Carne</ion-select-option>
-              <ion-select-option value="Ambas">Ambas</ion-select-option>
-            </ion-select>
-          </ion-item>
+         
+            <ion-item class="input">
+              <ion-input [(ngModel)] ="ganado.TIPO_PRODUCCION" type="text" placeholder="Tipo Producción"></ion-input>
+            </ion-item>
+
           <ion-item class="input">
             <ion-input [(ngModel)] ="ganado.FECHA" type="text" placeholder="Ingresar Fecha 16/04/2020" required></ion-input>
           </ion-item>
@@ -73,6 +68,9 @@
           <ion-item class="input">
             <ion-input [(ngModel)] ="ganado.PRECIO_MEDICAMENTO" type="number" placeholder="Ingresar Precio Medicamento"></ion-input>
           </ion-item>
+          <ion-select type="submit" okText="Listo" cancelText="Cerrar" [(ngModel)] ="ganado.ID_PROPIEDAD" placeholder="Propiedad">
+            <ion-select-option type="number" *ngFor="let p of propiedad">{{p.ID_PROPIEDAD}}</ion-select-option>
+          </ion-select>
           <div>
             <ion-button color="primary" (click)="crearGanado()">
               Crear Ganado

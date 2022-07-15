@@ -27,30 +27,31 @@ getEmpleados(): Observable<any>{
 }
 
 getInfoEmpleados(ID_TIPO_USUARIO: string): Observable<any>{
-  return this.http.get(this.url  )
+  return this.http.get(this.url + '/getEmpleados' )
 }
 
 
   //**Metodo POST AGREGAR EMPLEADO */
 
-postEmpleado(RUT_PERSONA,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,FECHA_NACIMIENTO,TIPO_USUARIO,EMAIL,CLAVE){
+postEmpleado(RUT,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,ROL_USUARIO,EMAIL,CLAVE,ID_PROPIEDAD){
   return this.http.post<any>(this.url + '/postEmpleado',{
-      "RUT_PERSONA":RUT_PERSONA,
+
+      "RUT":RUT,
       "PNOMBRE":PNOMBRE,
       "SNOMBRE":SNOMBRE,
       "PAPELLIDO":PAPELLIDO,
       "SAPELLIDO":SAPELLIDO,
-      "FECHA_NACIMIENTO":FECHA_NACIMIENTO,
-      "TIPO_USUARIO":TIPO_USUARIO,
+      "ROL_USUARIO":ROL_USUARIO,
       "EMAIL":EMAIL,
-      "CLAVE": CLAVE
+      "CLAVE": CLAVE,
+      "ID_PROPIEDAD":ID_PROPIEDAD
      });
   }
 
 
 
-  DeletePersona(RUT_PERSONA) {
-    const urls = "http://localhost:8201/deleteEmpleado/" + RUT_PERSONA;
+  DeletePersona(RUT) {
+    const urls = "http://localhost:8201/deleteEmpleado/" + RUT;
     return this.http.delete(urls).pipe(map(data => data));
   }
 

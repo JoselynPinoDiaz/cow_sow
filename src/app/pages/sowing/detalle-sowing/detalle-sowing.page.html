@@ -16,20 +16,48 @@
   
   <ion-row>
     <ion-col>
-      <ion-card>
-        <ion-card-content *ngFor="let s of infoSiembra">
+      <ion-card *ngFor="let s of infoSiembra">
+        <ion-card-content >
           <ion-item>
             <ion-label type="text">Tipo Siembra: {{s.TIPO_SIEMBRA}}</ion-label>
           </ion-item>
           <ion-item>
-            <ion-label type="text">Descripción: {{s.DESCRIPCION}}</ion-label>
+            <ion-label type="text">Tipo Frutas o Verduras: {{s.TIPO_FRU_VER}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Color: {{s.COLOR}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Variedad: {{s.VARIEDAD}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Cantidad: {{s.CANTIDAD}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Metros Cuadrados: {{s.METROS_OCUPADOS}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Fecha: {{s.FECHA}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Precio Compra: {{s.PRECIO_COMPRA}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Precio Venta: {{s.PRECIO_VENTA}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Fertilizante: {{s.FERTILIZANTE}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Precio Fertilizante: {{s.PRECIO_FERTILIZANTE}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Fumigación: {{s.FUMIGACION}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label type="text">Precio Fumigación: {{s.PRECIO_FUMIGACION}}</ion-label>
           </ion-item>
         </ion-card-content>
-        <ion-buttons id="eli">
-          <ion-button (click)=" eliminarSiembra()">
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
       </ion-card>     
     </ion-col>   
   </ion-row>

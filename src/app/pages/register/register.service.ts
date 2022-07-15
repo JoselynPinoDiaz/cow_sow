@@ -9,23 +9,22 @@ export class RegisterService {
 
   url = 'http://localhost:8201'
 
-  constructor(private  http: HttpClient) { }
+  constructor(private  http: HttpClient) { 
+    
+  }
 
-  postAdmin(RUT_ADMIN,ROL_ADMIN,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,EMAIL,CLAVE,FECHA_NACIMIENTO,COMUNA_ID,REGION_ID,PAIS_ID): Observable<any>{
+  postAdmin(ID_ADMIN,ROL_ADMIN,RUT_ADMIN,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,EMAIL,CLAVE): Observable<any>{
     return this.http.post<any>(this.url + '/postAdmin',{
-        
-        "RUT_ADMIN":RUT_ADMIN,
+        "ID_ADMIN":ID_ADMIN,
         "ROL_ADMIN":ROL_ADMIN,
+        "RUT_ADMIN":RUT_ADMIN,
         "PNOMBRE":PNOMBRE,
         "SNOMBRE":SNOMBRE,
         "PAPELLIDO":PAPELLIDO,
         "SAPELLIDO":SAPELLIDO,
         "EMAIL":EMAIL,
-        "CLAVE":CLAVE,
-        "FECHA_NACIMIENTO":FECHA_NACIMIENTO,
-        "COMUNA_ID":COMUNA_ID,
-        "REGION_ID":REGION_ID,
-        "PAIS_ID":PAIS_ID
+        "CLAVE":CLAVE
+
     });
 }
 

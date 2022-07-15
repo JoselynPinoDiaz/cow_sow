@@ -3,6 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 /** Importamos Librerias a utilizar */
 import { AuthGuard } from './guards/auth.guard';
+import { IngresadoGuard } from './guards/ingresado.guard';
+import { NoIngresadoGuard } from './guards/no-ingresado.guard';
 
 
 
@@ -22,11 +24,11 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule),
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule),
   },
   {
     path: 'owner',

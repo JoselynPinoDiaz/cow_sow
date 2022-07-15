@@ -27,7 +27,7 @@ export class PropertyService {
 
 
   infoPropiedad(ID_PROPIEDAD: string): Observable<any>{
-    return this.http.get<any>(this.url)
+    return this.http.get<any>(this.url+'/GetPropiedad')
 
   }
 

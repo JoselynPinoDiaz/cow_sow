@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/owner"></ion-back-button>
     </ion-buttons>
@@ -17,12 +17,12 @@
 
 
   <ion-item-sliding *ngFor="let e of Empleado">
-    <ion-item [routerLink]="['/employee',e.RUT_PERSONA]"> 
+    <ion-item [routerLink]="['/employee',e.RUT]"> 
       <ion-avatar slot="start">
         <ion-img src="../../../assets/icon/icons/EMPLEADO.png"></ion-img>
       </ion-avatar>
       <ion-label >
-        {{e.RUT_PERSONA}}
+        {{e.RUT}}
       </ion-label>
     </ion-item>
     <ion-item-options>
@@ -30,7 +30,7 @@
         <ion-icon slot="top" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
         Modificar
       </ion-item-option>
-      <ion-item-option color="danger" (click)="deleteEmpleado(e.RUT_PERSONA)">
+      <ion-item-option color="danger" (click)="deleteEmpleado(e.RUT)">
         <ion-icon slot="top"  name="trash-outline" ></ion-icon>
         Borrar
       </ion-item-option>

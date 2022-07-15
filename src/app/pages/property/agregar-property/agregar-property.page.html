@@ -28,10 +28,10 @@
             <ion-input [(ngModel)] = "propiedad.HECTAREAS" type="number" placeholder="Ingresar Numero Hectareas" required>
             </ion-input>
           </ion-item>
-          <ion-item class="input">
+          <ion-item class="input" >
             <ion-label position="floating">Comuna</ion-label>
             <ion-select okText="OK" cancelText="Cerrar" [(ngModel)] = "propiedad.ID_COMUNA" >
-              <ion-select-option *ngFor="let c of comuna">{{c.ID_COMUNA}}</ion-select-option>
+              <ion-select-option *ngFor="let c of comuna" >{{c.ID_COMUNA}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-button color="primary" (click)="agregarPropiedad()">

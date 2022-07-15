@@ -11,6 +11,7 @@ import { ContactService } from '../contact.service';
 })
 export class AgregarContactosPage implements OnInit {
 
+  alert:any;
 
   contacto: any = {
     NOMBRE: "",
@@ -22,7 +23,7 @@ export class AgregarContactosPage implements OnInit {
 
   constructor(private serviContacto: ContactService,
     private router: Router,
-    private alert: AlertController,) { }
+    private alertController: AlertController,) { }
 
   ngOnInit() { }
 
@@ -34,15 +35,30 @@ export class AgregarContactosPage implements OnInit {
       }else if(this.contacto.DESCRIPCION==""){
       }else{
         this.serviContacto.crearContacto(this.contacto.NOMBRE,this.contacto.EMAIL,this.contacto.TELEFONO,this.contacto.DESCRIPCION).subscribe((resultado)=> {
+          localStorage.setItem('Contacto', JSON.stringify(this.contacto));
+          this.presentAlert("");
           this.router.navigate(['/contact']);
           console.log(resultado);
         });
       }
   }
 
-  cerrarSecion() {
-    this.router.navigate(['/home'])
-  }
+ 
+
+async presentAlert(mensaje) {
+  this.alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Contacto Creado Correctamente',
+    message: mensaje,
+    buttons: ['Aceptar']
+  });
+  await this.alert.present();
+}
+
+cerrarSecion() {
+  this.router.navigate(['/home'])
+}
+
 
 
 

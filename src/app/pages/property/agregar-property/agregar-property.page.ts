@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonRouterOutlet, NavController } from '@ionic/angular';
+import { AlertController, IonRouterOutlet, NavController } from '@ionic/angular';
 import { PropertyService } from '../property.service';
 
 @Component({
@@ -17,12 +17,15 @@ export class AgregarPropertyPage implements OnInit {
     ID_COMUNA:""
   }
 
+  propiedades: [];
+  alert:any;
   public comuna = [];
 
   constructor(public navCtrl: NavController,
     public serviPropiedad : PropertyService,
     private routerOutlet: IonRouterOutlet,
-    private router: Router) { }
+    private router: Router,
+    private alertController: AlertController) { }
 
   ngOnInit() {
     this.serviPropiedad.cargarComuna()
@@ -40,11 +43,26 @@ export class AgregarPropertyPage implements OnInit {
       }else if(this.propiedad.ID_COMUNA==""){
       }else{
         this.serviPropiedad.postPropiedad(this.propiedad.NOMBRE_PROPIEDAD,this.propiedad.DIRECCION,this.propiedad.HECTAREAS,this.propiedad.ID_COMUNA).subscribe((resultado)=> {
+          var propiedad = this.propiedades;
           console.log(resultado);
+          localStorage.setItem('Administrador', JSON.stringify(propiedad ));
+          this.presentAlert("");
           this.router.navigate(['/property']);
           
         });
       }
+  }
+
+  async presentAlert(mensaje) {
+    this.alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Propiedad Creada Correctamente',
+      message: mensaje,
+      buttons: ['Aceptar']
+    });
+
+    await this.alert.present();
+
   }
 
   cerrarSecion(){

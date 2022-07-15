@@ -7,17 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
   <ion-row>
     <ion-col>
       <ion-card>
         
-          <ion-card-content>
+          <ion-card-content >
             <ion-item class="input">
-              <ion-input [(ngModel)] = "admin.ROL" type="text" readonly>Administrador</ion-input>
+              <ion-input  [(ngModel)] = "admin.ROL_ADMIN" type="text" readonly>ADMINISTRADOR</ion-input>
             </ion-item>
             <ion-item class="input">
-              <ion-input [(ngModel)] = "admin.RUT"  type="text" placeholder="Ingresar Rut"required></ion-input>
+              <ion-input [(ngModel)] = "admin.RUT_ADMIN"  type="number" placeholder="Ingresar Rut" required></ion-input>
             </ion-item>
             <ion-item class="input">
               <ion-input [(ngModel)] = "admin.PNOMBRE" type="text" placeholder="Ingresar Primer Nombre" required>
@@ -28,52 +28,24 @@
               </ion-input>
             </ion-item>
             <ion-item class="input">
-              <ion-input [(ngModel)] = "admin.PAPELLIDO" type="text" placeholder="Ingresar Primer Apellido" required>
+              <ion-input  [(ngModel)] = "admin.PAPELLIDO" type="text" placeholder="Ingresar Primer Apellido" required>
               </ion-input>
             </ion-item>
             <ion-item class="input">
-              <ion-input [(ngModel)] = "admin.SAPELLIDO" type="text" placeholder="Ingresar Segundo Apellido" required>
+              <ion-input  [(ngModel)] = "admin.SAPELLIDO" type="text" placeholder="Ingresar Segundo Apellido" required>
               </ion-input>
             </ion-item>
             <ion-item class="input">
               <ion-input [(ngModel)] = "admin.EMAIL" type="Email" placeholder="Ingresar Email" required></ion-input>
             </ion-item>
-            <ion-item class="input">
-              <ion-input type="Email" placeholder="Ingresar Nuevamente Email" required></ion-input>
-            </ion-item>
-            <ion-item class="input">
-              <ion-input [(ngModel)] = "admin.CLAVE" type="Password" placeholder="Ingresar Password" required></ion-input>
-            </ion-item>
-            <ion-item class="input">
-              <ion-input type="Password" placeholder="Ingresar Nuevamente Password" required></ion-input>
-            </ion-item>
-            <ion-item class="input">
-              <ion-input [(ngModel)] = "admin.FECHA_NACIMIENTO" type="date" placeholder="Ingresar Fecha Nacimiento" required></ion-input>
-            </ion-item>
 
             <ion-item class="input">
-              <ion-label position="floating">Comuna</ion-label>
-              <ion-select okText="Okay" cancelText="Dismiss" [(ngModel)] = "admin.COMUNA_ID" >
-                <ion-select-option *ngFor="let c of comuna ">{{c.ID_COMUNA}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item class="input">
-              <ion-label position="floating">Región</ion-label>
-              <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] = "admin.REGION_ID" >
-                <ion-select-option  *ngFor="let r of region">{{r.ID_REGION}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item class="input">
-              <ion-label position="floating">Pais</ion-label>
-              <ion-select okText="Listo" cancelText="Cerrar" [(ngModel)] = "admin.PAIS_ID" >
-                <ion-select-option  *ngFor="let p of paises">{{p.ID_PAIS}}</ion-select-option>
-              </ion-select>
+              <ion-input [type]="showPassword ? 'text' : 'password' " [(ngModel)] = "admin.CLAVE" type="Password" placeholder="Ingresar Password"  required></ion-input>
+              <ion-icon class="icon" name="eye" color="gray" slot="end" (click)="mostrarContrasena()"></ion-icon>
             </ion-item>
             <br>
             <div>
-            <ion-button  color="danger" expand="block" (click)="registroAdmin()">
+            <ion-button  color="danger" expand="block" (click)="registroAdmin()"  >
               Registrarse
             </ion-button>
           </div>

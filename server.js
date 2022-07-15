@@ -48,10 +48,10 @@ app.post('/postAdmin', function (req, res) {
             return;
         }
         connection.execute("INSERT INTO USUARIO_ADMIN VALUES " +
-        "(:ID_ADMIN,:RUT_ADMIN,:ROL_ADMIN,:PNOMBRE,:SNOMBRE,:PAPELLIDO,:SAPELLIDO,:EMAIL,:CLAVE,:FECHA_NACIMIENTO,:COMUNA_ID,:REGION_ID,:PAIS_ID) ",
+        "(:ID_ADMIN,:RUT_ADMIN,:ROL_ADMIN,:PNOMBRE,:SNOMBRE,:PAPELLIDO,:SAPELLIDO,:EMAIL,:CLAVE) ",
              [req.body.ID_ADMIN,req.body.RUT_ADMIN,req.body.ROL_ADMIN, 
                             req.body.PNOMBRE,req.body.SNOMBRE,req.body.PAPELLIDO,req.body.SAPELLIDO,req.body.EMAIL,
-                            req.body.CLAVE,req.body.FECHA_NACIMIENTO,req.body.COMUNA_ID,req.body.REGION_ID,req.body.PAIS_ID], {
+                            req.body.CLAVE], {
                                 
                 autoCommit: true,
                 outFormat: oracledb.OBJECT // Return the result as Object
@@ -71,7 +71,7 @@ app.post('/postAdmin', function (req, res) {
                     res.header('Access-Control-Allow-Headers','Content-Type');
                     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
                     // Successfully created the resource
-                    res.status(200).set('Location', '/postAdmin/' + req.body.ID_ADMIN).end();
+                    res.status(200).set('Location', '/postAdmin/' + req.body.RUT_ADMIN).end();
 
                 }
                 // Release the connection
@@ -86,6 +86,31 @@ app.post('/postAdmin', function (req, res) {
             });
     });
 });
+
+
+//CREATE
+app.post('/addAdmin', async (req, res) => {
+    
+    const { ID_ADMIN,RUT_ADMIN,ROL_ADMIN,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,EMAIL,CLAVE} = req.body;
+
+    sql = "INSERT INTO USUARIO_ADMIN VALUES (:ID_ADMIN,:RUT_ADMIN,:ROL_ADMIN,:PNOMBRE,:SNOMBRE,:PAPELLIDO,:SAPELLIDO,:EMAIL,:CLAVE) ";
+
+    await Open(sql, [ ID_ADMIN,RUT_ADMIN,ROL_ADMIN,PNOMBRE,SNOMBRE,PAPELLIDO,SAPELLIDO,EMAIL,CLAVE], true);
+    res.header('Access-Control-Allow-Origin','*');
+                    res.header('Access-Control-Allow-Headers','Content-Type');
+                    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+    res.status(200).json({
+        "ID_ADMIN":ID_ADMIN,
+        "RUT_ADMIN":RUT_ADMIN,
+        "ROL_ADMIN":ROL_ADMIN,
+        "PNOMBRE":PNOMBRE,
+        "SNOMBRE":SNOMBRE,
+        "PAPELLIDO":PAPELLIDO,
+        "SAPELLIDO":SAPELLIDO,
+        "EMAIL": EMAIL,
+        "CLAVE":CLAVE,
+    })
+    })
 
 
 //** FINAL DE LOS  METODOS ADMINISTRADOR */
@@ -246,10 +271,9 @@ app.get('/getEmpleados', function (req, res) {
 
   // Http method: POST
 // Creates a new EMPLEADOS ID_TIPO_USUARIO,TIPO_USUARIO,EMAIL,CLAVE, DESCRIPCION
-app.post('/postEmpleado', function (req, res) {
+
+app.post('/getEmpleados2', function (req, res) {
     "use strict";
-    
-    
     oracledb.getConnection(connAttrs, function (err, connection) {
         if (err) {
             // Error connecting to DB
@@ -261,10 +285,9 @@ app.post('/postEmpleado', function (req, res) {
             return;
         }
         connection.execute("INSERT INTO PERSONA VALUES " +
-            "(:RUT_PERSONA, :PNOMBRE, :SNOMBRE, :PAPELLIDO," +
-            ":SAPELLIDO,:FECHA_NACIMIENTO,:TIPO_USUARIO,:EMAIL,:CLAVE,:ID_PROPIEDAD) ", 
-            [req.body.RUT_PERSONA, req.body.PNOMBRE,req.body.SNOMBRE,req.body.PAPELLIDO ,
-                            req.body.SAPELLIDO, req.body.FECHA_NACIMIENTO,req.body.TIPO_USUARIO,req.body.EMAIL, req.body.CLAVE,req.body.ID_PROPIEDAD], {
+            "(:ID_PERSONA,:RUT, :PNOMBRE, :SNOMBRE, :PAPELLIDO,:SAPELLIDO,:ROL_USUARIO,:EMAIL,:CLAVE,:ID_PROPIEDAD ) ",
+              [req.body.ID_PERSONA,req.body.RUT, req.body.PNOMBRE,req.body.SNOMBRE,req.body.PAPELLIDO ,
+                req.body.SAPELLIDO,req.body.ROL_USUARIO,req.body.EMAIL, req.body.CLAVE,req.body.ID_PROPIEDAD,], {
                                 
                 autoCommit: true,
                 outFormat: oracledb.OBJECT // Return the result as Object
@@ -284,7 +307,60 @@ app.post('/postEmpleado', function (req, res) {
                     res.header('Access-Control-Allow-Headers','Content-Type');
                     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
                     // Successfully created the resource
-                    res.status(201).set('Location', '/postEmpleado/' + req.body.RUT_PERSONA).end();
+                    res.status(201).set('Location', '/postEmpleado/' + req.body.ID_PERSONA).end();
+
+                }
+                // Release the connection
+                connection.release(
+                    function (err) {
+                        if (err) {
+                            console.error(err.message);
+                        } else {
+                            console.log("POST /postEmpleado : Connection released");
+                        }
+                    });
+            });
+    });
+});
+app.post('/postEmpleado', function (req, res) {
+    "use strict";
+    
+    
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json').status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error connecting to DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("INSERT INTO PERSONA VALUES " +
+            "(:ID_PERSONA,:RUT, :PNOMBRE, :SNOMBRE, :PAPELLIDO," +
+            ":SAPELLIDO,:ROL_USUARIO,:EMAIL,:CLAVE,:ID_PROPIEDAD) ", 
+            [req.body.ID_PERSONA,req.body.RUT, req.body.PNOMBRE,req.body.SNOMBRE,req.body.PAPELLIDO ,
+                            req.body.SAPELLIDO,req.body.ROL_USUARIO,req.body.EMAIL, req.body.CLAVE,req.body.ID_PROPIEDAD], {
+                                
+                autoCommit: true,
+                outFormat: oracledb.OBJECT // Return the result as Object
+                
+            },
+            function (err, result) {
+                if (err) {
+                    // Error
+                    res.set('Content-Type', 'application/json');
+                    res.status(400).send(JSON.stringify({
+                        status: 400,
+                        message: err.message.indexOf("ORA-00001") > -1 ? "User already exists" : "Input Error",
+                        detailed_message: err.message
+                    }));
+                } else {
+                    res.header('Access-Control-Allow-Origin','*');
+                    res.header('Access-Control-Allow-Headers','Content-Type');
+                    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                    // Successfully created the resource
+                    res.status(201).set('Location', '/postEmpleado/' + req.body.ID_PERSONA).end();
 
                 }
                 // Release the connection
@@ -317,7 +393,7 @@ app.delete('/deleteEmpleado/:id', function (req, res,next) {
             }));
             return;
         }
-        connection.execute('DELETE FROM PERSONA where RUT_PERSONA =:id', [ req.params.id], {
+        connection.execute('DELETE FROM PERSONA where RUT =:id', [ req.params.id], {
             outFormat: oracledb.OBJECT, // Return the result as Object
             autoCommit:true
         }, function (err, result) {
@@ -461,10 +537,10 @@ app.post('/postGanado', function (req, res) {
             return;
         }
         connection.execute("INSERT INTO ANIMAL VALUES " +
-            "(:NUMERO_SERIE,:TIPO_ANIMAL,:RAZA,:PESO,:ANOS_EDAD,:MESES_EDAD,:CRIAS,:TIPO_PRODUCCION,:FECHA,:PRECIO_COMPRA,:PRECIO_VENTA,:VACUNA,:PRECIO_VACUNA,:ENFERMEDAD,:MEDICAMENTO,:PRECIO_MEDICAMENTO,:ID_EVENTO,:ID_PROPIEDAD) ",
+            "(:NUMERO_SERIE,:TIPO_ANIMAL,:RAZA,:PESO,:ANOS_EDAD,:MESES_EDAD,:CRIAS,:TIPO_PRODUCCION,:FECHA,:PRECIO_COMPRA,:PRECIO_VENTA,:VACUNA,:PRECIO_VACUNA,:ENFERMEDAD,:MEDICAMENTO,:PRECIO_MEDICAMENTO,:ID_PROPIEDAD) ",
               [req.body.NUMERO_SERIE, req.body.TIPO_ANIMAL ,req.body.RAZA,req.body.PESO , req.body.ANOS_EDAD ,req.body.MESES_EDAD,
                 req.body.CRIAS,req.body.TIPO_PRODUCCION , req.body.FECHA ,req.body.PRECIO_COMPRA,req.body.PRECIO_VENTA, req.body.VACUNA,
-                req.body.PRECIO_VACUNA,req.body.ENFERMEDAD, req.body.MEDICAMENTO, req.body.PRECIO_MEDICAMENTO ,req.body.ID_EVENTO,req.body.ID_PROPIEDAD], {
+                req.body.PRECIO_VACUNA,req.body.ENFERMEDAD, req.body.MEDICAMENTO, req.body.PRECIO_MEDICAMENTO ,req.body.ID_PROPIEDAD], {
                                 
                 autoCommit: true,
                 outFormat: oracledb.OBJECT // Return the result as Object
@@ -617,10 +693,10 @@ app.post('/postSiembra', function (req, res) {
             return;
         }
         connection.execute("INSERT INTO SIEMBRA VALUES " +
-            "(:ID_SIEMBRA,:TIPO_SIEMBRA,:TIPO_FRU_VER,:COLOR,:VARIEDAD,:CANTIDAD,:METROS_OCUPADOS,:FECHA,:PRECIO_COMPRA,:PRECIO_VENTA,:FERTILIZANTE,:PRECIO_FERTILIZANTE,:FUMIGACION,:PRECIO_FUMIGACION) ",
+            "(:ID_SIEMBRA,:TIPO_SIEMBRA,:TIPO_FRU_VER,:COLOR,:VARIEDAD,:CANTIDAD,:METROS_OCUPADOS,:FECHA,:PRECIO_COMPRA,:PRECIO_VENTA,:FERTILIZANTE,:PRECIO_FERTILIZANTE,:FUMIGACION,:PRECIO_FUMIGACION,:ID_PROPIEDAD) ",
               [req.body.ID_SIEMBRA, req.body.TIPO_SIEMBRA ,req.body.TIPO_FRU_VER,req.body.COLOR,req.body.VARIEDAD, req.body.CANTIDAD ,req.body.METROS_OCUPADOS,
                 req.body.FECHA,req.body.PRECIO_COMPRA , req.body.PRECIO_VENTA ,req.body.FERTILIZANTE,req.body.PRECIO_FERTILIZANTE, req.body.FUMIGACION,
-                req.body.PRECIO_FUMIGACION], {
+                req.body.PRECIO_FUMIGACION,req.body.ID_PROPIEDAD], {
                                 
                 autoCommit: true,
                 outFormat: oracledb.OBJECT // Return the result as Object
@@ -640,7 +716,7 @@ app.post('/postSiembra', function (req, res) {
                     res.header('Access-Control-Allow-Headers','Content-Type');
                     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
                     // Successfully created the resource
-                    res.status(201).set('Location', '/postEmpleado/' + req.body.NUMERO_SERIE).end();
+                    res.status(201).set('Location', '/postEmpleado/' + req.body.ID_SIEMBRA).end();
 
                 }
                 // Release the connection
@@ -944,13 +1020,105 @@ app.put("/updateContacto/:id", async (req, res) => {
 
 })
 
-
-
-
-
 //** FINAL DE LOS  METODOS CONTACTOS */
 
+//** REPORTE GANADO */
+app.get('/reporteGanado', function (req, res) {
+    "use strict";
+  
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("SELECT P.nombre_propiedad,A.TIPO_ANIMAL,A.TIPO_PRODUCCION,A.NUMERO_SERIE,A.ANOS_EDAD ||''||A.MESES_EDAD EDAD, A.PESO, A.PRECIO_COMPRA, A.PRECIO_VENTA, A.PRECIO_VACUNA, A.PRECIO_MEDICAMENTO FROM PROPIEDAD P JOIN ANIMAL A ON P.NUMERO_SERIE = A.NUMERO_SERIE;", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+  
+            }
+            // Release the connection
+  
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
 
+//** FINAL REPORTE GANADO */
+
+//** REPORTE SIEMBRA*/
+app.get('/reporteSiembra', function (req, res) {
+    "use strict";
+  
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("SELECT P.NOMBRE_PROPIEDAD,S.ID_SIEMBRA,S.TIPO_SIEMBRA,S.TIPO_FRU_VER,S.CANTIDAD,S.PRECIO_COMPRA,S.PRECIO_VENTA,S.PRECIO_FERTILIZANTE,S.PRECIO_FUMIGACION FROM PROPIEDAD P JOIN SIEMBRA S ON P.ID_SIEMBRA = S.ID_SIEMBRA;", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+  
+            }
+            // Release the connection
+  
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+
+//** FINAL REPORTE SIEMBRA */
 
 
 
@@ -1057,8 +1225,8 @@ app.get('/getEvento', function (req, res) {
 
 
   ///METODO PARA PROBAR CONEXION DE LA CONEXION CON LA BD
-/////LOGIN
-app.post('/LOGIN', function (req, res) {
+/////LOGIN ADMIN
+app.post('/loginAdmin', function (req, res) {
     "use strict";
   
     oracledb.getConnection(connAttrs, function (err, connection) {
@@ -1072,7 +1240,7 @@ app.post('/LOGIN', function (req, res) {
             }));
             return;
         }
-        connection.execute("SELECT ROL_ADMIN,EMAIL,CLAVE FROM USUARIO_ADMIN;", {}, {
+        connection.execute("SELECT * FROM USUARIO_ADMIN WHERE ID_ADMIN = ID_ADMIN", {}, {
             outFormat: oracledb.OBJECT // Return the result as Object
         }, function (err, result) {
             if (err) {
@@ -1103,6 +1271,65 @@ app.post('/LOGIN', function (req, res) {
         });
     });
   });
+
+  ///METODO PARA PROBAR CONEXION DE LA CONEXION CON LA BD
+/////LOGIN EMPLEADO
+app.post('/loginEmpleado', function (req, res) {
+    "use strict";
+  
+    oracledb.getConnection(connAttrs, function (err, connection) {
+        if (err) {
+            // Error connecting to DB
+            res.set('Content-Type', 'application/json');
+            res.status(500).send(JSON.stringify({
+                status: 500,
+                message: "Error en la conexión con DB",
+                detailed_message: err.message
+            }));
+            return;
+        }
+        connection.execute("SELECT * FROM PERSONA WHERE RUT_PERSONA = RUT_PERSONA", {}, {
+            outFormat: oracledb.OBJECT // Return the result as Object
+        }, function (err, result) {
+            if (err) {
+                res.set('Content-Type', 'application/json');
+                res.status(500).send(JSON.stringify({
+                    status: 500,
+                    message: "Error getting the dba_tablespaces",
+                    detailed_message: err.message
+                }));
+            } else {
+                res.header('Access-Control-Allow-Origin','*');
+                res.header('Access-Control-Allow-Headers','Content-Type');
+                res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
+                res.contentType('application/json').status(200); //MENSAJE 200 ES QUE SE LOGRÓ LA CONEXION
+                res.send(JSON.stringify(result.rows));
+  
+            }
+            // Release the connection
+  
+            connection.release(
+                function (err) {
+                    if (err) {
+                        console.error(err.message);
+                    } else {
+                        console.log("GET /sendTablespace : Connection released");
+                    }
+                });
+        });
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/',function (req, res) {
 

@@ -27,6 +27,7 @@ contacto: any = {
   DESCRIPCION: ""
 }
 
+antes:any;
 
   constructor(private infoServi: ContactService, 
               private router: Router,
@@ -46,6 +47,13 @@ contacto: any = {
         console.log(data)
       })
   })
+
+  this.infoServi.cargarContactos().subscribe((res) => {
+    let rut = localStorage.getItem('UsuarioLogueado');
+    this.antes = res.filter(function (res) {
+      return res.RUT_USUARIO === JSON.parse(rut);
+    });
+  });
 
 }
 

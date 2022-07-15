@@ -8,36 +8,33 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content [formGroup]="formularioLogin">
 
   <ion-card class="card">
 
     <ion-item class="input">
       <ion-label position="floating" >Rut</ion-label>
-      <ion-input placeholder="12345678-9" maxlength="10" minlength="9" [(ngModel)]="usuario.ROL_ADMIN"></ion-input>
+      <ion-input formControlName="RUT_ADMIN" placeholder="12345678-9" maxlength="10" minlength="9"></ion-input>
     </ion-item>
     <ion-item class="input">
       <ion-label  position="floating"  >Contraseña</ion-label>
-      <ion-input [type]="showPassword ? 'text' : 'password' "  [(ngModel)]="usuario.CLAVE"></ion-input>
+      <ion-input [type]="showPassword ? 'text' : 'password' "  formControlName="CLAVE" ></ion-input>
       <ion-icon class="icon" name="eye" color="gray" slot="end" (click)="mostrarContrasena()"></ion-icon> 
     </ion-item>
 
     <div >
 
       <div class="boton">
-        <ion-button  color="primary" size="Large" (click)="ingresar()" routerLink="/owner"><b>Ingresar</b></ion-button>
+        <ion-button  color="primary" size="Large" (click)="ingresar()" ><b>Ingresar</b></ion-button>
+        <ion-button class="b_registrar" color="warning" size="Large" routerLink="/register"><b>Registrarse</b></ion-button>
       </div>
-      <div class="boton-registrar">
-        <ion-button color="secondary" size="Large" routerLink="/recuperar"><b>Recuperar</b></ion-button>
-        <ion-button class="b_registrar" color="warning" size="Large" routerLink="/registrar"><b>Registrar</b></ion-button>
-      </div>
-
     </div>
   </ion-card>
-
       <ion-row>
         <ion-col size="12" size-md="6" size-md="4" size-lg="3" size-xl="12">
           <a [routerLink]="['/forgot-password']" class="small-text">Olvidó Contraseña</a>
         </ion-col>
       </ion-row>
+      
+
 </ion-content>
