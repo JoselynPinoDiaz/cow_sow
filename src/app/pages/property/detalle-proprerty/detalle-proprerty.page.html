@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar >
+  <ion-toolbar color="success">
     <ion-buttons slot="start">
     <ion-back-button defaultHref="/property"></ion-back-button>
   </ion-buttons>
-    <ion-title>InFormación Propiedad</ion-title>
+    <ion-title>Información Propiedad</ion-title>
     <ion-buttons slot="end" >
       <ion-button (click)=" cerrarSecion()">
         <ion-icon name="log-out-outline"></ion-icon>
@@ -27,11 +27,6 @@
         <ion-item>
           <ion-label type="text">Cantidad Hectáreas: {{p.HECTAREAS}}</ion-label>
         </ion-item>
-        <ion-buttons slot="end">
-          <ion-button (click)=" eliminarPropiedad()">
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
         </ion-card-content>
       </ion-card>
     </ion-col>

@@ -1569,7 +1569,7 @@ app.get('/ENFERMEDADES', function (req, res) {
 });
 
 ///consulta get tabla region
-app.get('/REPORTES', function (req, res) {
+app.get('/ReporteGanado', function (req, res) {
   "use strict";
 
   oracledb.getConnection(connAttrs, function (err, connection) {
@@ -1583,7 +1583,7 @@ app.get('/REPORTES', function (req, res) {
           }));
           return;
       }
-      connection.execute("select * from REPORTE", {}, {
+      connection.execute("SELECT P.NOMBRE_PROPIEDAD,A.TIPO_ANIMAL,A.TIPO_PRODUCCION,A.NUMERO_SERIE,A.PRECIO_COMPRA,A.PRECIO_VENTA,PRECIO_VACUNA,A.PRECIO_MEDICAMENTO FROM PROPIEDAD P JOIN ANIMAL A ON A.ID_PROPIEDAD = P.ID_PROPIEDAD", {}, {
           outFormat: oracledb.OBJECT // Return the result as Object
       }, function (err, result) {
           if (err) {

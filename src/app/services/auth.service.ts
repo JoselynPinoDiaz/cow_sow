@@ -18,6 +18,8 @@ export interface User {
 //nombre del servicio angular
 export class AuthService {
 
+
+
  constructor(private http: HttpClient, private router: Router) {
    
   }
