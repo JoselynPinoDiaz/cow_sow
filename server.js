@@ -591,21 +591,6 @@ app.delete('/deleteco/:id', function (req, res,next) {
 
 
 
-//DELETE fUNCIONA
-app.delete("/deleteUser/:id", async (req, res) => {
-    const { id} = req.params;
-
-    sql = "DELETE FROM CONTACTO WHERE ID_CONTACTO =:id";
-
-    await Open(sql, [id], true);
-
-    res.json({ "msg": "Usuario Eliminado" })
-}); 
-
-//DELETE PROPIEDAD fUNCIONA
-
-
-
 
 
 
